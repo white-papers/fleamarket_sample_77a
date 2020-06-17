@@ -36,7 +36,7 @@ lock "~> 3.14.1"
 # set :ssh_options, verify_host_key: :secure
 
 set :application, 'fleamarket_sample_77a'
-set :repo_url,  'https://github.com/white-papers/white-papers.github.io.git'
+set :repo_url,  'git@github.com:white-papers/fleamarket_sample_77a.git'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
