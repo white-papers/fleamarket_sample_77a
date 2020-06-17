@@ -1,0 +1,2 @@
+class Profieladdress < ApplicationRecord
+end
