@@ -9,23 +9,16 @@
 |family_name_kana|string|null: false|
 |given_name_kana|string|null: false|
 |birthday|date|null: false|
-|street_address|references|foreign_key: true|
-|credit_cards|references|foreign_key: true|
-|delivery_address|references|foreign_key: true|
-
 ### Association
 - has_many :comments
 - has_many :orders
-- has_many :delivery_address
-- has_many :product
-- has_many :credit_card
-- has_one :street_address
+- has_many :delivery_addresses
+- has_many :products
+- has_many :credit_cards
 
-## Productテーブル
+## productテーブル
 |Column|Type|Options|
 |------|----|-------|
-|category|string|null: false|
-|brand|string|null: false|
 |size|numeric|null: false|
 |status|string|null: false|
 |product_name|string|null: false|
@@ -35,41 +28,39 @@
 |amount_of_money|integer|null: false|
 |good_number|integer|
 |product_details|text|null: false|
-|image|text|null: false|
 |shipping_method|string|null: false|
-|exhibitor_user|references|foreign_key: true|
-|buyer_user|references|foreign_key: true|
-
+|exhibitor_id|integer|null: false, foreign_key: true|
+|buyer_id|integer|foreign_key: true|
 ### Association
-- belongs_to :exhibitor.user
-- belongs_to :buyer.user
-- belongs_to :orders
+- belongs_to :exhibitor, class_name: 'User', :foreign_key => 'exhibitor_id'
+- belongs_to :buyer, class_name: 'User', :foreign_key => 'buyer_id'
+- belongs_to :order
 - has_many :comments
+^ has_many :image
+
+## imageテーブル
+|Column|Type|Options|
+|------|----|-------|
+|image|text|null: false|
+### Association
+- belongs_to :product
+
+## categoryテーブル
+|Column|Type|Options|
+|------|----|-------|
+|category|string|null: false|
+### Association
+- has_many :products
 
 ## commentsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |text|text|
-|user|references|foreign_key: true|
-|product|references|foreign_key: true|
-
-### Association
+|user|references|null: false, foreign_key: true|
+|product|references|null: false, foreign_key: true|
 - belongs_to :user
 - belongs_to :product
 
-## street_addressテーブル
-|Column|Type|Options|
-|------|----|-------|
-|postal_code|integer|null: false|
-|prefectures|string|null: false|
-|city|string|null: false|
-|address|string|null: false|
-|building|string|null: false|
-|user|references|foreign_key: true|
-
-
-### Association
-- has_one : user
 
 ## credit_cardテーブル
 |Column|Type|Options|
@@ -79,7 +70,7 @@
 |expiration_month|integer|null:false|
 |security_code|integer|null:false|
 |user_name|string|null:false|
-|user|references|foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 
@@ -87,17 +78,15 @@
 ## ordersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|delivery_method|references|foreign_key: true|
-|payment_method|references|foreign_key: true|
-|delivery_address|references|foreign_key: true|
-|exhibitor_user|references|foreign_key: true|
-|buyer_user|references|foreign_key: true|
-
-
+|payment_method|string|null: false|
+|delivery_method|references|null: false, foreign_key: true|
+|delivery_address|references|null: false, foreign_key: true|
+|exhibitor_id|references|null: false, foreign_key: true|
+|buyer_id|references|null: false, foreign_key: true|
 ### Association
 - has_one :delivery_address
-- belongs_to :exhibitor.user
-- belongs_to :buyer.user
+- belongs_to :exhibitor, class_name: 'User', :foreign_key => 'exhibitor_id'
+- belongs_to :buyer, class_name: 'User', :foreign_key => 'buyer_id'
 - belongs_to :product
 
 ## delivery_addressテーブル
@@ -113,8 +102,7 @@
 |address|string|null: false|
 |building|string|null: false|
 |phone_number|integer|null: false|
-|user|references|foreign_key: true|
-
+|buyer_id|references|null: false, foreign_key: true|
 ### Association
-- belongs_to :user
+- belongs_to :buyer, class_name: 'User', :foreign_key => 'buyer_id'
 - has_one :orders
