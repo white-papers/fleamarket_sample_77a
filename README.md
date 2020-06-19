@@ -50,8 +50,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |text|text|
-|user|integer|foreign_key: true|
-|product|integer|foreign_key: true|
+|user|references|foreign_key: true|
+|product|references|foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -79,8 +79,7 @@
 |expiration_month|integer|null:false|
 |security_code|integer|null:false|
 |user_name|string|null:false|
-|user|integer|foreign_key:true|
-
+|user|references|foreign_key: true|
 ### Association
 - belongs_to :user
 
@@ -114,8 +113,8 @@
 |address|string|null: false|
 |building|string|null: false|
 |phone_number|integer|null: false|
-|buyer_user|references|foreign_key: true|
+|user|references|foreign_key: true|
 
 ### Association
-- belongs_to :buyer_user
+- belongs_to :user
 - has_one :orders
