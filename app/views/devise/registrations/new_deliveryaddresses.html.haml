@@ -1,0 +1,57 @@
+%h2 商品送付先住所登録
+= form_with(model: @deliveryaddresses,local: true) do |f|
+
+  .field
+    = f.label :family_name
+    %br/
+    = f.text_field :family_name
+
+  .field
+    = f.label :given_name
+    %br/
+    = f.text_field :given_name
+
+  .field
+    = f.label :family_name_kana
+    %br/
+    = f.text_field :family_name_kana
+
+  .field
+    = f.label :given_name_kana
+    %br/
+    = f.text_field :given_name_kana
+ 
+  .field
+    = f.label :postal_code
+    %br/
+    = f.text_field :postal_code
+
+  .field
+    = f.label :prefectures
+    %br/
+    = f.text_field :prefectures
+  
+  .field
+    = f.label :city
+    %br/
+    = f.text_field :city
+
+  .field
+    = f.label :address
+    %br/
+    = f.text_field :address
+
+  .field
+    = f.label :building
+    %br/
+    = f.text_field :building
+
+  .field
+    = f.label :phone_number
+    %br/
+    = f.text_field :phone_number
+
+  .actions
+    = f.submit "登録"  
+
+= render "devise/shared/links"    
