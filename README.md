@@ -32,8 +32,8 @@
 |exhibitor_id|integer|null: false, foreign_key: true|
 |buyer_id|integer|foreign_key: true|
 ### Association
-- belongs_to :exhibitor, class_name: 'User', :foreign_key => 'exhibitor_id'
-- belongs_to :buyer, class_name: 'User', :foreign_key => 'buyer_id'
+- belongs_to :exhibitor, class_name: 'User', :foreign_key :'exhibitor_id'
+- belongs_to :buyer, class_name: 'User', :foreign_key :'buyer_id'
 - belongs_to :order
 - has_many :comments
 ^ has_many :image
@@ -85,8 +85,8 @@
 |buyer_id|references|null: false, foreign_key: true|
 ### Association
 - has_one :delivery_address
-- belongs_to :exhibitor, class_name: 'User', :foreign_key => 'exhibitor_id'
-- belongs_to :buyer, class_name: 'User', :foreign_key => 'buyer_id'
+- belongs_to :exhibitor, class_name: 'User', :foreign_key :'exhibitor_id'
+- belongs_to :buyer, class_name: 'User', :foreign_key :'buyer_id'
 - belongs_to :product
 
 ## delivery_addressテーブル
@@ -104,5 +104,5 @@
 |phone_number|integer|null: false|
 |buyer_id|references|null: false, foreign_key: true|
 ### Association
-- belongs_to :buyer, class_name: 'User', :foreign_key => 'buyer_id'
+- belongs_to :buyer, class_name: 'User', :foreign_key :'buyer_id'
 - has_one :orders
