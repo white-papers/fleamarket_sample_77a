@@ -6,8 +6,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: "７文字以上の半角英数字"
-      t.string :surname,            null: false
-      t.string :name,               null: false
+      # 追加したカラム
       t.string :nickname,           null: false
       t.string :family_name,        null: false
       t.string :given_name,         null: false
