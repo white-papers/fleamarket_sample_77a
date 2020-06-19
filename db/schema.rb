@@ -10,19 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_112942) do
-
-  create_table "Profileaddresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "postal_code"
-    t.string "prefectures"
-    t.string "city"
-    t.string "address"
-    t.string "building"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_profieladdresses_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2020_06_17_025720) do
 
   create_table "deliveryaddresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "family_name", null: false
@@ -44,6 +32,8 @@ ActiveRecord::Schema.define(version: 2020_06_19_112942) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "７文字以上の半角英数字", null: false
+    t.string "surname", null: false
+    t.string "name", null: false
     t.string "nickname", null: false
     t.string "family_name", null: false
     t.string "given_name", null: false
@@ -64,6 +54,6 @@ ActiveRecord::Schema.define(version: 2020_06_19_112942) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "Profileaddresses", "users"
   add_foreign_key "deliveryaddresses", "users"
+
 end
