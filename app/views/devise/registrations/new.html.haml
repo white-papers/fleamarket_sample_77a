@@ -1,0 +1,74 @@
+%h2 Sign up
+= form_for(@user, url: user_registration_path) do |f| 
+  = render "devise/shared/error_messages", resource: @user 
+
+
+  .field
+    = f.label :nickname
+    %br/
+    = f.text_field :nickname
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label :password
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+    %br/
+    = f.password_field :password, autocomplete: "new-password"
+  .field
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "new-password"
+  .field
+    = f.label :family_name
+    %br/
+    = f.text_field :family_name
+  .field
+    = f.label :given_name
+    %br/
+    = f.text_field :given_name
+  .field
+    = f.label :family_name_kana
+    %br/
+    = f.text_field :family_name_kana
+  .field
+    = f.label :given_name_kana
+    %br/
+    = f.text_field :given_name_kana
+
+  .field
+    = f.label :birthday
+    %br/
+    = f.date_field :birthday
+
+  .field
+    = f.label :postal_code
+    %br/
+    = f.text_field :postal_code
+
+  .field
+    = f.label :prefectures
+    %br/
+    = f.text_field :prefectures
+  
+  .field
+    = f.label :city
+    %br/
+    = f.text_field :city
+
+  .field
+    = f.label :address
+    %br/
+    = f.text_field :address
+
+  .field
+    = f.label :building
+    %br/
+    = f.text_field :building  
+
+  .actions
+    = f.submit "Next"
+= render "devise/shared/links"
