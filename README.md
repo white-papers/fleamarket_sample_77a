@@ -9,17 +9,13 @@
 |family_name_kana|string|null: false|
 |given_name_kana|string|null: false|
 |birthday|date|null: false|
-|postal_code|integer|null: false|
-|prefecture_id(active_hash)|integer|null: false|
-|city|string|null: false|
-|address|string|null: false|
-|building|string|null: false|
 ### Association
 - has_many :comments
 - has_many :orders
 - has_many :delivery_addresses
 - has_many :products
 - has_many :credit_cards
+- has_one :street_address
 
 ## productsテーブル
 |Column|Type|Options|
@@ -46,6 +42,7 @@
 ## imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
+|product|references|null: false, foreign_key: true|
 |image|text|null: false|
 ### Association
 - belongs_to :product
@@ -76,7 +73,7 @@
 |expiration_month|integer|null:false|
 |security_code|integer|null:false|
 |user_name|string|null:false|
-|user_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 
@@ -103,7 +100,7 @@
 |family_name_kana|string|null: false|
 |given_name_kana|string|null: false|
 |postal_code|integer|null: false|
-|prefectures|string|null: false|
+||prefecture_id(active_hash)|integer|null: false|
 |city|string|null: false|
 |address|string|null: false|
 |building|string|null: false|
@@ -112,3 +109,15 @@
 ### Association
 - belongs_to :buyer, class_name: 'User', :foreign_key :'buyer_id'
 - has_one :orders
+
+## street_addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|postal_code|integer|null: false|
+|prefecture_id(active_hash)|integer|null: false|
+|city|string|null: false|
+|address|string|null: false|
+|building|string|null: false|
+|user|references|null: false, foreign_key: true|
+### Association
+- has_one :user
