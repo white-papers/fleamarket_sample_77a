@@ -120,4 +120,4 @@
 |building|string|null: false|
 |user|references|null: false, foreign_key: true|
 ### Association
-- has_one :user
+- belongs_to :user
