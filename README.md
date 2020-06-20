@@ -1,4 +1,4 @@
-## userテーブル
+## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |email|string|null: false|
@@ -21,7 +21,7 @@
 - has_many :products
 - has_many :credit_cards
 
-## productテーブル
+## productsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |size|numeric|null: false|
@@ -43,7 +43,7 @@
 - has_many :comments
 ^ has_many :image
 
-## imageテーブル
+## imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |image|text|null: false|
@@ -68,7 +68,7 @@
 - belongs_to :product
 
 
-## credit_cardテーブル
+## credit_cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |card_number|integer|unique:true|
@@ -95,7 +95,7 @@
 - belongs_to :buyer, class_name: 'User', :foreign_key :'buyer_id'
 - belongs_to :product
 
-## delivery_addressテーブル
+## delivery_addressesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |family_name|string|null: false|
