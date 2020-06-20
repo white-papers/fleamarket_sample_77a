@@ -9,6 +9,11 @@
 |family_name_kana|string|null: false|
 |given_name_kana|string|null: false|
 |birthday|date|null: false|
+|postal_code|integer|null: false|
+|prefecture_id(active_hash)|integer|null: false|
+|city|string|null: false|
+|address|string|null: false|
+|building|string|null: false|
 ### Association
 - has_many :comments
 - has_many :orders
@@ -48,7 +53,8 @@
 ## categoryテーブル
 |Column|Type|Options|
 |------|----|-------|
-|category|string|null: false|
+|name|string|null: false|
+|ancestry|varchar(255)|null: false|
 ### Association
 - has_many :products
 
