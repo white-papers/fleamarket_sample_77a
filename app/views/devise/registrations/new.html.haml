@@ -1,74 +1,97 @@
 %h2 Sign up
 = form_for(@user, url: user_registration_path) do |f| 
-  = render "devise/shared/error_messages", resource: @user 
+  -# = render "devise/shared/error_messages", resource: @user 
 
 
   .field
     = f.label :nickname
     %br/
     = f.text_field :nickname
+    .input-error
+      - if @user.errors.any?
+        - unless @user.valid?
+          = resource.errors.full_messages_for(:nickname)[0]
+    
+
   .field
     = f.label :email
-    %br/
+    %br/   
     = f.email_field :email, autofocus: true, autocomplete: "email"
+    .input-error
+      - if @user.errors.any?
+        - unless @user.valid?
+          = resource.errors.full_messages_for(:email)[0]
+
   .field
     = f.label :password
     - if @minimum_password_length
       %em
-        (#{@minimum_password_length} characters minimum)
+        ( #{@minimum_password_length}  桁以上の半角英数字を入力してください)
     %br/
     = f.password_field :password, autocomplete: "new-password"
+    .input-error
+      - if @user.errors.any?
+        - unless @user.valid?
+          = resource.errors.full_messages_for(:password)[0]
+
   .field
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation, autocomplete: "new-password"
+    .input-error
+      - if @user.errors.any?
+        - unless @user.valid?
+          = resource.errors.full_messages_for(:password)[0]
+
   .field
     = f.label :family_name
     %br/
     = f.text_field :family_name
+    .input-error
+      - if @user.errors.any?
+        - unless @user.valid?
+          = resource.errors.full_messages_for(:family_name).first
   .field
     = f.label :given_name
     %br/
     = f.text_field :given_name
+    .input-error
+      - if @user.errors.any?
+        - unless @user.valid?
+          = resource.errors.full_messages_for(:given_name).first
+        
   .field
     = f.label :family_name_kana
     %br/
     = f.text_field :family_name_kana
+    .input-error
+      - if @user.errors.any?
+        - unless @user.valid?
+          = resource.errors.full_messages_for(:family_name_kana).first
+      
+
   .field
     = f.label :given_name_kana
     %br/
     = f.text_field :given_name_kana
+    .input-error
+      - if @user.errors.any?
+        - unless @user.valid?
+          = resource.errors.full_messages_for(:given_name_kana).first
+      
 
   .field
     = f.label :birthday
     %br/
-    = f.date_field :birthday
+    .birthday-select
+    = raw sprintf(f.date_select( :birthday, use_two_digit_numbers: true, prompt: "--", start_year: Time.now.year, end_year: 1900, date_separator: '%s'), '年 ', '月 ') + "日"
+    .input-error
+      - if @user.errors.any?
+        - unless @user.valid?
+          = resource.errors.full_messages_for(:birthday)[0]
 
-  .field
-    = f.label :postal_code
-    %br/
-    = f.text_field :postal_code
-
-  .field
-    = f.label :prefectures
-    %br/
-    = f.text_field :prefectures
-  
-  .field
-    = f.label :city
-    %br/
-    = f.text_field :city
-
-  .field
-    = f.label :address
-    %br/
-    = f.text_field :address
-
-  .field
-    = f.label :building
-    %br/
-    = f.text_field :building  
 
   .actions
     = f.submit "Next"
+     
 = render "devise/shared/links"

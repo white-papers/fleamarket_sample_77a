@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProfieladdressTest < ActiveSupport::TestCase
+class StreetaddressTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

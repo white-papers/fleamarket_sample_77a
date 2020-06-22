@@ -1,0 +1,6 @@
+- if @deliveryaddresses.errors.any?
+  - unless @deliveryaddresses.valid?
+    - if errors = @deliveryaddresses.errors.full_messages_for(column.to_sym)
+      %ul
+        - errors.each do |error|
+          %li=error

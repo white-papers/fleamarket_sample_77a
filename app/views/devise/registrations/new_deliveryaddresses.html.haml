@@ -1,56 +1,78 @@
 %h2 商品送付先住所登録
-= form_with(model: @deliveryaddresses,local: true) do |f|
+= form_for(@deliveryaddresses, url: deliveryaddresses_path,method: :post) do |f|
+  -# = render "devise/shared/error_messages", resource: @deliveryaddresses
 
   .field
     = f.label :family_name
     %br/
     = f.text_field :family_name
-
+    .input-error
+    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "family_name"} 
   .field
     = f.label :given_name
     %br/
     = f.text_field :given_name
-
+    .input-error
+    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "given_name"} 
+        
   .field
     = f.label :family_name_kana
     %br/
     = f.text_field :family_name_kana
+    .input-error
+    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "family_name_kana"} 
+      
 
   .field
     = f.label :given_name_kana
     %br/
     = f.text_field :given_name_kana
+    .input-error
+    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "given_name_kana"} 
  
   .field
     = f.label :postal_code
     %br/
     = f.text_field :postal_code
+    .input-error
+    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "postal_code"} 
 
   .field
-    = f.label :prefectures
+    = f.label :prefecture_id
     %br/
-    = f.text_field :prefectures
+    = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+    .input-error
+    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "prefecture_id"} 
   
   .field
     = f.label :city
     %br/
     = f.text_field :city
+    .input-error
+    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "city"} 
+
 
   .field
     = f.label :address
     %br/
     = f.text_field :address
+    .input-error
+    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "address"} 
 
   .field
     = f.label :building
     %br/
     = f.text_field :building
+    .input-error
+    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "building"} 
 
   .field
     = f.label :phone_number
     %br/
     = f.text_field :phone_number
-
+    .input-error
+    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "phone_number"} 
+    
   .actions
     = f.submit "登録"  
 
