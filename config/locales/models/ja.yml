@@ -1,0 +1,34 @@
+ja:
+  activerecord:
+    models:
+      user: 会員情報入力
+      streetaddress: 住所入力
+      deilveryaddress: 商品送付先住所入力
+
+    attributes:
+      user:
+        email: メールアドレス
+        encrypted_password: パスワード
+        nickname: ニックネーム
+        family_name: 名字
+        given_name: 名前
+        family_name_kana: 名字(カナ)
+        given_name_kana: 名前(カナ)
+        birthday: 生年月日  
+      streetaddress: 
+        postal_code: 郵便番号
+        prefecture_id: 都道府県
+        city: 市町村
+        address: 番地
+        building: それ以降の住所
+      deliveryaddress:
+        family_name: 名字
+        given_name: 名前
+        family_name_kana: 名字(カナ)
+        given_name_kana: 名前(カナ)                
+        postal_code: 郵便番号
+        prefecture_id: 都道府県
+        city: 市町村
+        address: 番地
+        building: それ以降の住所   
+        phone_number: 電話番号
