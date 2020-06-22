@@ -1,0 +1,113 @@
+.background {
+  background: #f5f5f5;
+  padding: 40px 40px 90px 40px;
+}
+
+  .product {
+    background: #fff;
+    width: 700px;
+    margin: 0 auto;
+    padding:24px 40px 40px 40px;
+    display: table;
+    position:  relative;
+    &__name {
+      border: 1px solid #eee;
+      width: 60%;
+      margin: 0 0 20px 10px;
+      font-size: 20px;
+    }
+    &__image {
+      &__selected {
+        z-index: 1;  /* 取得イメージをplaceholderより前面に表示 */
+      }
+    }
+    ul.product__image__placeholder {
+      display: flex;  /* image-placeholderを横並び */
+    }
+    #ID001, #ID002, #ID003, #ID004, #ID005 {
+    background-image:url(image-placeholder-128px.png);  /* image-placeholder形状を調整 */
+    width:128px;
+    height:128px;
+    margin: 10px 5px 5px 0px;
+    }
+    #ID001 {
+      display: flex;  /* 取得イメージを横並び */
+    }
+    img.product__image__get {
+      height: 128px;  /* 取得イメージ形状を調整 */
+      width: 128px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin: 0px 5px 5px 0px;
+    }
+    &__price {
+      border: 1px solid #eee;
+      width: 30%;
+      margin: 0 0 0 10px;
+      font-size: 20px;
+      text-align-last: right;
+    }
+    &__detail {
+      border: 1px solid #eee;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    &__table {
+      width: 100%;
+      height: 375px;
+    }
+    &__table th {
+      width: 20%;
+      background-color: #eee;
+      font-weight: 400;
+      padding: 8px;
+      border: 1px solid #dedede;
+      text-align: center;
+    }
+    &__table td {
+      width: 61%;
+      padding: 15px 15px;
+      border: 1px solid #dedede;
+    }
+    &__category {
+      border: 1px solid #eee;
+      width: 187px;
+      height: 26px;
+    }
+    &__brand, &__size {
+      border: 1px solid #eee;
+      width: 80%;
+    }
+    &__status, &__shipping-method, &__shipping-region, &__shipping-date {
+      border: 1px solid #eee;
+      width: 187px;
+      height: 26px;
+    }
+    &__btn {
+      position: absolute;
+      top: 102%;
+      right: 160px;
+      font-size: 18px;
+      line-height: 48px;
+      background: #3CCACE;
+      border: 1px solid #3CCACE;
+      color: #fff;
+      width: 60%;
+      font-size: 18px;
+      border-radius: 100px;
+      cursor: pointer;
+      &:hover {
+        background: #39c0c5;
+        border: 1px solid #33a9ad;
+      }
+      &:active {
+        background: #33a9ad;
+        border: 1px solid #39c0c5;
+      }
+    }
+  }
+
+  span.form-require {
+    color: red;
+    margin-left: 5px;
+  }
