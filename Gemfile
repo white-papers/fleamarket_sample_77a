@@ -85,5 +85,7 @@ group :production do
   gem 'unicorn'
 end
 
+gem 'mini_magick'
+
 gem 'carrierwave'
 gem 'fog-aws'
