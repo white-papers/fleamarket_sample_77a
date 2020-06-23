@@ -1,7 +1,24 @@
--if user_signed_in?
-  %h2 ログインしています
-  = link_to "ログアウト", destroy_user_session_path, method: :delete
-- else
-  %h2 ログインしていません
-  = link_to "新規登録", new_user_registration_path
-  = link_to "ログイン", new_user_session_path 
+%header
+  .site-header
+    .site-header__top
+      .site-header__top__content
+        .site-header__top__content__logo
+          = link_to image_tag('logo/logo.png', class:'image'), '#'
+      .site-header__top__form
+        = form_with url:'#' do |f|
+          = f.text_field :body, class: 'input', placeholder: 'キーワードから探す'
+          = button_tag do
+            = image_tag('icon/icon-search 1.png',class:'icon')
+    .site-header__lists
+      %ul.listsleft
+        %li.category
+          = link_to '#'do
+            = 'カテゴリー'
+        %li.brand
+          = link_to '#' do
+            = 'ブランド'
+      %ul.listsright
+        %li.login
+          = link_to 'ログイン',new_user_session_path 
+        %li.sign-up
+          = link_to '新規会員登録', new_user_registratio
