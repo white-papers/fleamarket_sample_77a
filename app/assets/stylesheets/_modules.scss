@@ -1,0 +1,47 @@
+// フォームの入力画面のレイアウト
+.singup_field{
+  height: 45px;
+  width: 350px;
+  margin-left: 100px;
+  margin-top: 5px;
+  border: 1px solid rgb(194, 191, 191);
+  padding-left: 5px;
+}
+
+// エラーメッセージのレイアウト
+.input-error{
+  font-size: 15px;
+  color:red;
+  margin-left: 100px;
+}      
+
+// ボタンのレイアウト
+.next_btn{
+  top: 102%;
+  right: 160px;
+  font-size: 18px;
+  line-height: 48px;
+  background: #3CCACE;
+  border: 1px solid #3CCACE;
+  color: #fff;
+  width: 60%;
+  font-size: 18px;
+  border-radius: 100px;
+  cursor: pointer;
+  .next_btn:hover {
+    background: #39c0c5;
+    border: 1px solid #33a9ad;
+  }
+  .next_btn:active {
+    background: #33a9ad;
+    border: 1px solid #39c0c5;
+  }
+}
+
+// 「必須」のレイアウト
+.name_required{
+  font-size:12px;
+  color: white;
+  background:red;
+  padding: 5px;
+}
