@@ -65,8 +65,8 @@ header {
           padding: 0;
           line-height: 32px;
         }
-        a {
-          background-image: url('icon/icon_category.svg');
+        .category a {
+          background-image: url('icon/icon_category.png');
           color: #333;
           text-decoration: none;
           line-height: 32px;
@@ -80,8 +80,8 @@ header {
           padding: 0 0 0 16px;
           display: flex;
         }
-        a  {
-          background-image: url('icon/icon_brand.svg');
+        a {
+          background-image: url('icon/icon_brand.png');
           color: #333;
           text-decoration: none;
           line-height: 32px;
