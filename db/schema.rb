@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_020813) do
+ActiveRecord::Schema.define(version: 2020_06_20_060806) do
 
   create_table "deliveryaddresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "family_name", null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_020813) do
     t.string "family_name_kana", null: false
     t.string "given_name_kana", null: false
     t.string "postal_code", null: false
+    t.string "prefectures", null: false
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"
@@ -25,8 +26,19 @@ ActiveRecord::Schema.define(version: 2020_06_21_020813) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_deliveryaddresses_on_user_id"
+  end
+
+  create_table "profieladdresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "postal_code"
+    t.string "prefectures"
+    t.string "city"
+    t.string "address"
+    t.string "building"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profieladdresses_on_user_id"
   end
 
   create_table "streetaddresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -34,16 +46,18 @@ ActiveRecord::Schema.define(version: 2020_06_21_020813) do
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"
+    t.integer "prefecture_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_streetaddresses_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "７文字以上の半角英数字", null: false
+    t.string "surname", null: false
+    t.string "name", null: false
     t.string "nickname", null: false
     t.string "family_name", null: false
     t.string "given_name", null: false
@@ -60,5 +74,6 @@ ActiveRecord::Schema.define(version: 2020_06_21_020813) do
   end
 
   add_foreign_key "deliveryaddresses", "users"
+  add_foreign_key "profieladdresses", "users"
   add_foreign_key "streetaddresses", "users"
 end
