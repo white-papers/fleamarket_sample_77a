@@ -1,0 +1,102 @@
+.order {
+  background: #fff;
+  width: 80%;
+  margin: 0 auto;
+  padding:24px 40px 40px 40px;
+  &__title {
+    font-size: 24px;
+    text-align: center;
+  }
+  &__info {
+    display: flex;
+    &__image {
+      height: 128px;  /* 取得イメージ形状を調整 */
+      width: 128px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin: 0px 5px 5px 0px;
+    }
+    &__box {
+      display: flex;
+      padding-left: 20px;
+      &__name {
+        &__price-box {
+          display: flex; /* 値段とburdenを横並び */
+          &__price {
+          }
+          &__burden {
+            padding-left: 10px;
+          }
+        }
+      }
+    }
+  }
+  &__price-total-box {
+    display: flex;
+    justify-content: space-between;
+    &__left {
+    }
+    &__right {
+      margin-right: 20px;
+      font-size: 24px;
+    }
+  }
+  &__payment-method {
+    &__right {
+      padding-right: 20px;
+      float: right;
+      text-decoration: none;
+    }
+  }
+  &__delivery-addresses {
+    &__right {
+      padding-right: 20px;
+      float: right;
+    }
+  }
+  &__send {
+    text-align: center;
+    margin-top: 20px;
+    &__btn {
+    font-size: 18px;
+    line-height: 48px;
+    background: #3CCACE;
+    border: 1px solid #3CCACE;
+    color: #fff;
+    width: 60%;
+    border-radius: 100px;
+    cursor: pointer;
+      &:hover {
+        background: #39c0c5;
+        border: 1px solid #33a9ad;
+      }
+      &:active {
+        background: #33a9ad;
+        border: 1px solid #39c0c5;
+      }
+    }
+  }
+}
+
+// 線の装飾
+hr.order-border {
+  border-top: 1px #eee;
+}
+
+// 文字の強調・太字
+strong {
+  font-weight: bold;
+}
+
+// aタグの装飾を消す ホバー時にアンダーライン表示
+a.plane {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// 購入完了ページの文字サイズ
+.order__done {
+  font-size: 20px;
+}

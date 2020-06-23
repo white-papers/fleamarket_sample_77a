@@ -10,7 +10,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
   
   def create
-    
     @user = User.new(sign_up_params)
     unless @user.valid?
       flash.now[:alert] = @user.errors.full_messages
@@ -18,22 +17,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
-    @deliveryaddresses= @user.deliveryaddresses.build
+    @streetaddress= @user.build_streetaddress
+    render :new_streetaddress
+  end
+
+  def create_streetaddress
+    @user = User.new(session["devise.regist_data"]["user"])
+    @streetaddress = Streetaddress.new(streetaddress_params)
+    unless @streetaddress.valid?
+      flash.now[:alert] = @streetaddress.errors.full_messages
+      render :new_streetaddress and return
+    end
+    @user.build_streetaddress(@streetaddress.attributes)
+    session["streetaddress"] = @streetaddress.attributes
+    @deliveryaddresses = @user.deliveryaddresses.build
     render :new_deliveryaddresses
-   
   end
 
   def create_deliveryaddresses
-   
     @user = User.new(session["devise.regist_data"]["user"])
+    @streetaddress = Streetaddress.new(session["streetaddress"])
     @deliveryaddresses = Deliveryaddress.new(deliveryaddresses_params)
     unless @deliveryaddresses.valid?
       flash.now[:alert] = @deliveryaddresses.errors.full_messages
       render :new_deliveryaddresses and return
     end
+    @user.build_streetaddress(@streetaddress.attributes)
     @user.deliveryaddresses.build(@deliveryaddresses.attributes)
     @user.save
-    session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)
   end
 
@@ -63,12 +74,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  protected
+  def streetaddress_params
+    params.require(:streetaddress).permit(:postal_code, :prefecture_id, :city, :address, :building)
+  end
 
   def deliveryaddresses_params
-    params.require(:deliveryaddress).permit(:family_name, :given_name, :family_name_kana, :given_name_kana, :postal_code, :prefectures, :city, :address, :building, :phone_number)
+    params.require(:deliveryaddress).permit(:family_name, :given_name, :family_name_kana, :given_name_kana, :postal_code, :prefecture_id, :city, :address, :building, :phone_number)
   end  
-
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
