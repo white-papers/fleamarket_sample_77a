@@ -1,0 +1,48 @@
+-# http://localhost:3000/products/show 購入確認ページ
+
+.background
+  .order
+    .order__title 
+      %strong 購入内容の確認
+
+    %hr.order-border
+    .order__info
+      = image_tag "image-placeholder-128px.png", alt: "Rails icon", id: "assets", class: "order__info__image", width: "300px"
+
+      .order__info__box
+        .order__info__box__name
+          -# = link to (商品名)
+          iPhone8ケース
+          .order__info__box__name__price-box
+            .order__info__box__name__price-box__price
+              %strong ￥300(税込)
+            .order__info__box__name__price-box__burden
+              -# = link to (burden)
+              送料込み
+
+    %hr.order-border
+    .order__price-total-box
+      %strong.order__price-total-box__left 支払い金額
+      %strong.order__price-total-box__right ￥300
+
+    %hr.order-border
+    .order__payment-method
+      %strong 支払い方法
+      %p
+      -# = link to (支払い方法)
+      クレジットカード
+      .order__payment-method__right
+        %a.plane{href: "#"} 変更する
+
+    %hr.order-border
+    .order__delivery-addresses
+      %strong 配送先
+      %p
+      -# = link to  (配送先住所)
+      住所
+      .order__delivery-addresses__right
+        %a.plane{href: "#"} 変更する
+
+    %hr.order-border
+    .order__send
+      %button.order__send__btn 購入する

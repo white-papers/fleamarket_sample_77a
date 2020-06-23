@@ -1,0 +1,28 @@
+.background
+  .order
+    %strong.order__done
+      購入が完了しました。
+    %p 
+    %i.far.fa-clock 商品の発送をお待ちください。
+
+    %hr.order-border
+      .order__info
+        = image_tag "image-placeholder-128px.png", alt: "Rails icon", id: "assets", class: "order__info__image", width: "300px"
+
+        .order__info__box
+          .order__info__box__name
+            -# = link to (商品名)
+            iPhone8ケース
+            .order__info__box__name__price-box
+              .order__info__box__name__price-box__price
+                %strong ￥300(税込)
+              .order__info__box__name__price-box__burden
+                -# = link to (burden)
+                送料込み
+      %hr.order-border
+        .order__price-total-box
+          %strong.order__price-total-box__left 支払い金額
+          %strong.order__price-total-box__right ￥300
+      %hr.order-border
+        .order__send
+          %button.order__send__btn Topページに戻る
