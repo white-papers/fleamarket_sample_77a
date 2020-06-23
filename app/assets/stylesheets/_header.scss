@@ -1,0 +1,123 @@
+header {
+  padding: 0 60px;
+  .site-header {
+    max-width: 1040px;
+    width: 100%;
+    min-height: 82px;
+    margin: 0 auto;
+    padding: 15px 0 0;
+    &__top {
+      position: relative;
+      display: flex;
+      align-items: center;
+      font-size: 100%;
+      font-weight: normal;
+      &__content {
+        padding-bottom: 10px;
+        margin-right: 30px;
+        border-radius: 4px;
+        &__logo {
+          width: 140px;
+          display: block;
+          .image {
+            width: 100%;
+            vertical-align: bottom;
+            cursor: pointer;
+          }
+        }
+      }
+      &__form {
+        margin-left: auto;
+        width: 100%;
+      form {
+        width: 100%;
+        display: flex;
+        margin-bottom: 5px;
+      }
+        .input {
+          width: calc(100% - 26px);
+          height: 36px;
+          padding: 0 0 0 5px;
+        }
+        button {
+          width: 36px;
+          border: 0;
+          cursor: pointer;
+          background-color: #3CCACE;
+          padding: 8px;
+        }
+        .icon {
+          width: 100%;
+          vertical-align: bottom;
+        }
+      }
+    }
+    &__lists {
+      font-size: 14px;
+      display: flex;
+      margin-bottom: 10px;
+      line-height: 38px;
+      .listsleft {
+        display: flex;
+        position: relative;
+        .category {
+          text-decoration: none;
+          padding: 0;
+        }
+        a {
+          background-image: url('icon/icon_category.svg');
+          color: #333;
+          text-decoration: none;
+          line-height: 32px;
+          background-position: center right;
+          background-repeat: no-repeat;
+          background-size: 18px;          
+          padding-right: 30px;
+        }
+        .brand {
+          line-height: 38px;
+          padding: 0 0 0 16px;
+          display: flex;
+        }
+        a  {
+          background-image: url('icon/icon_brand.svg');
+          color: #333;
+          text-decoration: none;
+          line-height: 32px;
+          background-position: center right;
+          background-repeat: no-repeat;
+          background-size: 18px;
+          padding-right: 30px;
+        }
+      }
+      .listsright {
+        margin-left: auto;
+        display: flex;
+        .login {
+          line-height: 38px;
+          padding: 0 0 0 16px;
+          color: #333;
+        }
+        a {
+          display: flex;
+          align-items: center;
+          color: #333;
+          text-decoration: none;
+          line-height: 32px;
+        }
+        .sign-up {
+          line-height: 38px;
+          padding: 0 0 0 16px;
+          color: #333;
+        }
+        a {
+          display: flex;
+          align-items: center;
+          color: #333;
+          text-decoration: none;
+          line-height: 32px;
+        }
+      }
+    }
+  }
+}
