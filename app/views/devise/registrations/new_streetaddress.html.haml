@@ -1,0 +1,41 @@
+%h2 住所登録
+=form_for(@streetaddress, url: streetaddress_path, method: :post) do |f|
+  -# =render "devise/shared/error_messages", resource: @streetaddress
+
+  .field
+    = f.label :postal_code
+    %br/
+    = f.text_field :postal_code
+    .input-error
+    = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "postal_code"}
+  .field
+    = f.label :prefecture_id
+    %br/
+    = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+    .input-error
+    = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "prefecture_id"}
+  
+  .field
+    = f.label :city
+    %br/
+    = f.text_field :city
+    .input-error
+    = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "city"}
+
+  .field
+    = f.label :address
+    %br/
+    = f.text_field :address
+    .input-error
+    = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "address"}
+
+  .field
+    = f.label :building
+    %br/
+    = f.text_field :building
+    .input-error
+    = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "building"}
+    
+  .actions
+    = f.submit "Next", url: "deliveryaddresses_path"
+= render "devise/shared/links"  
