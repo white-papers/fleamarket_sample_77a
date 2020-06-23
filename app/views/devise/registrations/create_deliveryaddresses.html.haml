@@ -1,2 +1,11 @@
-%h2 登録が完了しました
-= link_to "トップへ戻る", root_path
+= render partial: "header_singup"
+.create_background
+  .create_main
+    %h2.create_title 
+      会員登録完了
+    .create_form
+      ありがとうございます。
+      %br/
+      会員登録が完了しました。
+    .create_actions    
+      = link_to "フリマを始める", root_path, class: 'next_btn'

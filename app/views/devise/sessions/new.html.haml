@@ -1,17 +1,24 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.header_singup
+  = link_to image_tag("icon/logo.png", width: 200),root_path
+.singup_background
+  .singup_main
+    %h2.singup_title
+      ログイン
+    .singup_from  
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field
+          = f.label :email, class: 'singup_label'
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'singup_field' 
+
+        .field
+          = f.label :password, class: 'singup_label'
+          %br/
+          = f.password_field :password, autocomplete: "current-password", class: 'singup_field'
+        - if devise_mapping.rememberable?
+          .field
+            = f.check_box :remember_me
+            = f.label :remember_me
+        .actions
+          = f.submit "Log in", class: 'next_btn'
+      -# = render "devise/shared/links"

@@ -18,7 +18,7 @@ ja:
       streetaddress: 
         postal_code: 郵便番号
         prefecture_id: 都道府県
-        city: 市町村
+        city: 市区町村
         address: 番地
         building: それ以降の住所
       deliveryaddress:
@@ -28,7 +28,7 @@ ja:
         given_name_kana: 名前(カナ)                
         postal_code: 郵便番号
         prefecture_id: 都道府県
-        city: 市町村
+        city: 市区町村
         address: 番地
         building: それ以降の住所   
         phone_number: 電話番号
