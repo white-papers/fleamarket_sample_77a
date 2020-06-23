@@ -94,6 +94,18 @@ header {
       .listsright {
         margin-left: auto;
         display: flex;
+        .my_page{
+          line-height: 38px;
+          padding: 0 0 0 16px;
+          color: #333;
+        }
+        a {
+          display: flex;
+          align-items: center;
+          color: #333;
+          text-decoration: none;
+          line-height: 32px;
+        }
         .login {
           line-height: 38px;
           padding: 0 0 0 16px;
