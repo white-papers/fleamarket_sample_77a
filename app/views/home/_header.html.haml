@@ -12,8 +12,9 @@
     .site-header__lists
       %ul.listsleft
         %li.category
-          = link_to '#' do
-            = 'カテゴリー'
+          -# = link_to '#' do
+          -#   = 'カテゴリー'
+          = render partial:'home/category'
         %li.brand
           = link_to '#' do
             = 'ブランド'
