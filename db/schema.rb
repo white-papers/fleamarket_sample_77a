@@ -37,6 +37,33 @@ ActiveRecord::Schema.define(version: 2020_06_24_104458) do
     t.index ["user_id"], name: "index_deliveryaddresses_on_user_id"
   end
 
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.text "image", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_images_on_product_id"
+  end
+
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.decimal "size", precision: 10, null: false
+    t.string "status", null: false
+    t.string "name", null: false
+    t.datetime "estimated_delivery", null: false
+    t.string "shipping_fee_burden", null: false
+    t.string "prefectures", null: false
+    t.integer "amount_of_money", null: false
+    t.integer "good_number"
+    t.text "product_details", null: false
+    t.string "shipping_method", null: false
+    t.bigint "exhibitor_id"
+    t.bigint "buyer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_products_on_buyer_id"
+    t.index ["exhibitor_id"], name: "index_products_on_exhibitor_id"
+  end
+
   create_table "profieladdresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postal_code"
     t.string "prefectures"
@@ -80,6 +107,9 @@ ActiveRecord::Schema.define(version: 2020_06_24_104458) do
   end
 
   add_foreign_key "deliveryaddresses", "users"
+  add_foreign_key "images", "products"
+  add_foreign_key "products", "users", column: "buyer_id"
+  add_foreign_key "products", "users", column: "exhibitor_id"
   add_foreign_key "profieladdresses", "users"
   add_foreign_key "streetaddresses", "users"
 end
