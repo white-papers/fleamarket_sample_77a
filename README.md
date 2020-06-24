@@ -25,7 +25,7 @@
 |------|----|-------|
 |size|numeric|null: false|
 |status|string|null: false|
-|product_name|string|null: false|
+|name|string|null: false|
 |estimated_delivery|datetime|null: false|
 |shipping_fee_burden|string|null: false|
 |prefectures|string|null: false|
@@ -42,7 +42,7 @@
 - belongs_to :category
 - has_many :comments
 ^ has_many :image
-
+- has_many :
 ## imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
