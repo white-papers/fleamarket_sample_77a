@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'create_card/new'
+  get 'create_card/show'
   devise_for :users, controllers:{sessions: 'users/sessions',  registrations: 'users/registrations',}
   devise_scope :user do
     get 'streetaddress', to: 'users/registrations#new_steetaddress'
