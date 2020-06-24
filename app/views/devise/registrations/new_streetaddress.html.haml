@@ -1,41 +1,56 @@
-%h2 住所登録
-=form_for(@streetaddress, url: streetaddress_path, method: :post) do |f|
-  -# =render "devise/shared/error_messages", resource: @streetaddress
+= render partial: "header_singup"
+.singup_background
+  .singup_main
+    %h2.singup_title
+      住所登録
+    .singup_from  
+      =form_for(@streetaddress, url: streetaddress_path, method: :post) do |f|
 
-  .field
-    = f.label :postal_code
-    %br/
-    = f.text_field :postal_code
-    .input-error
-    = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "postal_code"}
-  .field
-    = f.label :prefecture_id
-    %br/
-    = f.collection_select :prefecture_id, Prefecture.all, :id, :name
-    .input-error
-    = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "prefecture_id"}
-  
-  .field
-    = f.label :city
-    %br/
-    = f.text_field :city
-    .input-error
-    = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "city"}
+        .field
+          = f.label :postal_code, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.text_field :postal_code,  autofocus: true, class: 'singup_field' , placeholder: '半角数字のみで入力してください'
+          .input-error
+            = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "postal_code"}
 
-  .field
-    = f.label :address
-    %br/
-    = f.text_field :address
-    .input-error
-    = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "address"}
+        .field
+          = f.label :prefecture_id, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+          .input-error
+            = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "prefecture_id"}
+        
+        .field
+          = f.label :city, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.text_field :city, class: 'singup_field'
+          .input-error
+            = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "city"}
 
-  .field
-    = f.label :building
-    %br/
-    = f.text_field :building
-    .input-error
-    = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "building"}
+        .field
+          = f.label :address, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.text_field :address, class: 'singup_field'
+          .input-error
+            = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "address"}
+
+        .field
+          = f.label :building, class: 'singup_label'
+          %span.optional
+            任意
+          %br/
+          = f.text_field :building, class: 'singup_field', placeholder: ' マンション名、ビル名、部屋番号など'
+          .input-error
+            = render partial: 'devise/shared/streetaddress_error-messages', locals: {streetaddress: @streetaddress, column: "building"}
+          
+        .actions
+          = f.submit "次へ進む", url: "deliveryaddresses_path", class: 'next_btn'
     
-  .actions
-    = f.submit "Next", url: "deliveryaddresses_path"
-= render "devise/shared/links"  
