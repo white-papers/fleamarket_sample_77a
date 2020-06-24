@@ -36,7 +36,7 @@
             .kana_explanation
               全角カタカナで入力してください
             = f.text_field :given_name_kana, class: 'given_name_field', placeholder: ' 名前(カナ)'
-
+            
         .input-error_name
           = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "family_name_kana"} 
         .input-error_name
@@ -68,7 +68,6 @@
           = f.text_field :city, class: 'singup_field'
           .input-error
             = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "city"} 
-
 
         .field
           = f.label :address, class: 'singup_label'
