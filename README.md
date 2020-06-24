@@ -9,13 +9,16 @@
 |family_name_kana|string|null: false|
 |given_name_kana|string|null: false|
 |birthday|date|null: false|
+|selled_product|references|foreign_key: true:{ to_table: :products }|
+|bought_product|references|foreign_key: true:{ to_table: :products }|
+
 ### Association
 - has_many :comments
 - has_many :orders
 - has_many :delivery_addresses
 - has_many :products
-- has_many :credit_cards
 - has_one :street_address
+- belongs_to :credit_card
 
 ## productsテーブル
 |Column|Type|Options|
@@ -30,12 +33,13 @@
 |good_number|integer|
 |product_details|text|null: false|
 |shipping_method|string|null: false|
-|exhibitor_id|integer|null: false, foreign_key: true|
-|buyer_id|integer|foreign_key: true|
+|exhibitor|references|foreign_key: true:{ to_table: :users }|
+|buyer|references|foreign_key: true:{ to_table: :users }|
 ### Association
-- belongs_to :exhibitor, class_name: 'User', :foreign_key :'exhibitor_id'
-- belongs_to :buyer, class_name: 'User', :foreign_key :'buyer_id'
+- belongs_to :exhibitor, class_name: 'User'
+- belongs_to :buyer, class_name: 'User'
 - belongs_to :order
+- belongs_to :category
 - has_many :comments
 ^ has_many :image
 
@@ -47,7 +51,7 @@
 ### Association
 - belongs_to :product
 
-## categoryテーブル
+## categorysテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
@@ -68,12 +72,9 @@
 ## credit_cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|card_number|integer|unique:true|
-|expiration_year|integer|null:false|
-|expiration_month|integer|null:false|
-|security_code|integer|null:false|
-|user_name|string|null:false|
 |user|references|null: false, foreign_key: true|
+|customer|string|null: false|
+|card|string|null: false|
 ### Association
 - belongs_to :user
 
@@ -84,12 +85,12 @@
 |payment_method|string|null: false|
 |delivery_method|references|null: false, foreign_key: true|
 |delivery_address|references|null: false, foreign_key: true|
-|exhibitor_id|references|null: false, foreign_key: true|
-|buyer_id|references|null: false, foreign_key: true|
+|exhibitor|references|null: false, foreign_key:{ to_table:users }|
+|buyer|references|null: false, foreign_key:{ to_table:users }|
 ### Association
 - has_one :delivery_address
-- belongs_to :exhibitor, class_name: 'User', :foreign_key :'exhibitor_id'
-- belongs_to :buyer, class_name: 'User', :foreign_key :'buyer_id'
+- belongs_to :exhibitor, class_name: 'User'
+- belongs_to :buyer, class_name: 'User'
 - belongs_to :product
 
 ## delivery_addressesテーブル
@@ -105,10 +106,10 @@
 |address|string|null: false|
 |building|string|null: false|
 |phone_number|integer|null: false|
-|buyer_id|references|null: false, foreign_key: true|
+|buyer|references|null: false, foreign_key:{ to_table:users }|
 ### Association
-- belongs_to :buyer, class_name: 'User', :foreign_key :'buyer_id'
-- has_one :orders
+- belongs_to :buyer, class_name: 'User'
+- belongs_to :order
 
 ## street_addressesテーブル
 |Column|Type|Options|
