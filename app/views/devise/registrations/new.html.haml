@@ -1,97 +1,116 @@
-%h2 Sign up
-= form_for(@user, url: user_registration_path) do |f| 
-  -# = render "devise/shared/error_messages", resource: @user 
+= render partial: "header_singup"
+.singup_background
+  .singup_main
+    %h2.singup_title
+      会員情報入力
+    .singup_from  
+      = form_for(@user, url: user_registration_path) do |f| 
+
+        .field
+          = f.label :nickname, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.text_field :nickname, autofocus: true, class: 'singup_field', placeholder: ' 全角で入力してください'
+          .input-error
+            - if @user.errors.any?
+              - unless @user.valid?
+                = resource.errors.full_messages_for(:nickname)[0]
+          
+        .field
+          = f.label :email, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.email_field :email, autocomplete: "email", class: 'singup_field', placeholder: ' PC 携帯 どちらでも可'
+          .input-error
+            - if @user.errors.any?
+              - unless @user.valid?
+                = resource.errors.full_messages_for(:email)[0]
+
+        .field
+          = f.label :password, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.password_field :password, autocomplete: "new-password", class: 'singup_field' , placeholder: ' 7桁以上の半角英数字を入力してください'
+          .input-error
+            - if @user.errors.any?
+              - unless @user.valid?
+                = resource.errors.full_messages_for(:password)[0]
+
+        .field
+          = f.label :password_confirmation, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: 'singup_field' , placeholder: ' パスワード確認入力'
+          .input-error
+            - if @user.errors.any?
+              - unless @user.valid?
+                = resource.errors.full_messages_for(:password)[0]
+
+        .real_name
+          .real_name_field
+            .name_label
+              本名
+              %span.name_required
+                必須
+            = f.text_field :family_name, class: 'real_name_field', placeholder: ' 名字 例) 山田'
+
+          .given_field
+            .name_explanation
+              全角で記入してください
+            = f.text_field :given_name, class: 'given_name_field', placeholder: ' 名前 例) 太郎'
+
+        .input-error_name
+          - if @user.errors.any?
+            - unless @user.valid?
+              = resource.errors.full_messages_for(:family_name).first
+
+        .input-error_name
+          - if @user.errors.any?
+            - unless @user.valid?
+              = resource.errors.full_messages_for(:given_name).first
+
+        .real_name      
+          .real_name_field
+            .name_label
+              本名(カナ)
+              %span.name_required
+                必須  
+            = f.text_field :family_name_kana, class: 'real_name_field', placeholder: ' 名字(カナ)'
+
+          .given_field
+            .kana_explanation
+              全角カタカナで入力してください
+            = f.text_field :given_name_kana, class: 'given_name_field', placeholder: ' 名前(カナ)'
+
+        .input-error_name
+          - if @user.errors.any?
+            - unless @user.valid?
+              = resource.errors.full_messages_for(:family_name_kana).first 
+
+        .input-error_name
+          - if @user.errors.any?
+            - unless @user.valid?
+              = resource.errors.full_messages_for(:given_name_kana).first
+            
+        .field
+          = f.label :birthday, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          .birthday_select
+            = raw sprintf(f.date_select( :birthday, use_two_digit_numbers: true, prompt: "--", start_year: Time.now.year, end_year: 1900, date_separator: '%s'), '年 ', '月 ') + "日"
+
+          .input-error
+            - if @user.errors.any?
+              - unless @user.valid?
+                = resource.errors.full_messages_for(:birthday)[0]
 
 
-  .field
-    = f.label :nickname
-    %br/
-    = f.text_field :nickname
-    .input-error
-      - if @user.errors.any?
-        - unless @user.valid?
-          = resource.errors.full_messages_for(:nickname)[0]
-    
-
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-    .input-error
-      - if @user.errors.any?
-        - unless @user.valid?
-          = resource.errors.full_messages_for(:email)[0]
-
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length}  桁以上の半角英数字を入力してください)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-    .input-error
-      - if @user.errors.any?
-        - unless @user.valid?
-          = resource.errors.full_messages_for(:password)[0]
-
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-    .input-error
-      - if @user.errors.any?
-        - unless @user.valid?
-          = resource.errors.full_messages_for(:password)[0]
-
-  .field
-    = f.label :family_name
-    %br/
-    = f.text_field :family_name
-    .input-error
-      - if @user.errors.any?
-        - unless @user.valid?
-          = resource.errors.full_messages_for(:family_name).first
-  .field
-    = f.label :given_name
-    %br/
-    = f.text_field :given_name
-    .input-error
-      - if @user.errors.any?
-        - unless @user.valid?
-          = resource.errors.full_messages_for(:given_name).first
-        
-  .field
-    = f.label :family_name_kana
-    %br/
-    = f.text_field :family_name_kana
-    .input-error
-      - if @user.errors.any?
-        - unless @user.valid?
-          = resource.errors.full_messages_for(:family_name_kana).first
-      
-
-  .field
-    = f.label :given_name_kana
-    %br/
-    = f.text_field :given_name_kana
-    .input-error
-      - if @user.errors.any?
-        - unless @user.valid?
-          = resource.errors.full_messages_for(:given_name_kana).first
-      
-
-  .field
-    = f.label :birthday
-    %br/
-    .birthday-select
-    = raw sprintf(f.date_select( :birthday, use_two_digit_numbers: true, prompt: "--", start_year: Time.now.year, end_year: 1900, date_separator: '%s'), '年 ', '月 ') + "日"
-    .input-error
-      - if @user.errors.any?
-        - unless @user.valid?
-          = resource.errors.full_messages_for(:birthday)[0]
-
-
-  .actions
-    = f.submit "Next"
-     
-= render "devise/shared/links"
+        .actions
+          = f.submit "次へ進む", class: 'next_btn'
+          
+   

@@ -1,79 +1,101 @@
-%h2 商品送付先住所登録
-= form_for(@deliveryaddresses, url: deliveryaddresses_path,method: :post) do |f|
-  -# = render "devise/shared/error_messages", resource: @deliveryaddresses
-
-  .field
-    = f.label :family_name
-    %br/
-    = f.text_field :family_name
-    .input-error
-    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "family_name"} 
-  .field
-    = f.label :given_name
-    %br/
-    = f.text_field :given_name
-    .input-error
-    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "given_name"} 
-        
-  .field
-    = f.label :family_name_kana
-    %br/
-    = f.text_field :family_name_kana
-    .input-error
-    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "family_name_kana"} 
+= render partial: "header_singup"
+.singup_background
+  .singup_main
+    %h2.singup_title
+      商品送付先住所登録
+    .singup_from  
+      = form_for(@deliveryaddresses, url: deliveryaddresses_path,method: :post) do |f|
       
+        .real_name
+          .real_name_field
+            .name_label
+              本名
+              %span.name_required
+                必須
+            = f.text_field :family_name,  autofocus: true, class: 'real_name_field', placeholder: ' 名字 例) 山田'
+            
+          .given_field
+            .name_explanation
+              全角で記入してください
+            = f.text_field :given_name, class:'given_name_field', placeholder: ' 名前 例) 太郎'
 
-  .field
-    = f.label :given_name_kana
-    %br/
-    = f.text_field :given_name_kana
-    .input-error
-    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "given_name_kana"} 
- 
-  .field
-    = f.label :postal_code
-    %br/
-    = f.text_field :postal_code
-    .input-error
-    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "postal_code"} 
+        .input-error_name
+          = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "family_name"} 
+        .input-error_name
+          = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "given_name"} 
 
-  .field
-    = f.label :prefecture_id
-    %br/
-    = f.collection_select :prefecture_id, Prefecture.all, :id, :name
-    .input-error
-    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "prefecture_id"} 
-  
-  .field
-    = f.label :city
-    %br/
-    = f.text_field :city
-    .input-error
-    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "city"} 
+        .real_name       
+          .real_name_field
+            .name_label
+              本名(カナ)
+              %span.name_required
+                必須
+            = f.text_field :family_name_kana, class: 'real_name_field', placeholder: ' 名字(カナ)'
+              
+          .given_field
+            .kana_explanation
+              全角カタカナで入力してください
+            = f.text_field :given_name_kana, class: 'given_name_field', placeholder: ' 名前(カナ)'
+
+        .input-error_name
+          = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "family_name_kana"} 
+        .input-error_name
+          = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "given_name_kana"} 
+      
+        .field
+          = f.label :postal_code, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.text_field :postal_code, class: 'singup_field', placeholder: '半角数字のみで入力してください'
+          .input-error
+            = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "postal_code"} 
+
+        .field
+          = f.label :prefecture_id, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+          .input-error
+            = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "prefecture_id"} 
+        
+        .field
+          = f.label :city, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.text_field :city, class: 'singup_field'
+          .input-error
+            = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "city"} 
 
 
-  .field
-    = f.label :address
-    %br/
-    = f.text_field :address
-    .input-error
-    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "address"} 
+        .field
+          = f.label :address, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.text_field :address, class: 'singup_field'
+          .input-error
+            = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "address"} 
 
-  .field
-    = f.label :building
-    %br/
-    = f.text_field :building
-    .input-error
-    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "building"} 
+        .field
+          = f.label :building, class: 'singup_label'
+          %span.optional
+            任意
+          %br/
+          = f.text_field :building, class: 'singup_field', placeholder: ' マンション名、ビル名、部屋番号など'
+          .input-error
+            = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "building"} 
 
-  .field
-    = f.label :phone_number
-    %br/
-    = f.text_field :phone_number
-    .input-error
-    = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "phone_number"} 
-    
-  .actions
-    = f.submit "登録"  
-
-= render "devise/shared/links"    
+        .field
+          = f.label :phone_number, class: 'singup_label'
+          %span.optional
+            任意
+          %br/
+          = f.text_field :phone_number, class: 'singup_field', placeholder: ' 半角数字のみで入力して下さい'
+          .input-error
+            = render partial: 'devise/shared/deliveryaddress_error-messages', locals: {deliveryaddresses: @deliveryaddresses, column: "phone_number"} 
+          
+        .actions
+          = f.submit "登録する", class: 'next_btn'  

@@ -1,0 +1,99 @@
+@import 'modules';
+* {
+  box-sizing: border-box;
+}
+.singup_background{
+  background:rgb(245, 245, 245);
+  padding-bottom: 40px;
+  width: 100vw;
+  .singup_main{
+    background:white;
+    width: 700px;
+    margin: 0 auto;
+    padding:0 70px 50px;
+    .singup_title{
+      text-align: center;
+      height: 100px;
+      line-height:100px;
+      border-bottom:1px solid rgb(226, 224, 224);     
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .singup_from{
+      .field{
+        margin-top: 30px;
+        margin-bottom: 10px;
+        .singup_label{
+          font-weight: bold;
+          font-size: 15px;
+          margin-left:100px ;
+        }
+        .required{
+          font-size:12px;
+          font-weight: bold;
+          color: white;
+          background:red;
+          padding: 5px;
+        }       
+        
+      }  
+      .real_name{
+        display: flex;
+        margin: 30px 100px 10px;
+        &_field {
+          width: 100px;
+          .name_label{
+            font-weight: bold;
+            font-size: 15px;
+            width: 200px;
+            padding-bottom:5px;
+          }
+          .real_name_field{
+            width: 150px;
+            height: 45px;
+            padding-left: 5px;
+          }
+        }
+        .given_field{
+          width: 200px;
+          .name_explanation{
+            font-size: 15px;
+            color:rgb(124, 121, 121);
+            width: 300px;
+            padding-bottom: 5px;
+          }
+          .kana_explanation{
+            font-size: 15px;
+            color:rgb(124, 121, 121);
+            width: 300px;
+            padding-bottom: 5px;
+            margin-left: 30px;
+            
+          }
+          .given_name_field{
+            width: 150px;
+            height: 45px;
+            margin-left: 70px;
+            padding-left: 5px;
+          }
+        }  
+      }
+      .input-error_name{
+        font-size: 15px;
+        color:red;
+        margin-left: 100px;
+      }
+      .birthday_select{
+        margin:5px 100px;
+        #user_birthday_1i, #user_birthday_2i, #user_birthday_3i{
+          width: 70px;
+          height: 45px;
+        }
+      }
+      .actions{
+        text-align: center;
+        margin-top: 30px;
+      }  
+    }  
+  }
+}
