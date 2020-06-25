@@ -11,10 +11,7 @@
             = image_tag('icon/icon-search 1.png',class:'icon')
     .site-header__lists
       %ul.listsleft
-        %li.category
-          -# = link_to '#' do
-          -#   = 'カテゴリー'
-          = render partial:'home/category'
+        = render partial:'home/category'
         %li.brand
           = link_to '#' do
             = 'ブランド'
