@@ -79,7 +79,6 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'active_hash'
 
-
 group :production do
   gem 'unicorn'
 end
