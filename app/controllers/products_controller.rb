@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    # @product = Product.find_by(params[:id])
   end
 
   def create

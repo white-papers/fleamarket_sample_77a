@@ -60,6 +60,18 @@
       .show-item__good-box__alert-btn
         %i.fa.fa-flag
           不適切な商品の通報
+
+
+  .edit_delete
+    %button.btn-default{:href => ""} 商品の編集
+    %p.text-center or
+    %form{:action => "", :method => "POST", :novalidate => "novalidate"}
+    %input{:name => "", :type => "hidden", :value => ""}/
+    %button.btn-default{:type => "submit"} 出品を再開する
+    %button.btn-default{"data-modal" => "delete-item", "data-open" => "modal"}
+      この商品を削除する
+
+
   .comment
     %textarea.comment__form
     .comment__caution

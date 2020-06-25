@@ -96,6 +96,37 @@
       }
     }
   }
+  .edit_delete {
+    margin: 20px auto;
+    width: 750px;
+    background: #fff;
+    border:1px solid #dedede;
+    padding: 8px 16px 8px 16px;
+    text-align: center;
+    
+      .text-center {
+        text-align: center;
+      }
+
+    .btn-default {
+      width: 400px;
+      height: 50px;
+      margin: 10px 0;
+      background-color: #3CCACE;
+      border-radius: 25px;
+      color: white;
+      font-size: 18px;
+      border: none;
+    }
+  }
+
+
+
+
+
+
+
+
   .comment {
     width: 750px;
     height: 300px;
