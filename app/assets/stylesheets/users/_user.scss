@@ -15,29 +15,25 @@
       display: grid;
       margin-left: 30px;
 
-      
-      
-      &__content {
-        
+      &__content {        
         text-align: center;
         position: relative;
+
         &__title {
           font-size: 18px;
           padding: 15px 0px;
         }
-
 
         li {
           height: 50px;
           padding: 10px 0px;
           border: #dedede solid 1px;
           line-height: 30px;
-
         }
-
 
         &__menu {   
           background-color: #eee;
+
           a {
             text-decoration: none;
             color: black;
@@ -58,7 +54,6 @@
         opacity: 0.7;
         height: 30px;
         width: 700px;
-
       }
 
       &__logout {
@@ -68,7 +63,6 @@
         height: 150px;
         width: 750px;
 
-        
         &__next_btn {
           display: block;
           margin: 50px auto;
@@ -85,16 +79,18 @@
           font-size: 18px;
           border-radius: 100px;
           cursor: pointer;
+
           .next_btn:hover {
             background: #39C0C5;
             border: 1px solid #33A9AD;
           }
+          
           .next_btn:active {
             background: #33A9AD;
             border: 1px solid #39C0C5;
           }
         }
-        }
       }
     }
   }
+}

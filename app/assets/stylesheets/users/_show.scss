@@ -15,26 +15,21 @@
       display: grid;
       margin-left: 30px;
 
-      
-      
       &__content {
-        
         text-align: center;
         position: relative;
+
         &__title {
           font-size: 18px;
           padding: 15px 0px;
         }
-
 
         li {
           height: 50px;
           padding: 10px 0px;
           border: #dedede solid 1px;
           line-height: 30px;
-
         }
-
 
         &__menu {   
           background-color: #eee;
@@ -58,7 +53,6 @@
         opacity: 0.7;
         height: 30px;
         width: 700px;
-
       }
 
       &__content {
@@ -76,6 +70,7 @@
           opacity: 0.7;
           background-color: #f5f5f5;
         }
+
         &__boxes {
           display: inline-block;
           height: 100%;
@@ -83,13 +78,13 @@
           &__box {
             padding: 10px;
             width: 180px;
+
             &__image {
               display: flex;
+
               img {
                 padding: 0 5px;
-
               }
-
             }
 
             &__name {
@@ -98,7 +93,6 @@
 
             &__price {
               text-align: center;
-
             }
           }
         }
