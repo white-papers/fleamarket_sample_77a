@@ -1,0 +1,102 @@
+.background {
+  background-color: #f5f5f5;
+  height: 100vh;
+  width: 100vw;
+
+  .my-page {
+    background-color: white;
+    width: 1000px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+
+    &__side {
+      width: 200px;
+      display: grid;
+      margin-left: 30px;
+
+      &__content {
+        text-align: center;
+        position: relative;
+
+        &__title {
+          font-size: 18px;
+          padding: 15px 0px;
+        }
+
+        li {
+          height: 50px;
+          padding: 10px 0px;
+          border: #dedede solid 1px;
+          line-height: 30px;
+        }
+
+        &__menu {   
+          background-color: #eee;
+          a {
+            text-decoration: none;
+            color: black;
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+
+    &__main {
+      height: 100%;
+      width: 100%;
+
+      &__user-name {
+        margin: 30px auto 0;
+        font-weight: bold;
+        font-size: 20px;
+        opacity: 0.7;
+        height: 30px;
+        width: 700px;
+      }
+
+      &__content {
+        background-color: white;
+        border: #dedede solid 1px;
+        margin: 20px auto 75px;
+        height: 450px;
+        width: 750px;
+        
+        &__title {
+          height: 50px;
+          padding-left: 10px;
+          line-height: 50px;
+          font-weight: bold;
+          opacity: 0.7;
+          background-color: #f5f5f5;
+        }
+
+        &__boxes {
+          display: inline-block;
+          height: 100%;
+      
+          &__box {
+            padding: 10px;
+            width: 180px;
+
+            &__image {
+              display: flex;
+
+              img {
+                padding: 0 5px;
+              }
+            }
+
+            &__name {
+              text-align: center;
+            }
+
+            &__price {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
