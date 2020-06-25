@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
   root 'products#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :products, only: [:new]
   resources :create_cards
   resources :users, only: [:show]
+  resources :products, only: [:new, :show]
 end

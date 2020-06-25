@@ -3,7 +3,7 @@
     .site-header__top
       .site-header__top__content
         .site-header__top__content__logo
-          = link_to image_tag('logo/logo.png', class:'image'), '#'
+          = link_to image_tag('logo/logo.png', class:'image'), root_path
       .site-header__top__form
         = form_with url:'#' do |f|
           = f.text_field :body, class: 'input', placeholder: 'キーワードから探す'
