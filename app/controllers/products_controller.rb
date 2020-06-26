@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+
+  # before_action :set_products, only: [:edit, :show]
+  
   def index
     @parents = Category.where(ancestry: nil)
   end
@@ -7,8 +10,15 @@ class ProductsController < ApplicationController
     # @product = Product.new
   end
 
+  def edit
+    # before_action
+  end
+
+  def destroy
+  end
+
   def show
-    # @product = Product.find_by(params[:id])
+    # before_action
   end
 
   def create
@@ -32,5 +42,10 @@ class ProductsController < ApplicationController
     #     :shipping_fee_burden, :shippng_method, 
     #     :prefectures, :estimated_delivery).merge(user_id: current_user.id)
   end
+
+  #   def set_product
+  #     @product = Product.find(params[:id])
+  # end
+
 
 end
