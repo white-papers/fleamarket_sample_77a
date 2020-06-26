@@ -1,0 +1,65 @@
+.background
+  .my-page
+    = render "users/side_bar"
+          
+    .my-page__card
+      .my-page__card__user-name
+        ももんが さんのマイページ
+
+      .my-page__card__new
+        .my-page__card__new__title
+          クレジットカード情報入力
+        .my-page__card__new__box
+          = form_with url:credit_cards_path, method: :post, class: "details", id: "inputForm", local: true do |f|
+            .my-page__card__new__box__format
+              .my-page__card__new__box__format__number
+                カード番号
+                .number
+                  = f.text_field "card_number", class: "my-page__card__new__box__format__number__default", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+              .card_image
+                = image_tag(image_path('cards/visa.png'), class: 'visa')
+                = image_tag(image_path('cards/mastercard.png'), class: 'master')
+                = image_tag(image_path('cards/jcb.png'), class: 'jcb')
+                = image_tag(image_path('cards/americanExpress.png'), class: 'amex')
+                = image_tag(image_path('cards/dinersClub.png'), class: 'diners')
+                = image_tag(image_path('cards/discover.png'), class: 'discover')
+  
+              .my-page__card__new__box__format__group
+                %label 有効期限
+                %br
+                = f.select :exp_month, id: "exp_month", name: "exp_month", class: "my-page__card__new__box__format__group__left" do
+                  %option{value: ""} --
+                  %option{value: "1"}01
+                  %option{value: "2"}02
+                  %option{value: "3"}03
+                  %option{value: "4"}04
+                  %option{value: "5"}05
+                  %option{value: "6"}06
+                  %option{value: "7"}07
+                  %option{value: "8"}08
+                  %option{value: "9"}09
+                  %option{value: "10"}10
+                  %option{value: "11"}11
+                  %option{value: "12"}12
+                %span 月/
+                = f.select :exp_year, id:"exp_year",name: "exp_year",class: "my-page__card__new__box__format__group__right"  do
+                  %option{value: ""} --
+                  %option{value: "2020"}20
+                  %option{value: "2021"}21
+                  %option{value: "2022"}22
+                  %option{value: "2023"}23
+                  %option{value: "2024"}24
+                  %option{value: "2025"}25
+                  %option{value: "2026"}26
+                  %option{value: "2027"}27
+                  %option{value: "2028"}28
+                  %option{value: "2029"}29
+                %span 年
+                %br
+              .my-page__card__new__box__format__security
+                セキュリティコード
+                = f.text_field  "payment_card_cvc", type: 'text', class: 'my-page__card__new__box__format__security__code', id: "payment_card_cvc", maxlength: "4", placeholder: 'カード背面4桁もしくは3桁の番号'
+              #charge-form  
+              .my-page__card__new__box__format__fom
+                = f.submit 'クレジットカード登録', class: "my-page__card__new__box__format__fom__btn", id: 'token_submit'
+  

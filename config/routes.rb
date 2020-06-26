@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/show'
-  get 'create_card/new'
-  get 'create_card/show'
   devise_for :users, controllers:{sessions: 'users/sessions',  registrations: 'users/registrations',}
   devise_scope :user do
     get 'streetaddress', to: 'users/registrations#new_steetaddress'
@@ -11,7 +8,8 @@ Rails.application.routes.draw do
   end
   root 'products#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :create_cards
-  resources :users, only: [:show]
+  resources :credit_cards, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :users, only: [:index, :show]
   resources :products, only: [:new, :show]
+  resources :orders, only: [:new]
 end

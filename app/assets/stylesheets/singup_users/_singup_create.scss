@@ -25,7 +25,7 @@
     .create_actions{
       text-align: center;
       margin-top: 30px;
-      .next_btn{
+      .create_btn{
         display: block;
         text-decoration: none;
         margin-left: 100px;
@@ -40,11 +40,11 @@
         font-size: 18px;
         border-radius: 100px;
         cursor: pointer;
-        .next_btn:hover {
+        .create_btn:hover {
           background: #39c0c5;
           border: 1px solid #33a9ad;
         }
-        .next_btn:active {
+        .create_btn:active {
           background: #33a9ad;
           border: 1px solid #39c0c5;
         }
