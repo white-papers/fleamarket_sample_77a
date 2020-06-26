@@ -1,0 +1,88 @@
+// Place all the styles related to the categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// カテゴリ一覧領域
+.category-container {
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+  padding-bottom: 40px;
+  // 親カテゴリボタン領域
+  &__top {
+    width: 700px;
+    margin: 0 auto;
+    // 親カテゴリボタン
+    &--parentlink {
+      display: inline-block;
+      padding: 10px 30px;
+      margin: 0 10px 10px 0;
+      background: white;
+      border-radius: 3px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.4);
+      text-decoration: none; 
+      color: black;
+      transition: 0.2s;
+      &:hover {
+        background: #39c0c5;
+        color: white;
+      }
+      &:active {
+        background: #33a9ad;
+      }
+    }
+  }
+  // 親カテゴリbox
+  // 親カテゴリbox領域
+  &__box {
+    width: 700px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 0 0 10px 10px;
+    margin-top: 40px;
+    &__title {
+      width: 100%;
+      background: #3CCACE;
+      border-radius: 4px 4px 0 0;
+      padding: 5px 30px;
+      &--childlink {
+        font-size: 20px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    }
+    &__child {
+      padding: 30px;
+      .category-container__link {
+        color: #ffb340;
+        text-decoration: none;
+        font-size: 14px;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      &__box {
+        &__name {
+          font-size: 13px;
+          font-weight: bold;
+          &--childlink {
+            color: black;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    &__grandchild { 
+      &__box {
+        padding: 5px 25px 10px;
+        &--grandchildlink {
+          width: 290px;
+          height: 20px;
+          display: inline-flex; //孫要素を2列に
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

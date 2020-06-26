@@ -1,0 +1,38 @@
+= render 'home/header'
+.category-container
+  .category-container__top
+    %h3
+      カテゴリー一覧
+    %br
+    -# 親カテゴリボタン
+    - @parents.each_with_index do |parent, i|
+      - unless parent.name.include?("カテゴリー一覧")
+        = link_to "##{i+1}", class: "category-container__top--parentlink" do
+          = parent.name
+
+  - @parents.each_with_index do |parent, i|
+    - unless parent.name.include?("カテゴリー一覧")
+      -# 親カテゴリbox
+      .category-container__box
+        -# 親カテゴリのリンク
+        .category-container__box__title{id: "#{i+1}"}
+          = link_to "#{parent.name}", "##{i+1}", class: "category-container__box__title--childlink"
+        -# 子カテゴリbox
+        .category-container__box__child
+          - parent.children.each do |child|
+            .category-container__box__child__box
+              -# 子カテゴリのリンク
+              .category-container__box__child__box__name
+                = link_to "#{child.name}", "#", class: "category-container__box__child__box__name--childlink"
+              -# 孫カテゴリbox
+              .category-container__box__grandchild__box
+                - child.children.each do |grandchild|
+                  -# 孫カテゴリのリンク
+                  .category-container__box__grandchild__box--grandchildlink
+                    - unless grandchild.name.include?("すべて")
+                      = link_to "#", class: "category-container__link" do
+                        = grandchild.name
+
+-# = link_to '#' '↑ページトップへ'
+= render 'home/main-bottom'
+= render 'home/footer'
