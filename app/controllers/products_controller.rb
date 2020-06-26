@@ -5,12 +5,15 @@ class ProductsController < ApplicationController
 
   def new
     # @product = Product.new
+    @parents = Category.where(ancestry: nil)
   end
 
   def show
+    # @product = Product.find(params[:id])
   end
 
   def create
+    @parents = Category.where(ancestry: nil)
     # @product = Product.new(product_params)
     # if @product.save
     #   render :index, notice: '出品が完了しました'

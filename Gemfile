@@ -90,3 +90,4 @@ gem 'carrierwave'
 gem 'fog-aws'
 
 gem 'ancestry'
+gem 'jquery-rails'
