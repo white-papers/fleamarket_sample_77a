@@ -22,6 +22,17 @@ class ProductsController < ApplicationController
     # end
   end
 
+  def search
+    respond_to do |format|
+      format.html
+      format.json do
+          #子カテゴリーを探して変数@childrenに代入
+        @children = Category.find(params[:parent_id]).children
+      end
+    end
+
+  end
+
   private
   def product_params
     # product.require(:product).permit(

@@ -31,7 +31,9 @@
           %th カテゴリー
           %td
             %span.form-require  ※必須
-            = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください" }, id: 'new_product', class: 'product__category', required: ""
+            = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, id: "category_form", required: "", class: "product__category"
+            #category_field
+
             -# %select.product__category{name: "category", required: ""}
               -# %option{disabled: "disabled", required: ""} 選択してください
               -# %option{value: "レディース"} レディース
@@ -160,3 +162,55 @@
               %option{value: "4〜7日で発送"} 4〜7日で発送
 
       = f.submit "出品する", class: "product__btn"
+
+
+:javascript
+
+  // 親カテゴリを変更するとjQueryが発火
+  $("#category_form").change(function () {
+    function build_childSelect() {
+      let child_select = `
+                <select name="category_id" class="child_category_id">
+                  <option value=""> 選択してください </option>
+                </select>
+                `
+      return child_select;
+    }
+
+    // selectタグにoptionタグを追加
+    function build_Option(children) {
+      let option_html = `
+                        <option value=${children.id}>${children.name}</option>
+                        `
+      return option_html;
+  }
+
+    // 選択したoption(親カテゴリの値)を取得しparentValueに格納
+    let parentValue = $("#category_form").val();
+
+    // 初期値0("選択してください")以外を選択したらajax開始
+    if (parentValue.length != 0) {
+      $.ajax({
+        url: '/products/search',
+        type: 'GET',
+
+        // productsコントローラーに paramsをparent_id で送る
+        data: { parent_id: parentValue },
+        dataType: 'json'
+      })
+
+        .done(function (data) {
+          // build_childSelectを実行し selectタグを生成してビューにappend
+          let child_select = build_childSelect
+          $("#category_field").append(child_select);
+          // jbuilderから取得したデータを1件ずつoptionタグにappend
+          data.forEach(function (d) {
+            let option_html = build_Option(d)
+            $(".child_category_id").append(option_html);
+          })
+        })
+        .fail(function () {
+          alert("通信エラーです！");
+        });
+    }
+  });
