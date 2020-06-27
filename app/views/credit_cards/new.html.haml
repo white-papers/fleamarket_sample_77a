@@ -4,7 +4,9 @@
           
     .my-page__card
       .my-page__card__user-name
-        ももんが さんのマイページ
+        = current_user.nickname
+        %span
+          さんのマイページ 
 
       .my-page__card__new
         .my-page__card__new__title
@@ -27,7 +29,7 @@
               .my-page__card__new__box__format__group
                 %label 有効期限
                 %br
-                = f.select :exp_month, id: "exp_month", name: "exp_month", class: "my-page__card__new__box__format__group__left" do
+                = f.select :exp_month, id: "exp_month", name: "exp_month" do
                   %option{value: ""} --
                   %option{value: "1"}01
                   %option{value: "2"}02
@@ -42,7 +44,7 @@
                   %option{value: "11"}11
                   %option{value: "12"}12
                 %span 月/
-                = f.select :exp_year, id:"exp_year",name: "exp_year",class: "my-page__card__new__box__format__group__right"  do
+                = f.select :exp_year, id:"exp_year",name: "exp_year"  do
                   %option{value: ""} --
                   %option{value: "2020"}20
                   %option{value: "2021"}21

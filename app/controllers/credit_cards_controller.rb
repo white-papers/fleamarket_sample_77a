@@ -5,7 +5,7 @@ class CreditCardsController < ApplicationController
   def new
     card = CreditCard.where(user_id: current_user.id)
     # if card.exists?
-
+    
   end
   
   def create #payjpとCardのデータベース作成
@@ -38,7 +38,6 @@ class CreditCardsController < ApplicationController
       # 未登録なら新規登録画面に
       redirect_to action: "new" 
     else
-      # 前前回credentials.yml.encに記載したAPI秘密鍵を呼び出します。
       Payjp.api_key = ENV["PAYJP_ACCESS_KEY"]
       # ログインユーザーのクレジットカード情報からPay.jpに登録されているカスタマー情報を引き出す
       customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -72,11 +71,6 @@ class CreditCardsController < ApplicationController
     end
   end 
   
-  def edit
-  end  
-  
-  def update
-  end 
   
   def destroy
     # ログイン中のユーザーのクレジットカード登録の有無を判断

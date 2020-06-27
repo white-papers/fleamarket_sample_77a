@@ -94,15 +94,14 @@
             }
 
             &__group {
-
-              &__left {
+              #exp_month{
                 width: 180px;
                 height: 40px;
               }
-
-              &__right {
+        
+              #exp_year{
                 width: 180px;
-                height: 40px;            
+                height: 40px;
               }
             }
 
