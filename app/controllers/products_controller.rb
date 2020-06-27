@@ -26,8 +26,12 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
+        if params[:parent_id]
           #子カテゴリーを探して変数@childrenに代入
-        @children = Category.find(params[:parent_id]).children
+          @children = Category.find(params[:parent_id]).children
+        elsif params[:children_id]
+          @grandchildren = Category.find(params[:children_id]).children
+        end
       end
     end
 

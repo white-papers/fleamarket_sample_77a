@@ -32,7 +32,8 @@
           %td
             %span.form-require  ※必須
             = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, id: "category_form", required: "", class: "product__category"
-            #category_field
+            #child_category_field
+            #grandchild_category_field
 
             -# %select.product__category{name: "category", required: ""}
               -# %option{disabled: "disabled", required: ""} 選択してください
@@ -202,7 +203,7 @@
         .done(function (data) {
           // build_childSelectを実行し selectタグを生成してビューにappend
           let child_select = build_childSelect
-          $("#category_field").append(child_select);
+          $("#child_category_field").append(child_select);
           // jbuilderから取得したデータを1件ずつoptionタグにappend
           data.forEach(function (d) {
             let option_html = build_Option(d)
@@ -211,6 +212,56 @@
         })
         .fail(function () {
           alert("通信エラーです！");
+        });
+    }
+  });
+
+
+  // 子カテゴリを変更するとjQueryが発火
+  $(document).on("change", ".child_category_id", function () {
+    function build_grandchildSelect() {
+      let grandchild_select = `
+                <select name="category_id" class="grandchild_category_id">
+                  <option value=""> 選択してください </option>
+                </select>
+                `
+      return grandchild_select;
+    }
+
+    // selectタグにoptionタグを追加
+    function build_Option(grandchildren) {
+      let option_html = `
+                        <option value=${grandchildren.id}>${grandchildren.name}</option>
+                        `
+      return option_html;
+  }
+
+    // 選択したoption(子カテゴリの値)を取得しparentValueに格納
+    let childValue = $(".child_category_id").val();
+
+    // 初期値0("選択してください")以外を選択したらajax開始
+    if (childValue.length != 0) {
+      $.ajax({
+        url: '/products/search',
+        type: 'GET',
+
+        // productsコントローラーに paramsをchildren_id で送る
+        data: { children_id: childValue },
+        dataType: 'json'
+      })
+
+        .done(function (data) {
+          // build_grandchildSelectを実行し selectタグを生成してビューにappend
+          let grandchild_select = build_grandchildSelect
+          $("#grandchild_category_field").append(grandchild_select);
+          // jbuilderから取得したデータを1件ずつoptionタグにappend
+          data.forEach(function (grandchild_d) {
+            let option_html = build_Option(grandchild_d)
+            $(".grandchild_category_id").append(option_html);
+          })
+        })
+        .fail(function () {
+          alert("孫カテゴリで通信エラーです！");
         });
     }
   });
