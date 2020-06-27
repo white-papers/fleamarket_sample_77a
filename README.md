@@ -18,7 +18,7 @@
 - has_many :delivery_addresses
 - has_many :products
 - has_one :street_address
-- belongs_to :credit_card
+- has_one :credit_card
 
 ## productsテーブル
 |Column|Type|Options|
