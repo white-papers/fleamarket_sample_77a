@@ -24,6 +24,16 @@
     .order__price-total-box
       %strong.order__price-total-box__left 支払い金額
       %strong.order__price-total-box__right ￥300
+    
+    %hr.order-border
+    .order__delivery-addresses
+      %strong 配送先
+      %p
+      -# = link to  (配送先住所)
+      住所
+      .order__delivery-addresses__right
+        %a.plane{href: "#"} 変更する
+    
 
     %hr.order-border
     .order__payment-method
@@ -33,15 +43,30 @@
       クレジットカード
       .order__payment-method__right
         %a.plane{href: "#"} 変更する
+    
+    -# - if @user.credit_card.present?
+    -#   .purchase_function
+    -#     .credit_card_info_title
+    -#       .credit_card_info
+    -#         .credit_card_info__brand
+    -#           = image_tag "cards/#{@card_src}", class: "credit_card_info__brand__img", alt: @card_brand
+    -#         .credit_card_info__numbers
+    -#           .number
+    -#             = "**** **** **** " + @customer_card.last4
+    -#           .expiration_date
+    -#             .expiration_date__title
+    -#               有効期限
+    -#             .expiration_date__info
+    -#               = @exp_month + " / " + @exp_year
+    -#     .purchase_function__btn
+    -#       = link_to "登録クレジットカードで購入する", pay_product_purchases_path(product_id: @product.id), method: :post, class: "order__send__btn "
+    -# - else 
+    -#   .purchase_none_btn
+    -#     登録されていません
+    -#     = form_tag(action: :pay, method: :post) do
+    -#       %script.payjp-button{src: "https://checkout.pay.jp", type: "text/javascript" ,"data-text": "購入する" ,"data-key": "pk_test_55a26013fc6f9309d8ee2052",}
 
-    %hr.order-border
-    .order__delivery-addresses
-      %strong 配送先
-      %p
-      -# = link to  (配送先住所)
-      住所
-      .order__delivery-addresses__right
-        %a.plane{href: "#"} 変更する
+       
 
     %hr.order-border
     .order__send
