@@ -69,10 +69,16 @@
       padding: 15px 15px;
       border: 1px solid #dedede;
     }
-    &__category, .child_category_id, .grandchild_category_id {
+    &__category {
       border: 1px solid #eee;
       width: 187px;
       height: 26px;
+    }
+    .child_category, .grandchild_category {
+      border: 1px solid #eee;
+      width: 187px;
+      height: 26px;
+      margin-left: 51px;
     }
     &__brand, &__size {
       border: 1px solid #eee;

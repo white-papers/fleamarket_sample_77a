@@ -32,24 +32,10 @@
           %td
             %span.form-require  ※必須
             = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, id: "category_form", required: "", class: "product__category"
-            #child_category_field
-            #grandchild_category_field
-
+            #child_category_field 
+            #grandchild_category_field 
             -# %select.product__category{name: "category", required: ""}
-              -# %option{disabled: "disabled", required: ""} 選択してください
-              -# %option{value: "レディース"} レディース
-              -# %option{value: "メンズ"} メンズ
-              -# %option{value: "ベビー・キッズ"} ベビー・キッズ
-              -# %option{value: "インテリア・住まい・小物"} インテリア・住まい・小物
-              -# %option{value: "本・音楽・ゲーム"} 本・音楽・ゲーム
-              -# %option{value: "おもちゃ・ホビー・グッズ"} おもちゃ・ホビー・グッズ
-              -# %option{value: "コスメ・香水・美容"} コスメ・香水・美容
-              -# %option{value: "家電・スマホ・カメラ"} 家電・スマホ・カメラ
-              -# %option{value: "スポーツ・レジャー"} スポーツ・レジャー
-              -# %option{value: "ハンドメイド"} ハンドメイド
-              -# %option{value: "チケット"} チケット
-              -# %option{value: "自動車・オートバイ"} 自動車・オートバイ
-              -# %option{value: "その他"} その他
+
         %tr
           %th ブランド
           %td
@@ -171,7 +157,7 @@
   $("#category_form").change(function () {
     function build_childSelect() {
       let child_select = `
-                <select name="category_id" class="child_category_id">
+                <select name="" class="child_category" required: "required">
                   <option value=""> 選択してください </option>
                 </select>
                 `
@@ -201,27 +187,31 @@
       })
 
         .done(function (data) {
+          // 既に子カテゴリがある場合は削除
+          $(".child_category").remove();
+          // 既に孫カテゴリがある場合は孫カテゴリも削除
+          $(".grandchild_category").remove();
           // build_childSelectを実行し selectタグを生成してビューにappend
           let child_select = build_childSelect
           $("#child_category_field").append(child_select);
           // jbuilderから取得したデータを1件ずつoptionタグにappend
           data.forEach(function (d) {
             let option_html = build_Option(d)
-            $(".child_category_id").append(option_html);
+            $(".child_category").append(option_html);
           })
         })
         .fail(function () {
-          alert("通信エラーです！");
+          alert("error:子カテゴリーの取得に失敗しました");
         });
     }
   });
 
 
   // 子カテゴリを変更するとjQueryが発火
-  $(document).on("change", ".child_category_id", function () {
+  $(document).on("change", ".child_category", function () {
     function build_grandchildSelect() {
       let grandchild_select = `
-                <select name="category_id" class="grandchild_category_id">
+                <select name="product[category_id]" class="grandchild_category" required: "required">
                   <option value=""> 選択してください </option>
                 </select>
                 `
@@ -237,7 +227,7 @@
   }
 
     // 選択したoption(子カテゴリの値)を取得しparentValueに格納
-    let childValue = $(".child_category_id").val();
+    let childValue = $(".child_category").val();
 
     // 初期値0("選択してください")以外を選択したらajax開始
     if (childValue.length != 0) {
@@ -251,17 +241,19 @@
       })
 
         .done(function (data) {
+          // 既に孫カテゴリがある場合は削除
+          $(".grandchild_category").remove();
           // build_grandchildSelectを実行し selectタグを生成してビューにappend
           let grandchild_select = build_grandchildSelect
           $("#grandchild_category_field").append(grandchild_select);
           // jbuilderから取得したデータを1件ずつoptionタグにappend
           data.forEach(function (grandchild_d) {
             let option_html = build_Option(grandchild_d)
-            $(".grandchild_category_id").append(option_html);
+            $(".grandchild_category").append(option_html);
           })
         })
         .fail(function () {
-          alert("孫カテゴリで通信エラーです！");
+          alert("error:孫カテゴリーの取得に失敗しました");
         });
     }
   });
