@@ -4,7 +4,7 @@ class CreditCardsController < ApplicationController
 
   def new
     card = CreditCard.where(user_id: current_user.id)
-    # if card.exists?
+  
     
   end
   
@@ -80,8 +80,7 @@ class CreditCardsController < ApplicationController
       customer.delete
       @card.delete
       # 削除が完了しているか判断
-      if @card.destroy
-      else
+      unless @card.destroy
         # 削除されなかった場合flashメッセージを表示させて、showのビューに移行
         redirect_to credit_card_path(current_user.id), alert: "削除できませんでした。"
       end

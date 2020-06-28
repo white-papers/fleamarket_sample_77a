@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   
+  # ↓商品出品機能が出来次第実装
   # require "payjp"
 
   # def new
