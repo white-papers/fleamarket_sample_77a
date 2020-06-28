@@ -15,5 +15,13 @@ Rails.application.routes.draw do
     end
   end
   resources :products, only: [:new, :show]
+
+  resources :categories, only:[:index] do
+    memver do
+      get 'parent'
+      get 'child'
+      get 'grandchild'
+    end
+  end
   resources :categories, only: [:index, :show]
 end
