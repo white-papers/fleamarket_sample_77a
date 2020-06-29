@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 2020_06_24_081702) do
+=======
+ActiveRecord::Schema.define(version: 2020_06_25_062829) do
+>>>>>>> Stashed changes
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -20,6 +24,18 @@ ActiveRecord::Schema.define(version: 2020_06_24_081702) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
+<<<<<<< Updated upstream
+=======
+  create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "card_id", null: false
+    t.string "customer_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_credit_cards_on_user_id"
+  end
+
+>>>>>>> Stashed changes
   create_table "deliveryaddresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "family_name", null: false
     t.string "given_name", null: false
@@ -43,6 +59,20 @@ ActiveRecord::Schema.define(version: 2020_06_24_081702) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_images_on_product_id"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "paymant_method", null: false
+    t.bigint "deliveryaddress_id"
+    t.bigint "credit_card_id"
+    t.bigint "exhibitor_id"
+    t.bigint "buyer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_orders_on_buyer_id"
+    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
+    t.index ["deliveryaddress_id"], name: "index_orders_on_deliveryaddress_id"
+    t.index ["exhibitor_id"], name: "index_orders_on_exhibitor_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -98,6 +128,13 @@ ActiveRecord::Schema.define(version: 2020_06_24_081702) do
 
   add_foreign_key "deliveryaddresses", "users"
   add_foreign_key "images", "products"
+<<<<<<< Updated upstream
+=======
+  add_foreign_key "orders", "credit_cards"
+  add_foreign_key "orders", "deliveryaddresses"
+  add_foreign_key "orders", "users", column: "buyer_id"
+  add_foreign_key "orders", "users", column: "exhibitor_id"
+>>>>>>> Stashed changes
   add_foreign_key "products", "users"
   add_foreign_key "products", "users", column: "buyer_id"
   add_foreign_key "products", "users", column: "exhibitor_id"
