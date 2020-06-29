@@ -1,0 +1,9 @@
+.create_background
+  .create_main
+    %h2.create_title 
+      クレジットカード削除完了
+    .create_form
+      登録情報を削除しました。
+    .create_actions    
+      = link_to "マイページに戻る", user_path(current_user.id), class: 'create_btn'
+      = link_to "再登録する", "new_credit_card_path", class: 'create_btn'

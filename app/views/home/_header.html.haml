@@ -18,7 +18,7 @@
       %ul.listsright
         -if user_signed_in?
           %li.my_page
-            = link_to "マイページ","#"
+            = link_to "マイページ",user_path(current_user)
         -else  
           %li.login
             = link_to 'ログイン',new_user_session_path 
