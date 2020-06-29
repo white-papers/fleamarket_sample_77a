@@ -20,6 +20,7 @@
       .show-item__price-box__tax
         -# = @products.shipping_fee_burden
         (税込)送料込み
+    = link_to "購入画面にすすむ", new_order_path, class: 'buy_btn'   
     .show-item__item-text
       -# = @products.product_details
       「…………ブウウ――――――ンンン――――――ンンンン………………。私がウスウスと眼を覚ました時、こうした蜜蜂の唸るような音は、まだ、その弾力の深い余韻を、私の耳の穴の中にハッキリと引き残していた」

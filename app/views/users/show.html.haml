@@ -1,37 +1,11 @@
 .background
   .my-page
-    .my-page__side
-      .my-page__side__content
-        .my-page__side__content__title
-          マイページメニュー
-        %ul.my-page__side__content__menu
-          %li= link_to 'マイページ', ''
-          %li= link_to 'プロフィール', ''
-          %li= link_to 'お届け先住所変更', ''
-          %li= link_to 'メール・パスワード', ''
-          %li= link_to '支払い方法', ''
-          %li= link_to 'いいね・一覧', ''
-      .my-page__side__content
-        .my-page__side__content__title
-          商品を出品する
-        %ul.my-page__side__content__menu
-          %li= link_to '商品を出品する', ''
-          %li= link_to '出品した商品', ''
-      .my-page__side__content
-        .my-page__side__content__title
-          商品を購入する
-        %ul.my-page__side__content__menu
-          %li= link_to '商品を購入する', ''
-          %li= link_to '購入した商品', ''
-          %li= link_to 'コメントした商品', ''
-      .my-page__side__content
-        .my-page__side__content__title
-          ログアウト
-        %ul.my-page__side__content__menu
-          %li= link_to 'ログアウト',
+    = render "side_bar"
     .my-page__main
       .my-page__main__user-name
-        ももんが さんのマイページ
+        = current_user.nickname
+        %span
+          さんのマイページ 
 
       .my-page__main__content
         .my-page__main__content__title
@@ -66,7 +40,3 @@
               .my-page__main__content__boxes__box__price
                 20,000円
 
-
-
-
-        
