@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_action :set_parents
+before_action :set_parents, only: [:show, :log_out]
 
   def index
   end
