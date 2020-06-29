@@ -26,23 +26,22 @@
 |size|numeric|null: false|
 |status|string|null: false|
 |name|string|null: false|
-|estimated_delivery|datetime|null: false|
+|estimated_delivery|string|null: false|
 |shipping_fee_burden|string|null: false|
 |prefectures|string|null: false|
 |amount_of_money|integer|null: false|
 |good_number|integer|
 |product_details|text|null: false|
 |shipping_method|string|null: false|
-|exhibitor|references|foreign_key: true:{ to_table: :users }|
-|buyer|references|foreign_key: true:{ to_table: :users }|
+|exhibitor|references|foreign_key: { to_table: :users }|
+|buyer|references|foreign_key: { to_table: :users }|
 ### Association
 - belongs_to :exhibitor, class_name: 'User'
 - belongs_to :buyer, class_name: 'User'
 - belongs_to :order
 - belongs_to :category
 - has_many :comments
-^ has_many :image
-- has_many :
+- has_many :image
 ## imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -55,7 +54,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|ancestry|varchar(255)|null: false|
+|ancestry|string|null: false|
 ### Association
 - has_many :products
 
