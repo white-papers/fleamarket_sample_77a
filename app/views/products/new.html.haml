@@ -33,8 +33,6 @@
           %th カテゴリー
           %td
             %span.form-require  ※必須
-            -#= f.collection_select :category_id, @parents, :id, :name, { selected:"" }, id: "new_product" do
-
             %select.product__status{name: "category", required: ""}    
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "レディース"} レディース
@@ -50,11 +48,6 @@
               %option{value: "チケット"} チケット
               %option{value: "自動車・オートバイ"} 自動車・オートバイ
               %option{value: "その他"} その他
-        -# %tr
-        -#   %th ブランド
-        -#   %td
-        -#     %span.form-require  ※必須
-        -#     = f.text_field :brand
         %tr
           %th 商品のサイズ
           %td

@@ -8,7 +8,6 @@ class ProductsController < ApplicationController
   end
 
   def new
-    # @parents = Category.where(ancestry: nil)
     @product = Product.new
     @product.images.new
   end
@@ -27,7 +26,6 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      # render :index, notice: '出品が完了しました'
       redirect_to root_path
     else
       render :new
