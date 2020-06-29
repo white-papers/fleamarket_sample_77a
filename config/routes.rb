@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :products, only: [:new, :create, :show]
 
   resources :categories, only:[:index] do
-    memver do
+    member do
       get 'parent'
       get 'child'
       get 'grandchild'
