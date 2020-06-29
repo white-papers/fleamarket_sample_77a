@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get 'log_out', to: 'users#log_out'
     end
   end
-  resources :products, only: [:new, :show]
+ 
   resources :orders, only: [:new]
+  resources :products, only: [:new, :create, :show]
 end
