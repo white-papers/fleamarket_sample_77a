@@ -18,7 +18,7 @@
 - has_many :delivery_addresses
 - has_many :products
 - has_one :street_address
-- belongs_to :credit_card
+- has_one :credit_card
 
 ## productsテーブル
 |Column|Type|Options|
@@ -82,10 +82,11 @@
 |Column|Type|Options|
 |------|----|-------|
 |payment_method|string|null: false|
+|product|references|null: false, foreign_key: true|
 |delivery_method|references|null: false, foreign_key: true|
 |delivery_address|references|null: false, foreign_key: true|
-|exhibitor|references|null: false, foreign_key:{ to_table:users }|
-|buyer|references|null: false, foreign_key:{ to_table:users }|
+|exhibitor|references|null: false, foreign_key:{ to_table: :users}|
+|buyer|references|null: false, foreign_key:{ to_table: :users }|
 ### Association
 - has_one :delivery_address
 - belongs_to :exhibitor, class_name: 'User'
