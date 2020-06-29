@@ -1,31 +1,41 @@
 class ProductsController < ApplicationController
   def index
+    @products = Product.includes(:images).order('created_at DESC')
+    @parents = Category.where(ancestry: nil)
   end
 
   def new
-    # @product = Product.new
+    @product = Product.new
+    @product.images.new
+  end
+
+  def show
   end
 
   def create
-    # @product = Product.new(product_params)
-    # if @product.save
-    #   render :index, notice: '出品が完了しました'
-    # else
-    #   render :new
-    # end
+    @product = Product.new(product_params)
+    if @product.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
   def product_params
-    # product.require(:product).permit(
-    #     :product_name, 
-    #     images_attributes: [:image], 
-    #     :amount_of_money, 
-    #     :product_details, 
-    #     categorys_attributes: [:category], :brand, 
-    #     :size, :status, 
-    #     :shipping_fee_burden, :shippng_method, 
-    #     :prefectures, :estimated_delivery).merge(user_id: current_user.id)
+    params.require(:product).permit(
+      :size,
+      :status,
+      :name,
+      :estimated_delivery,
+      :shipping_fee_burden,
+      :prefectures,
+      :amount_of_money,
+      :good_number,
+      :product_details,
+      :shipping_method,
+      images_attributes: [:image] 
+    ).merge(exhibitor: current_user).merge(user_id: current_user.id)
   end
 
 end
