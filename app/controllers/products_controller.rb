@@ -1,11 +1,11 @@
 class ProductsController < ApplicationController
+before_action :set_parents, only: [:index, :new, :create, :show]
+
   def index
     @products = Product.includes(:images).order('created_at DESC')
-    @parents = Category.where(ancestry: nil)
   end
 
   def new
-    # @parents = Category.where(ancestry: nil)
     @product = Product.new
     @product.images.new
   end
@@ -15,7 +15,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    # @parents = Category.where(ancestry: nil)
     @product = Product.new(product_params)
     if @product.save
       redirect_to root_path
@@ -37,6 +36,10 @@ class ProductsController < ApplicationController
       end
     end
 
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 
   private
