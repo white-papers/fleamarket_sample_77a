@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  resources :products, only: [:new, :show]
+  resources :products, only: [:new, :create, :show]
 
   resources :categories, only:[:index] do
     memver do
@@ -24,4 +24,5 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: [:index, :show]
+
 end

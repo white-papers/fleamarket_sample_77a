@@ -1,15 +1,17 @@
 .background
+  =render 'home/header'
   .product
-    = form_with(model:@product, locale: true , id: 'new_product') do |f|
+    = form_with model: @product, locale: true, id: "new_product" do |f|
 
       商品
       %span.form-require  ※必須
-      %input.product__name{name: "product_name", type: "text", required: ""}
+      = f.text_field :name, {class: "product__name"}
 
       %p
         出品画像
-        %span.form-require  ※必須 &nbsp; 5ファイルまで選択可能
-      %input.product__image{multiple: "multiple", onchange: "OnFileSelect(this)", accept: "image/*", type: "file", name: "image", required: ""}
+        %span.form-require ※必須 &nbsp; 5ファイルまで選択可能
+      = f.fields_for :images do |i|
+        = i.file_field :image, {class: "product__image",multiple: "multiple", onchange: "OnFileSelect(this)", accept: "image/*", type: "file", name: "image", required: ""}
         %ul.product__image__placeholder
           %ul#ID001
           %ul#ID002
@@ -19,38 +21,48 @@
       %br
         価格
         %span.form-require  ※必須
-        %input.product__price{name: "amount_of_money", type: "number", required: ""}
+        = f.text_field :amount_of_money, {class: "product__price"}
         円
       %br
         商品説明
         %span.form-require  ※必須
-        %textarea.product__detail{name: "product_details", required: ""}
+        = f.text_area :product_details, {class: "product__detail"}
 
       %table.product__table
         %tr
           %th カテゴリー
           %td
             %span.form-require  ※必須
-            = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, id: "category_form", required: "", class: "product__category"
-            #child_category_field 
-            #grandchild_category_field 
+            -# = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, id: "category_form", required: "", class: "product__category"
+            -# #child_category_field 
+            -# #grandchild_category_field 
             -# %select.product__category{name: "category", required: ""}
 
-        %tr
-          %th ブランド
-          %td
-            %span.form-require  ※必須
-            %input.product__brand{name: "brand", type: "text", required: ""}
+            %select.product__status{name: "category", required: ""}    
+              %option{disabled: "disabled", required: ""} 選択してください
+              %option{value: "レディース"} レディース
+              %option{value: "メンズ"} メンズ
+              %option{value: "ベビー・キッズ"} ベビー・キッズ
+              %option{value: "インテリア・住まい・小物"} インテリア・住まい・小物
+              %option{value: "本・音楽・ゲーム"} 本・音楽・ゲーム
+              %option{value: "おもちゃ・ホビー・グッズ"} おもちゃ・ホビー・グッズ
+              %option{value: "コスメ・香水・美容"} コスメ・香水・美容
+              %option{value: "家電・スマホ・カメラ"} 家電・スマホ・カメラ
+              %option{value: "スポーツ・レジャー"} スポーツ・レジャー
+              %option{value: "ハンドメイド"} ハンドメイド
+              %option{value: "チケット"} チケット
+              %option{value: "自動車・オートバイ"} 自動車・オートバイ
+              %option{value: "その他"} その他
         %tr
           %th 商品のサイズ
           %td
             %span.form-require  ※必須
-            %input.product__size{name: "size", type: "text", required: ""}
+            = f.text_field :size, {class: "product__size"}
         %tr
           %th 商品の状態
           %td
             %span.form-require  ※必須
-            %select.product__status{name: "status", required: ""}
+            = f.select :status, :id, {}, class: "product__status" do
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "新品/未使用"} 新品/未使用
               %option{value: "未使用に近い"} 未使用に近い
@@ -62,15 +74,16 @@
           %th 配送料の負担
           %td
             %span.form-require  ※必須
-            %input{name: "burden", type: "radio", value: "着払い(購入者負担)", required: ""}着払い(購入者負担)
-            %p
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            %input{name: "burden", type: "radio", value: "送料込み(出品者負担)", required: ""}送料込み(出品者負担)
+            = f.select :shipping_fee_burden, :id,{}, class: "product__fee" do
+              %option{name: "shipping_fee_burden", type: "radio", value: "着払い(購入者負担)", required: ""}着払い(購入者負担)
+              %p
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              %option{name: "shipping_fee_burden", type: "radio", value: "送料込み(出品者負担)", required: ""}送料込み(出品者負担)
         %tr
           %th 配送方法
           %td
             %span.form-require  ※必須
-            %select.product__shipping-method{name: "shipping-method", required: ""}
+            = f.select :shipping_method, :id,{}, class: "product__shipping-method" do
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "courier"} 宅急便
               %option{value: "courier_compact"} 宅急便コンパクト
@@ -89,7 +102,7 @@
           %th 発送元の地域
           %td
             %span.form-require  ※必須
-            %select.product__shipping-region{name: "prefectures", required: ""}
+            = f.select :prefectures, :id, {}, class: "product__shipping-region" do
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "北海道"} 北海道
               %option{value: "青森県"} 青森県
@@ -142,7 +155,7 @@
           %th 発送日の目安
           %td
             %span.form-require  ※必須
-            %select.product__shipping-date{name: "estimated_delivery", type: "text", required: ""}
+            = f.select :estimated_delivery, :id, {}, class: "product__shipping-date" do
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "1〜2日で発送"} 1〜2日で発送
               %option{value: "2〜3日で発送"} 2〜3日で発送
@@ -257,3 +270,4 @@
         });
     }
   });
+
