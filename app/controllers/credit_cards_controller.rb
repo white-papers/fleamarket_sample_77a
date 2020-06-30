@@ -4,8 +4,6 @@ class CreditCardsController < ApplicationController
 
   def new
     card = CreditCard.where(user_id: current_user.id)
-  
-    
   end
   
   def create #payjpとCardのデータベース作成
@@ -51,11 +49,11 @@ class CreditCardsController < ApplicationController
       when "JCB"
         @card_src = "jcb.png"
       when "MasterCard"
-        @card_src = "master.png"
+        @card_src = "mastercard.png"
       when "American Express"
-        @card_src = "amex.png"
+        @card_src = "americanExpress.png"
       when "Diners Club"
-        @card_src = "diners.png"
+        @card_src = "dinersClub.png"
       when "Discover"
         @card_src = "discover.png"
       end
