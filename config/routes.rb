@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
 
   resources :credit_cards, only: [:new, :create, :show, :edit, :update, :destroy]
+  
   resources :users, only: [:index, :show] do
     collection do
       get 'log_out', to: 'users#log_out'
@@ -26,13 +27,6 @@ Rails.application.routes.draw do
   end
   resources :products, only: [:new, :create, :show]
 
-  resources :categories, only:[:index] do
-    member do
-      get 'parent'
-      get 'child'
-      get 'grandchild'
-    end
-  end
   resources :categories, only: [:index, :show]
 
 end

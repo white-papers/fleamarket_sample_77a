@@ -1,0 +1,221 @@
+.category-detail {
+    width: 700px;
+    margin: 0 auto;
+    border-radius: 5px 5px 0 0;
+    padding: 16px 10px 8px;
+    background: #3CCACE;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    // &__title {
+    //   &--childlink {
+    //     font-size: 20px;
+    //     color: white;
+    //     text-decoration: none;
+    //     font-weight: bold;
+    //   }
+    // }
+  }
+
+// 商品詳細ページ main と同一
+.pickup {
+  padding: 80px 0 0;
+  background-color: #f8f8f8;
+  height: 100%;
+  .title {
+    text-align: center;
+    font-size: 28px;
+    line-height: 1.4;
+    font-weight: bold;
+  }
+  .products {
+    text-align: center;
+    a {
+      font-size: 24px;
+      text-decoration: none;
+      color: #3CCACE;
+      font-weight: bold;
+    }
+  }
+  .group__lists {
+    width: 880px;
+    margin: 26px auto;
+    display: flex;
+    justify-content: space-around;
+    a {
+      text-decoration: none;
+      position: relative;
+      display: block;
+    }
+    .list {
+      width: 220px;
+      display: inline-block;
+      float: left;
+      position: relative;
+      a {
+        background-color: #fff;
+        display: block;
+      }
+      &--image {
+        width: 220px;
+        height: 150px;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        z-index: auto;
+        display: flex;
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          z-index: auto;
+          height: 150px;
+          object-fit: cover;
+        }
+      }
+      &--detail {
+        background-color: white;
+        color: #333;
+        padding: 16px;
+        .name {
+          overflow: hidden;
+          line-height: 1.5;
+          font-size: 16px;
+          text-align: left;
+        }
+        .foot {
+          font-size: 16px;
+          ul {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .fa {
+              font-size: inherit;
+              -webkit-font-smoothing: antialiased;
+            }
+            .fa-star:before {
+              content: "\f005";
+            }
+          }
+          p {
+            font-size: 10px;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+}
+.pickup:last-child {
+  padding-bottom: 80px;
+}
+
+.list--image__sold{
+  width: 0;
+  height: 0;
+  border-top: 60px solid #ea352d ;
+  border-right: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid #ea352d ;
+  z-index:100;
+  position: absolute;
+  &__inner{
+    transform: rotate(-45deg);
+    font-size: 25px;
+    margin:-25px 0px 0px -55px;
+    color: #fff;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+}
+
+
+
+
+.category-container {
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+  padding-bottom: 40px;
+  // 親カテゴリボタン領域
+  &__top {
+    width: 700px;
+    margin: 0 auto;
+    // 親カテゴリボタン
+    &--parentlink {
+      display: inline-block;
+      padding: 10px 30px;
+      margin: 0 10px 10px 0;
+      background: white;
+      border-radius: 3px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.4);
+      text-decoration: none; 
+      color: black;
+      transition: 0.2s;
+      &:hover {
+        background: #39c0c5;
+        color: white;
+      }
+      &:active {
+        background: #33a9ad;
+      }
+    }
+  }
+  // 親カテゴリbox
+  // 親カテゴリbox領域
+  &__box {
+    width: 700px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 0 0 10px 10px;
+    margin-top: 40px;
+    &__title {
+      width: 100%;
+      background: #3CCACE;
+      border-radius: 4px 4px 0 0;
+      padding: 5px 30px;
+      &--childlink {
+        font-size: 20px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    }
+    &__child {
+      padding: 30px;
+      .category-container__link {
+        color: #ffb340;
+        text-decoration: none;
+        font-size: 14px;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      &__box {
+        &__name {
+          font-size: 13px;
+          font-weight: bold;
+          &--childlink {
+            color: black;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    &__grandchild { 
+      &__box {
+        padding: 5px 25px 10px;
+        &--grandchildlink {
+          width: 290px;
+          height: 20px;
+          display: inline-flex; //孫要素を2列に
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

@@ -5,31 +5,27 @@
     %br
     -# 親カテゴリボタン
     - @parents.each_with_index do |parent, i|
-      - unless parent.name.include?("カテゴリー一覧")
-        = link_to "##{i+1}", class: "category-container__top--parentlink" do
-          = parent.name
+      = link_to "##{i+1}", class: "category-container__top--parentlink" do
+        = parent.name
 
   - @parents.each_with_index do |parent, i|
-    - unless parent.name.include?("カテゴリー一覧")
-      -# 親カテゴリbox
-      .category-container__box
-        -# 親カテゴリのリンク
-        .category-container__box__title{id: "#{i+1}"}
-          = link_to "#{parent.name}", category_path(parent), class: "category-container__box__title--childlink"
-        -# 子カテゴリbox
-        .category-container__box__child
-          - parent.children.each do |child|
-            .category-container__box__child__box
-              -# 子カテゴリのリンク
-              .category-container__box__child__box__name
-                = link_to "#{child.name}", category_path(child), class: "category-container__box__child__box__name--childlink"
-              -# 孫カテゴリbox
-              .category-container__box__grandchild__box
-                - child.children.each do |grandchild|
-                  -# 孫カテゴリのリンク
-                  .category-container__box__grandchild__box--grandchildlink
-                    - unless grandchild.name.include?("すべて")
-                      = link_to "#{grandchild.name}", category_path(grandchild), class: "category-container__link"
+    -# 親カテゴリbox
+    .category-container__box
+      -# 親カテゴリのリンク
+      .category-container__box__title{id: "#{i+1}"}
+        = link_to "#{parent.name}", category_path(parent), class: "category-container__box__title--childlink"
+      -# 子カテゴリbox
+      .category-container__box__child
+        - parent.children.each do |child|
+          -# 子カテゴリのリンク
+          .category-container__box__child__box__name
+            = link_to "#{child.name}", category_path(child), class: "category-container__box__child__box__name--childlink"
+          -# 孫カテゴリbox
+          .category-container__box__grandchild__box
+            - child.children.each do |grandchild|
+              -# 孫カテゴリのリンク
+              .category-container__box__grandchild__box--grandchildlink
+                = link_to "#{grandchild.name}", category_path(grandchild), class: "category-container__link"
 
 -# = link_to '#' '↑ページトップへ'
 = render 'home/main-bottom'

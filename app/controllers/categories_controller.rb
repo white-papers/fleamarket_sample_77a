@@ -1,21 +1,14 @@
 class CategoriesController < ApplicationController
-before_action :set_category, only: [:show, :child, :grandchild]
+before_action :set_category, only: [:show]
 
   def index
     @parents = Category.where(ancestry: nil)
   end
 
-  def parent
-    
-  end
-
-  def child
-    
-  end
-
-  def grandchild
-    
-  end
+  def show
+    @products = @category.set_products
+    @products = @products.where(buyer_id: nil).order("created_at DESC")
+  end  
 
   private
   def set_category
