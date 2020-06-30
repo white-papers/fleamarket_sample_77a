@@ -1,7 +1,10 @@
-.background
-  .category-detail
+.category-background
+  .category-title
     = "#{@category.name}の商品一覧"
-    
+  .category-links
+    - @category_links.each do |category|
+      = link_to category.name, category_path(category), class: "category-links--links"
+
   .pickup
     .group
       .group__lists
@@ -27,3 +30,6 @@
                       %i.fa.fa-star
                         0
                   %p（税込）
+
+= render 'home/main-bottom'
+= render 'home/footer'

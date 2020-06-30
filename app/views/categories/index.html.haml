@@ -1,31 +1,30 @@
-.category-container
-  .category-container__top
+.background
+  .categories-top
     %h3
       カテゴリー一覧
     %br
     -# 親カテゴリボタン
     - @parents.each_with_index do |parent, i|
-      = link_to "##{i+1}", class: "category-container__top--parentlink" do
+      = link_to "##{i+1}", class: "categories-top--parentlink" do
         = parent.name
 
   - @parents.each_with_index do |parent, i|
     -# 親カテゴリbox
-    .category-container__box
+    .categories-box
       -# 親カテゴリのリンク
-      .category-container__box__title{id: "#{i+1}"}
-        = link_to "#{parent.name}", category_path(parent), class: "category-container__box__title--childlink"
-      -# 子カテゴリbox
-      .category-container__box__child
+      .categories-box__title{id: "#{i+1}"}
+        = link_to "#{parent.name}", category_path(parent), class: "categories-box__title--parentlink"
+      -# 子カテゴリ
+      .categories-box__child
         - parent.children.each do |child|
           -# 子カテゴリのリンク
-          .category-container__box__child__box__name
-            = link_to "#{child.name}", category_path(child), class: "category-container__box__child__box__name--childlink"
-          -# 孫カテゴリbox
-          .category-container__box__grandchild__box
+          = link_to "#{child.name}", category_path(child), class: "categories-box__child--childlink"
+          -# 孫カテゴリ
+          .categories-box__child__grandchild
             - child.children.each do |grandchild|
               -# 孫カテゴリのリンク
-              .category-container__box__grandchild__box--grandchildlink
-                = link_to "#{grandchild.name}", category_path(grandchild), class: "category-container__link"
+              .categories-box__child__grandchild--grandchildlink
+                = link_to "#{grandchild.name}", category_path(grandchild), class: "categories-box__child__grandchild--grandchildlink"
 
 -# = link_to '#' '↑ページトップへ'
 = render 'home/main-bottom'

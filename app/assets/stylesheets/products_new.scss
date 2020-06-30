@@ -1,6 +1,6 @@
 .background {
   background: #f5f5f5;
-  padding: 0px 40px 90px 40px;
+  padding: 40px 40px 90px 40px;
 }
 
   .product {
@@ -25,7 +25,7 @@
       display: flex;  /* image-placeholderを横並び */
     }
     #ID001, #ID002, #ID003, #ID004, #ID005 {
-    background-image:url(image-placeholder-128px.png);  /* image-placeholder形状を調整 */
+    background-image:url(/assets/image-placeholder-128px.png);  /* image-placeholder形状を調整 */
     width:128px;
     height:128px;
     margin: 10px 5px 5px 0px;
