@@ -6,15 +6,24 @@ Rails.application.routes.draw do
     get 'deliveryaddresses',to: 'users/registrations#new_deliveryaddresses'
     post 'deliveryaddresses',to: 'users/registrations#create_deliveryaddresses'
   end
+
   root 'products#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :credit_cards, only: [:new, :create, :show, :edit, :update, :destroy]
+
+  resources :credit_cards, only: [:new, :create, :show, :destroy] do
+    post :pay, on: :member 
+  end
+
   resources :users, only: [:index, :show] do
     collection do
       get 'log_out', to: 'users#log_out'
     end
   end
  
-  resources :orders, only: [:new]
+  resources :orders, only: [:index] do
+    collection do
+      get 'done', to: 'orders#done'
+      post 'pay', to: 'orders#pay'
+    end
+  end
   resources :products, only: [:new, :create, :show]
 end

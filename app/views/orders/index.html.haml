@@ -1,0 +1,79 @@
+-# http://localhost:3000/products/show 購入確認ページ
+
+.background
+  .order
+    .order__title 
+      %strong 購入内容の確認
+
+    %hr.order-border
+    .order__info
+      - if @image.present?
+        = @image.first
+      - else 
+        = image_tag "image-placeholder-128px.png", alt: "Rails icon", id: "assets", class: "order__info__image", width: "300px"
+
+      .order__info__box
+        .order__info__box__name
+          = @product.name
+          .order__info__box__name__price-box
+            .order__info__box__name__price-box__price
+              %strong 
+                ¥
+                = @product.amount_of_money
+            .order__info__box__name__price-box__burden
+              送料込み
+
+    %hr.order-border
+    .order__price-total-box
+      %strong.order__price-total-box__left 支払い金額
+      %strong.order__price-total-box__right
+        ¥ 
+        = @product.amount_of_money
+    
+    %hr.order-border
+    .order__delivery-addresses
+      %strong 配送先
+    .order__delivery-addresses__left  
+      %p 
+        = @deliveryaddress.postal_code
+      %p
+        = @deliveryaddress.prefecture.name
+        = @deliveryaddress.city
+      %p
+        = @deliveryaddress.address
+        = @deliveryaddress.building
+      %p
+        = @deliveryaddress.family_name
+        = @deliveryaddress.given_name  
+          
+      -# .order__delivery-addresses__right
+      -#   %a.plane{href: "#"} 変更する
+    
+
+    %hr.order-border
+    .order__payment-method
+      %strong 支払い方法
+      %p
+      クレジットカード
+      -# .order__payment-method__right
+      -#   %a.plane{href: "#"} 変更する
+    
+   
+      .purchase_function
+        .credit_card_info_title
+          .credit_card_info
+            .credit_card_info__brand
+              = image_tag "cards/#{@card_src}", class: "credit_card_info__brand__img", alt: @card_brand
+            .credit_card_info__numbers
+              .number
+                = "**** **** **** " + @customer_card.last4
+              .expiration_date
+                .expiration_date__title
+                  有効期限
+                .expiration_date__info
+                  = @exp_month + " / " + @exp_year
+
+    %hr.order-border
+    = form_tag(action: :pay, method: :post ) do
+      .order__send
+        %button.order__send__btn{type: submit_tag} 購入する
