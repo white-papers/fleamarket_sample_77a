@@ -9,7 +9,7 @@ class CreditCardsController < ApplicationController
   end
   
   def create #payjpとCardのデータベース作成
-    Payjp.api_key = ENV["PAYJP_ACCESS_KEY"]
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     #保管した顧客IDでpayjpから情報取得
     if params['payjp-token'].blank?
       redirect_to new_credit_card_path
@@ -37,7 +37,7 @@ class CreditCardsController < ApplicationController
       # 未登録なら新規登録画面に
       redirect_to action: "new" 
     else
-      Payjp.api_key = ENV["PAYJP_ACCESS_KEY"]
+      Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
       # ログインユーザーのクレジットカード情報からPay.jpに登録されているカスタマー情報を引き出す
       customer = Payjp::Customer.retrieve(@card.customer_id)
       # カスタマー情報からカードの情報を引き出す
@@ -73,7 +73,7 @@ class CreditCardsController < ApplicationController
     if @card.blank?
       redirect_to action: "new"
     else
-      Payjp.api_key = ENV["PAYJP_ACCESS_KEY"]
+      Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
       customer = Payjp::Customer.retrieve(@card.customer_id)
       # カスタマー情報を消す
       customer.delete

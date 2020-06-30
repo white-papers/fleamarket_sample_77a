@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  # before_action :set_products, only: [:edit, :show]
+  before_action :set_product, only: [:show]
   
   def index
     @products = Product.includes(:images).order('created_at DESC')
@@ -13,14 +13,12 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    # before_action
   end
 
   def destroy
   end
 
   def show
-    # before_action
   end
 
   def create
@@ -49,9 +47,10 @@ class ProductsController < ApplicationController
     ).merge(exhibitor: current_user).merge(user_id: current_user.id)
   end
 
-  #   def set_product
-  #     @product = Product.find(params[:id])
-  # end
+  def set_product
+    @product = Product.find_by(id: params[:id])
+    @user = User.find_by(id: params[:id])
+  end
 
 
 end

@@ -2,8 +2,7 @@
   =render 'home/header'
   .show-item
     .show-item__name
-      -# = @products.nickname
-      カレー風ピザ
+      = @product.name
     .show-item__image
       = image_tag "https://ouchigohan.s3.amazonaws.com/uploads/article/image/1998/sp_article_thumbnail_734c57b2-ab1f-4663-8df6-1c5b5099cefa.jpg", class: "show-item__image__main"
     %ul.show-item__image-list
@@ -15,24 +14,21 @@
         = image_tag "https://epark.jp/medicalook/wp-content/uploads/2019/11/nats-e1573719690938-1024x682.jpg", width: "150", height: "100", class: "show-item__image-list--img"
     .show-item__price-box
       .show-item__price-box__price
-        -# = @products.amount_of_money
-        ￥1500
+        = @product.amount_of_money
+        円
       .show-item__price-box__tax
-        -# = @products.shipping_fee_burden
-        (税込)送料込み
+        = @product.shipping_fee_burden
     = link_to "購入画面にすすむ", new_order_path, class: 'buy_btn'   
     .show-item__item-text
-      -# = @products.product_details
-      「…………ブウウ――――――ンンン――――――ンンンン………………。私がウスウスと眼を覚ました時、こうした蜜蜂の唸るような音は、まだ、その弾力の深い余韻を、私の耳の穴の中にハッキリと引き残していた」
-      親譲りの無鉄砲で小供の時から損ばかりしている。 小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。 なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。 弱虫やーい。と囃したからである。
+      = @product.product_details
     .show-item__table
       %table
         %tbody
           %tr
             %th 投稿者
             %td
-              -# = @products.exhibitor
-              -# %a{:href => "/products/#{products.exhibitor.id}"}
+              = link_to(@user.nickname, "#")
+
           %tr
             %th カテゴリー
             %td.category--td
@@ -44,29 +40,28 @@
           %tr
             %th ブランド
             %td 
-            -# = @products.brand
-            -# %a{:href => "/products/#{products.brand.id}"}
+              -# = link_to(@product.brand, "#")
+              崎陽軒
           %tr
             %th 商品のサイズ
-            -# @products.size
-            %td 30cm
+            %td
+              = @product.size
           %tr
             %th 商品の状態
-            %td 新品/未使用
-            -# = @products.status
+            %td 
+              = @product.status
           %tr
             %th 配送料の負担
-            %td 送料込み（出品者負担）
-            -# = @products.shipping_fee_burden
+            %td 
+              = @product.shipping_fee_burden
           %tr
             %th 地域
             %td 
-              =link_to "青森県", '#'
-              -# = @products.prefectures
+              =link_to(@product.prefectures, '#')
           %tr
             %th 発送日の目安
-            %td 1-2日で発送
-            -# = @products.estimated_delivery
+            %td
+              = @product.estimated_delivery
 
     .show-item__good-box
       .show-item__good-box__favorite-btn 
@@ -75,14 +70,15 @@
       .show-item__good-box__alert-btn
         %i.fa.fa-flag
           不適切な商品の通報
-  .edit_delete
-    %button.btn-default{:href => ""} 商品の編集
-    %p.text-center or
-    %form{:action => "", :method => "POST", :novalidate => "novalidate"}
-    %input{:name => "", :type => "hidden", :value => ""}/
-    -# %button.btn-default{:type => "submit"} 出品を再開する  必要時実装用
-    %button.btn-default{"data-modal" => "delete-item", "data-open" => "modal"}
-      この商品を削除する
+  - if user_signed_in? && current_user.id == @product.exhibitor_id
+    .edit_delete
+      %button.btn-default{:href => ""} 商品の編集
+      %p.text-center or
+      %form{:action => "", :method => "POST", :novalidate => "novalidate"}
+      %input{:name => "", :type => "hidden", :value => ""}/
+      -# %button.btn-default{:type => "submit"} 出品を再開する  必要時実装用
+      %button.btn-default{"data-modal" => "delete-item", "data-open" => "modal"}
+        この商品を削除する
 
 
   .comment
