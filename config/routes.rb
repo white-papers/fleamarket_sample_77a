@@ -18,4 +18,9 @@ Rails.application.routes.draw do
  
   resources :orders, only: [:new]
   resources :products, only: [:new, :create, :show, :destroy, :edit]
+
+  Rails.application.routes.draw do
+    root "products#show"
+    resources :products
+  end
 end

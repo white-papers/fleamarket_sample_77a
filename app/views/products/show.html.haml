@@ -5,13 +5,13 @@
       = @product.name
     .show-item__image
       = image_tag "https://ouchigohan.s3.amazonaws.com/uploads/article/image/1998/sp_article_thumbnail_734c57b2-ab1f-4663-8df6-1c5b5099cefa.jpg", class: "show-item__image__main"
-    %ul.show-item__image-list
-      %li
-        = image_tag "https://oggi.jp/wp-content/uploads/2018/12/ftop.jpg", width: "150", height: "100", class: "show-item__image-list--img"
-      %li
-        = image_tag "https://lh3.googleusercontent.com/Ve0EEpchVfMTx0zKtEdjUW2M2ihf38my5FfHILVPj9pEtMx9Tm23A4Fcvj_taBjhCtCbvuKCs_g-Sf9UG5iQ7A=s1003", width: "150", height: "100", class: "show-item__image-list--img"
-      %li
-        = image_tag "https://epark.jp/medicalook/wp-content/uploads/2019/11/nats-e1573719690938-1024x682.jpg", width: "150", height: "100", class: "show-item__image-list--img"
+    -# %ul.show-item__image-list
+    -#   %li
+    -#     = image_tag "https://oggi.jp/wp-content/uploads/2018/12/ftop.jpg", width: "150", height: "100", class: "show-item__image-list--img"
+    -#   %li
+    -#     = image_tag "https://lh3.googleusercontent.com/Ve0EEpchVfMTx0zKtEdjUW2M2ihf38my5FfHILVPj9pEtMx9Tm23A4Fcvj_taBjhCtCbvuKCs_g-Sf9UG5iQ7A=s1003", width: "150", height: "100", class: "show-item__image-list--img"
+    -#   %li
+    -#     = image_tag "https://epark.jp/medicalook/wp-content/uploads/2019/11/nats-e1573719690938-1024x682.jpg", width: "150", height: "100", class: "show-item__image-list--img"
     .show-item__price-box
       .show-item__price-box__price
         = @product.amount_of_money
@@ -27,13 +27,13 @@
           %tr
             %th 投稿者
             %td
-              = link_to(@user.nickname, "#")
+              = link_to(@product.exhibitor.nickname, "#")
 
           %tr
             %th カテゴリー
             %td.category--td
               = link_to "レディース", '#'
-              %br
+              %brZZ
               = link_to "トップス", '#'
               %br
               = link_to "Tシャツ/カットソー(半袖/袖なし)", '#'
@@ -41,7 +41,7 @@
             %th ブランド
             %td 
               -# = link_to(@product.brand, "#")
-              崎陽軒
+
           %tr
             %th 商品のサイズ
             %td

@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show]
   
   def index
-    @products = Product.includes(:images).order('created_at DESC')
+    @products = Product.includes(:user).order('created_at DESC')
     @parents = Category.where(ancestry: nil)
   end
 
@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @products = Product.includes(:images).order('created_at DESC')
   end
 
   def create
@@ -48,7 +49,7 @@ class ProductsController < ApplicationController
   end
 
   def set_product
-    @product = Product.find_by(id: params[:id])
+    @product = Product.find(params[:id])
     @user = User.find_by(id: params[:id])
   end
 
