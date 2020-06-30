@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show]
   
   def index
-    @products = Product.includes(:user).order('created_at DESC')
+    @products = Product.includes(:user).order('created_at DESC').all.page(params[:page]).per(4)
     @parents = Category.where(ancestry: nil)
   end
 
