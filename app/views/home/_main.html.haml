@@ -124,6 +124,10 @@
         = link_to "products/show" do
           - @products.each do |product|
             .list
+              - if product.buyer_id.present? 
+                .list--image__sold
+                  .list--image__sold__inner
+                    SOLD
               %figure.list--image
                 - product.images.each do |image|
                   = image_tag image.image.url, class: "item-image"

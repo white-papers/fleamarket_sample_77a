@@ -29,12 +29,3 @@ function OnFileSelect(inputElement){
     fileReader.readAsDataURL(file);
   }
 }
-
-// $(function(){
-//   $(".group__lists").each(function(){
-//     var num = $(this).find('.list').length;
-//     if(num > 5){
-//       $(this).find('.list').css('display','none');
-//     }
-//   });
-// });
