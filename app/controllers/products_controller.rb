@@ -1,21 +1,20 @@
 class ProductsController < ApplicationController
+before_action :set_parents, only: [:index, :new, :create, :show]
+
   def index
     @products = Product.includes(:images).order('created_at DESC')
-    @parents = Category.where(ancestry: nil)
   end
 
   def new
-    # @parents = Category.where(ancestry: nil)
     @product = Product.new
     @product.images.build
   end
 
   def show
-    # @product = Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def create
-    # @parents = Category.where(ancestry: nil)
     @product = Product.new(product_params)
     if @product.save
       redirect_to root_path
@@ -39,6 +38,10 @@ class ProductsController < ApplicationController
 
   end
 
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
+
   private
   def product_params
     params.require(:product).permit(
@@ -52,6 +55,7 @@ class ProductsController < ApplicationController
       :good_number,
       :product_details,
       :shipping_method,
+      :category_id,
       images_attributes: [:image] 
     ).merge(exhibitor: current_user).merge(user_id: current_user.id)
   end
