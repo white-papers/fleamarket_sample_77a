@@ -239,21 +239,23 @@
       }
     }
     .group__lists {
-      width: 780px;
+      width: 880px;
       margin: 26px auto;
       display: flex;
       justify-content: space-around;
       a {
         text-decoration: none;
         position: relative;
+        display: block;
       }
       .list {
         width: 220px;
         display: inline-block;
         float: left;
+        position: relative;
         a {
           background-color: #fff;
-          display: inline-block;
+          display: block;
         }
         &--image {
           width: 220px;
@@ -262,6 +264,7 @@
           overflow: hidden;
           margin: 0;
           z-index: auto;
+          display: flex;
           img {
             position: absolute;
             top: 0;
@@ -336,3 +339,21 @@
   }
 }
 
+.list--image__sold{
+  width: 0;
+  height: 0;
+  border-top: 60px solid #ea352d ;
+  border-right: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid #ea352d ;
+  z-index:100;
+  position: absolute;
+  &__inner{
+    transform: rotate(-45deg);
+    font-size: 25px;
+    margin:-25px 0px 0px -55px;
+    color: #fff;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+}
