@@ -170,7 +170,7 @@
   $("#category_form").change(function () {
     function build_childSelect() {
       let child_select = `
-                <select name="" class="child_category" required: "required">
+                <select name="" class="child_category" required="required">
                   <option value=""> 選択してください </option>
                 </select>
                 `
@@ -224,7 +224,7 @@
   $(document).on("change", ".child_category", function () {
     function build_grandchildSelect() {
       let grandchild_select = `
-                <select name="product[category_id]" class="grandchild_category" required: "required">
+                <select name="product[category_id]" class="grandchild_category" required="required">
                   <option value=""> 選択してください </option>
                 </select>
                 `

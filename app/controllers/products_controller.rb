@@ -11,7 +11,7 @@ before_action :set_parents, only: [:index, :new, :create, :show]
   end
 
   def show
-    # @product = Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def create
@@ -55,6 +55,7 @@ before_action :set_parents, only: [:index, :new, :create, :show]
       :good_number,
       :product_details,
       :shipping_method,
+      :category_id,
       images_attributes: [:image] 
     ).merge(exhibitor: current_user).merge(user_id: current_user.id)
   end
