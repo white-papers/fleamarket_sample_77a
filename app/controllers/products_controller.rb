@@ -3,7 +3,6 @@ before_action :set_parents, only: [:index, :new, :create, :show]
 
   def index
     @products = Product.includes(:images).order('created_at DESC').all.page(params[:page]).per(4)
-    @parents = Category.where(ancestry: nil)
   end
 
   def new

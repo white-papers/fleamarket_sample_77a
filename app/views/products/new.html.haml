@@ -36,7 +36,6 @@
             = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, id: "category_form", required: "", class: "product__category"
             #child_category_field 
             #grandchild_category_field 
-            -# %select.product__category{name: "category", required: ""}
 
         %tr
           %th 商品のサイズ

@@ -16,6 +16,7 @@ before_action :set_category, only: [:show]
     # カテゴリーidを元に,クリックされたカテゴリーのレコードを取得
     @category = Category.find(params[:id])
 
+    # ↓詳細カテゴリページのリンク用
     # 一階層下のカテゴリーがある場合はそれを格納
     if @category.has_children?
       @category_links = @category.children

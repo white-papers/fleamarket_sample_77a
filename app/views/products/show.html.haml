@@ -30,11 +30,11 @@
           %tr
             %th カテゴリー
             %td.category--td
-              = link_to "レディース", '#'
+              = link_to @product.category.parent.parent.name, category_path(@product.category.parent.parent.id)
               %br
-              = link_to "トップス", '#'
+              = link_to @product.category.parent.name, category_path(@product.category.parent.id)
               %br
-              = link_to "Tシャツ/カットソー(半袖/袖なし)", '#'
+              = link_to @product.category.name, category_path(@product.category.id)
           %tr
             %th ブランド
             %td 
