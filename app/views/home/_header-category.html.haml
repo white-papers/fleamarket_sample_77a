@@ -1,0 +1,17 @@
+%li.category
+  = link_to "カテゴリー", categories_path
+  %ul.category__parent
+    - @parents.each do |parent|
+      %li
+        = link_to category_path(parent), class: "category__parent--name" do
+          = parent.name
+        %ul.category__child
+          - parent.children.each do |child|
+            %li
+              = link_to category_path(child), class: "category__child--name" do
+                = child.name
+              %ul.category__grandchild
+                - child.children.each do |grandchild|
+                  %li
+                    = link_to category_path(grandchild), class: "category__grandchild--name" do
+                      = grandchild.name 
