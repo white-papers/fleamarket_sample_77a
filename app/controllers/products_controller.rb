@@ -12,6 +12,9 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
   end
 
   def show
+    @product = Product.find(params[:id])
+    @comment = Comment.new
+    @commentALL = @product.comments
   end
 
   def create
