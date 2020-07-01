@@ -56,5 +56,19 @@ document.addEventListener("turbolinks:load", function() {
       $(this).css('opacity', '1');
     });
 
+    $(".comment__btn").hover(function(){
+      $(this).css('background-color', '#0fdee6');
+    },
+    function(){
+      $(this).css('background-color', '#3CCACE');
+    });
+
+    $("#buy-btn").hover(function(){
+      $(this).css('background-color', '#0fdee6');
+    },
+    function(){
+      $(this).css('background-color', '#3CCACE');
+    });
+
   });
 })
