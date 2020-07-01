@@ -56,7 +56,7 @@ header {
       font-size: 14px;
       display: flex;
       margin-bottom: 10px;
-      line-height: 38px;
+      line-height: 32px;
       .listsleft {
         display: flex;
         position: relative;
@@ -76,7 +76,7 @@ header {
           padding-right: 30px;
         }
         .brand {
-          line-height: 38px;
+          line-height: 32px;
           padding: 0 0 0 16px;
           display: flex;
         }
@@ -95,9 +95,16 @@ header {
         margin-left: auto;
         display: flex;
         .my_page{
-          line-height: 38px;
+          line-height: 32px;
           padding: 0 0 0 16px;
           color: #333;
+          display: flex;
+          .fa-user {
+            display: inline-block;
+            line-height: 32px;
+            margin-left: 10px;
+            color: #3CCACE;
+          }
         }
         a {
           display: flex;
@@ -107,7 +114,7 @@ header {
           line-height: 32px;
         }
         .login {
-          line-height: 38px;
+          line-height: 32px;
           padding: 0 0 0 16px;
           color: #333;
         }
@@ -119,7 +126,7 @@ header {
           line-height: 32px;
         }
         .sign-up {
-          line-height: 38px;
+          line-height: 32px;
           padding: 0 0 0 16px;
           color: #333;
         }
