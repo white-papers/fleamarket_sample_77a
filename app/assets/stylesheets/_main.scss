@@ -79,7 +79,7 @@
       margin: 0 auto;
       .list {
         width: 30%;
-        margin: 16px 5% 0 0;
+        margin-top: 16px;
         text-align: left;
         display: flex;
         flex-direction: column;
@@ -119,6 +119,9 @@
           line-height: 1.5;
           margin: 16px 0 0;
         }
+      }
+      .list-margin {
+        margin-right: 5%;
       }
     }
   }
