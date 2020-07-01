@@ -1,6 +1,6 @@
 .background {
   background: #f5f5f5;
-  padding: 0px 40px 90px 40px;
+  padding: 40px 40px 90px 40px;
 }
 
   .product {
@@ -25,7 +25,7 @@
       display: flex;  /* image-placeholderを横並び */
     }
     #ID001, #ID002, #ID003, #ID004, #ID005 {
-    background-image:url(image-placeholder-128px.png);  /* image-placeholder形状を調整 */
+    background-image:image-url("image-placeholder-128px.png");  /* image-placeholder形状を調整 */
     width:128px;
     height:128px;
     margin: 10px 5px 5px 0px;
@@ -51,6 +51,7 @@
       border: 1px solid #eee;
       width: 100%;
       margin-bottom: 20px;
+      height: 5em;
     }
     &__table {
       width: 100%;
@@ -73,6 +74,12 @@
       border: 1px solid #eee;
       width: 187px;
       height: 26px;
+    }
+    .child_category, .grandchild_category {
+      border: 1px solid #eee;
+      width: 187px;
+      height: 26px;
+      margin-left: 51px;
     }
     &__brand, &__size {
       border: 1px solid #eee;

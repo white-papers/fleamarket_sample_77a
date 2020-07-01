@@ -24,6 +24,13 @@ Rails.application.routes.draw do
       post 'pay', to: 'orders#pay'
     end
   end
-  
-  resources :products, only: [:new, :create, :show]   
+
+  resources :products do
+    collection do
+      get :search
+    end
+  end
+  resources :products, only: [:new, :create, :show]
+
+  resources :categories, only: [:index, :show]
 end

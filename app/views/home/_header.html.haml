@@ -11,9 +11,7 @@
             = image_tag('icon/icon-search 1.png',class:'icon')
     .site-header__lists
       %ul.listsleft
-        %li.category
-          = link_to '#' do
-            = 'カテゴリー'
+        = render partial:'home/header-category' 
         %li.brand
           = link_to '#' do
             = 'ブランド'
@@ -21,6 +19,7 @@
         -if user_signed_in?
           %li.my_page
             = link_to "マイページ",user_path(current_user)
+            %i.fa.fa-user
         -else  
           %li.login
             = link_to 'ログイン',new_user_session_path 

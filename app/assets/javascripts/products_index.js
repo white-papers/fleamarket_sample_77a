@@ -33,10 +33,10 @@ $(function(){
 
   // 出品ボタンにカーソルを乗せると色が変わる
   $('.exhibition-btn').hover(function(){
-    $(this).css('opacity', '0.9');
+    $(this).css('background-color', '#0fdee6');
   },
   function(){
-    $(this).css('opacity', '1');
+    $(this).css('background-color', '#3CCACE');
   });
 
   // middleクラスのボタンにカーソルを押せると色が変わる

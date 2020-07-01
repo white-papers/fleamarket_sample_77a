@@ -1,5 +1,6 @@
 class CreditCardsController < ApplicationController
-  
+before_action :set_parents, only: [:new, :show, :destroy]
+
   require "payjp"
 
   def new
@@ -87,3 +88,6 @@ class CreditCardsController < ApplicationController
 
 end
 
+def set_parents
+  @parents = Category.where(ancestry: nil)
+end

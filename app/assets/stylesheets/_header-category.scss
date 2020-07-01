@@ -1,0 +1,50 @@
+// 未ホバー時 親カテゴリ、子カテゴリ、孫カテゴリを消す
+.category {
+  &__parent, &__child, &__grandchild {
+    display: none;
+    z-index: 1;
+    position: absolute;
+    // カテゴリ名の装飾
+    &--name {
+      display: block;
+      width: 100%;
+      padding: 1px 15px;
+      background: white;
+      border-bottom: 1px solid #f8f8f8; //リストの下線
+      &:hover {
+        background: #dedede; //ホバー時の背景色
+      }
+    }
+  }
+}
+
+// ホバー時 親カテゴリ、子カテゴリ、孫カテゴリを表示
+.category {
+  &:hover {
+    .category__parent {
+      display: block;
+      li {
+        &:hover {
+          .category__child {
+            display: block;
+            width: 240px;
+            height: 519px; //子カテゴリを認識させる高さ
+            top: 0;
+            left: 100%;
+            li {
+              &:hover {
+                .category__grandchild {
+                  display: block;
+                  width: 100%;
+                  height: 519px; //孫カテゴリを認識させる高さ
+                  top: 0;
+                  left: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
