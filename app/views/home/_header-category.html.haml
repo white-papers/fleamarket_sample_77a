@@ -13,5 +13,5 @@
               %ul.category__grandchild
                 - child.children.each do |grandchild|
                   %li
-                    = link_to category_path(grandchild), class: " category__grandchild--name" do
+                    = link_to category_path(grandchild), class: "category__grandchild--name" do
                       = grandchild.name 
