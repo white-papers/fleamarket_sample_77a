@@ -1,15 +1,11 @@
 class OrdersController < ApplicationController
-  
   require "payjp"
-
-  def index
-    @product = Product.find_by(params[:product_id])
-    @images = @product.images.all
-  
-    
+  def show
     if user_signed_in?
       @user = current_user
       @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
+      @product = Product.find(params[:id])
+      # @images = @product.images.image
       card = CreditCard.where(user_id: current_user.id).first  
       if card.blank?
         redirect_to product_path(@product.id), alert: "クレジットカードを登録してください"
@@ -41,9 +37,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  def pay
-    @product = Product.find_by(params[:product_id])
-    @images = @product.images.all
+  def pay    
+    @product = Product.find(params[:id])
     @card = CreditCard.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     Payjp::Charge.create(
@@ -51,14 +46,16 @@ class OrdersController < ApplicationController
       customer: @card.customer_id, #顧客ID
       currency: 'jpy' #日本円
     )
-    @product = Product.find_by(params[:product_id])
-    @product.update( buyer_id: current_user.id)
-    redirect_to done_orders_path #完了画面に移動
+  
+    redirect_to done_order_path(@product.id) #完了画面に移動
   end
 
   def done
-    @product = Product.find_by(params[:product_id])   
-    @images = @product.images.all
-    # Order.create(buyer_id: current_user.id, product_id: params[:product_id])
+    @product_buyer = Product.find(params[:id])
+    @product_buyer.update(buyer_id: current_user.id)
+    @product = Product.find(params[:id])
+    # @images = @product.images.all
+    Order.create(buyer_id: current_user.id)
   end  
+
 end

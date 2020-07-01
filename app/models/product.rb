@@ -5,6 +5,7 @@ class Product < ApplicationRecord
   # belongs_to :buyer, class_name: 'User'
   has_many :comments 
   has_many :images
+  has_one :order
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :buyer_id, presence: true, allow_blank: true

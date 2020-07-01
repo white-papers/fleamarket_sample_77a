@@ -9,9 +9,8 @@ Rails.application.routes.draw do
 
   root 'products#index'
 
-  resources :credit_cards, only: [:new, :create, :show, :destroy] do
-    post :pay, on: :member 
-  end
+  resources :credit_cards, only: [:new, :create, :show, :destroy] 
+
 
   resources :users, only: [:index, :show] do
     collection do
@@ -19,11 +18,12 @@ Rails.application.routes.draw do
     end
   end
  
-  resources :orders, only: [:index] do
-    collection do
+  resources :orders, only: [:show] do
+    member do
       get 'done', to: 'orders#done'
       post 'pay', to: 'orders#pay'
     end
   end
-  resources :products, only: [:new, :create, :show]
+  
+  resources :products, only: [:new, :create, :show]   
 end

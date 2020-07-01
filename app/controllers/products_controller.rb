@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.includes(:images).order('created_at DESC').all.page(params[:page]).per(4)
+    @products = Product.includes(:images, :user).order('created_at DESC').all.page(params[:page]).per(4)
     @parents = Category.where(ancestry: nil)
   end
 
@@ -10,8 +10,8 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find_by(params[:product_id])
-    
+    @product = Product.find(params[:id])
+   
   end
 
   def create
@@ -22,6 +22,8 @@ class ProductsController < ApplicationController
       render :new
     end
   end
+
+ 
 
   private
   def product_params

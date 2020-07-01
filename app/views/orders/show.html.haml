@@ -74,6 +74,6 @@
                   = @exp_month + " / " + @exp_year
 
     %hr.order-border
-    = form_tag(action: :pay, method: :post ) do
+    = form_tag( action: :pay, method: :post ) do
       .order__send
         %button.order__send__btn{type: submit_tag} 購入する
