@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-before_action :set_parents, only: [:index, :new, :create, :show]
+before_action :set_parents, only: [:index, :new, :create, :show, :edit]
+before_action :set_products, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = Product.includes(:images).order('created_at DESC').all.page(params[:page]).per(4)
@@ -11,7 +12,6 @@ before_action :set_parents, only: [:index, :new, :create, :show]
   end
 
   def show
-    @product = Product.find(params[:id])
   end
 
   def create
@@ -21,6 +21,16 @@ before_action :set_parents, only: [:index, :new, :create, :show]
     else
       render :new
     end
+  end
+
+  def destroy
+    product.destroy
+  end
+
+  def edit
+  end
+
+  def update
   end
 
   def search
@@ -58,6 +68,10 @@ before_action :set_parents, only: [:index, :new, :create, :show]
       :category_id,
       images_attributes: [:image] 
     ).merge(exhibitor: current_user).merge(user_id: current_user.id)
+  end
+
+  def set_products
+    @product = Product.find(params[:id])
   end
 
 end
