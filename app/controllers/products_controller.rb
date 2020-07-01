@@ -12,6 +12,8 @@ before_action :set_parents, only: [:index, :new, :create, :show]
 
   def show
     @product = Product.find(params[:id])
+    @comment = Comment.new
+    @commentALL = @product.comments
   end
 
   def create

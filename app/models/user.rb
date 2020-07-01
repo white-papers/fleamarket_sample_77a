@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_one  :streetaddress       
   has_many :deliveryaddresses
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :exhibitor_orders, class_name: 'order', foreign_key: 'exhibitor_id'
   has_many :buyer_orders, class_name: 'order',foreign_key:'buyer_id'
 
