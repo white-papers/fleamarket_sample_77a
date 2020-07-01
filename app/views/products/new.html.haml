@@ -1,5 +1,4 @@
 .background
-  =render 'home/header'
   .product
     = form_with model: @product, locale: true, id: "new_product" do |f|
 
@@ -33,21 +32,10 @@
           %th カテゴリー
           %td
             %span.form-require  ※必須
-            %select.product__status{name: "category", required: ""}    
-              %option{disabled: "disabled", required: ""} 選択してください
-              %option{value: "レディース"} レディース
-              %option{value: "メンズ"} メンズ
-              %option{value: "ベビー・キッズ"} ベビー・キッズ
-              %option{value: "インテリア・住まい・小物"} インテリア・住まい・小物
-              %option{value: "本・音楽・ゲーム"} 本・音楽・ゲーム
-              %option{value: "おもちゃ・ホビー・グッズ"} おもちゃ・ホビー・グッズ
-              %option{value: "コスメ・香水・美容"} コスメ・香水・美容
-              %option{value: "家電・スマホ・カメラ"} 家電・スマホ・カメラ
-              %option{value: "スポーツ・レジャー"} スポーツ・レジャー
-              %option{value: "ハンドメイド"} ハンドメイド
-              %option{value: "チケット"} チケット
-              %option{value: "自動車・オートバイ"} 自動車・オートバイ
-              %option{value: "その他"} その他
+            = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, id: "category_form", required: "", class: "product__category"
+            #child_category_field 
+            #grandchild_category_field 
+
         %tr
           %th 商品のサイズ
           %td
@@ -157,3 +145,4 @@
               %option{value: "4〜7日で発送"} 4〜7日で発送
 
       = f.submit "出品する", class: "product__btn"
+

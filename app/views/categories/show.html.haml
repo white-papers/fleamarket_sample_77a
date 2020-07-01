@@ -1,0 +1,35 @@
+.category-background
+  .category-title
+    = "#{@category.name}の商品一覧"
+  .category-links
+    - @category_links.each do |category|
+      = link_to category.name, category_path(category), class: "category-links--links"
+
+  .pickup
+    .group
+      .group__lists
+        - @products.each do |product|
+          .list
+            = link_to product_path(product.id) do
+              - if product.buyer_id.present? 
+                .list--image__sold
+                  .list--image__sold__inner
+                    SOLD
+              %figure.list--image
+                - product.images.each do |image|
+                  = image_tag image.image.url, class: "item-image"
+              .list--detail
+                %h3.name
+                  = product.name
+                .foot
+                  %ul
+                    %li 
+                      = product.amount_of_money
+                      円
+                    %li
+                      %i.fa.fa-star
+                        0
+                  %p（税込）
+
+= render 'home/main-bottom'
+= render 'home/footer'

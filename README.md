@@ -35,6 +35,7 @@
 |shipping_method|string|null: false|
 |exhibitor|references|foreign_key: { to_table: :users }|
 |buyer|references|foreign_key: { to_table: :users }|
+|category|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :exhibitor, class_name: 'User'
 - belongs_to :buyer, class_name: 'User'
@@ -50,7 +51,7 @@
 ### Association
 - belongs_to :product
 
-## categorysテーブル
+## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
