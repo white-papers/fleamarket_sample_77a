@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
+before_action :set_parents, only: [:index, :new, :create, :show]
+
   def index
     @products = Product.includes(:images).order('created_at DESC').all.page(params[:page]).per(4)
-    @parents = Category.where(ancestry: nil)
   end
 
   def new
@@ -10,6 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   def create
@@ -19,6 +21,25 @@ class ProductsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def search
+    respond_to do |format|
+      format.html
+      format.json do
+        if params[:parent_id]
+          #子カテゴリーを探して変数@childrenに代入
+          @children = Category.find(params[:parent_id]).children
+        elsif params[:children_id]
+          @grandchildren = Category.find(params[:children_id]).children
+        end
+      end
+    end
+
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 
   private
@@ -34,6 +55,7 @@ class ProductsController < ApplicationController
       :good_number,
       :product_details,
       :shipping_method,
+      :category_id,
       images_attributes: [:image] 
     ).merge(exhibitor: current_user).merge(user_id: current_user.id)
   end
