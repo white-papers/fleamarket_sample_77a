@@ -3,8 +3,10 @@
   .show-item
     .show-item__name
       = @product.name
-    .show-item__image
-      = image_tag "https://ouchigohan.s3.amazonaws.com/uploads/article/image/1998/sp_article_thumbnail_734c57b2-ab1f-4663-8df6-1c5b5099cefa.jpg", class: "show-item__image__main"
+      %body
+        %script{:src => "products_show.js"}
+    -# .show-item__image
+    -#   = image_tag "https://ouchigohan.s3.amazonaws.com/uploads/article/image/1998/sp_article_thumbnail_734c57b2-ab1f-4663-8df6-1c5b5099cefa.jpg", class: "show-item__image__main"
     -# %ul.show-item__image-list
     -#   %li
     -#     = image_tag "https://oggi.jp/wp-content/uploads/2018/12/ftop.jpg", width: "150", height: "100", class: "show-item__image-list--img"
