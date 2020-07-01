@@ -98,9 +98,9 @@
   }
   .comment {
     width: 750px;
-    height: 300px;
     background-color: white;
     margin: 10px auto 0;
+    padding-bottom: 40px;
     &__form {
       margin: 25px 25px 10px;
       width: 700px;
@@ -128,7 +128,7 @@
     .commentBtn{
       display: block;
       margin: 0 auto;
-      border: 2px solid #3CCACE;
+      border: 2px solid white;
     }
   }
   .links {
@@ -160,7 +160,7 @@
   font-size: 18px;
   line-height: 48px;
   background: #3CCACE;
-  border: 1px solid #3CCACE;
+  border: 2px solid white;
   color: #fff;
   width: 60%;
   font-size: 18px;
