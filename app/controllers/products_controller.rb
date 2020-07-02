@@ -20,8 +20,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-
-    @products = Product.includes(:images).order('created_at DESC')
+    @images = @product.images
     @product = Product.find(params[:id])
     @comment = Comment.new
     @commentALL = @product.comments

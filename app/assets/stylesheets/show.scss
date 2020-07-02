@@ -16,9 +16,17 @@
       width: 600px;
       margin: 0 auto;
       padding-bottom: 5px;
-      &__main {
-        width: 100%;
+        .image_label {
+        }
+
+    #\0030 {
+        width: 500px;
+        margin-left: 50px;
       }
+    &__main {
+      width: 130px;
+      margin: 5px 8px;
+    }
     }
     &__image-list {
       display: flex;
@@ -44,6 +52,8 @@
       margin: 10px 50PX;
       font-size: 18px;
       min-height: 80px;
+      margin-top: 20px;
+      border:1px solid #dedede;
     }
     &__table {
       width: 650px;

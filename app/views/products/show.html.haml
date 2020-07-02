@@ -2,17 +2,11 @@
   .show-item
     .show-item__name
       = @product.name
-      %body
-        %script{:src => "products_show.js"}
-    -# .show-item__image
-    -#   = image_tag "https://ouchigohan.s3.amazonaws.com/uploads/article/image/1998/sp_article_thumbnail_734c57b2-ab1f-4663-8df6-1c5b5099cefa.jpg", class: "show-item__image__main"
-    -# %ul.show-item__image-list
-    -#   %li
-    -#     = image_tag "https://oggi.jp/wp-content/uploads/2018/12/ftop.jpg", width: "150", height: "100", class: "show-item__image-list--img"
-    -#   %li
-    -#     = image_tag "https://lh3.googleusercontent.com/Ve0EEpchVfMTx0zKtEdjUW2M2ihf38my5FfHILVPj9pEtMx9Tm23A4Fcvj_taBjhCtCbvuKCs_g-Sf9UG5iQ7A=s1003", width: "150", height: "100", class: "show-item__image-list--img"
-    -#   %li
-    -#     = image_tag "https://epark.jp/medicalook/wp-content/uploads/2019/11/nats-e1573719690938-1024x682.jpg", width: "150", height: "100", class: "show-item__image-list--img"
+    .show-item__image
+      = form_for current_user do |f|
+        = f.label :image, class: 'image_label' do
+          - @images.each.with_index do |image,i|
+            = image_tag image.image.url, alt: "preview", class: "show-item__image__main", id: "#{i}"
     .show-item__price-box
       .show-item__price-box__price
         %td= converting_to_jpy(@product.amount_of_money)
@@ -28,7 +22,6 @@
             %th 投稿者
             %td
               = link_to(@product.exhibitor.nickname, "#")
-
           %tr
             %th カテゴリー
             %td.category--td
@@ -38,11 +31,6 @@
               = link_to @product.category.parent.name, category_path(@product.category.parent.id)
               %br
               = link_to @product.category.name, category_path(@product.category.id)
-          %tr
-            %th ブランド
-            %td 
-              -# = link_to(@product.brand, "#")
-
           %tr
             %th 商品のサイズ
             %td
@@ -71,15 +59,6 @@
       .show-item__good-box__alert-btn
         %i.fa.fa-flag
           不適切な商品の通報
-  - if user_signed_in? && current_user.id == @product.exhibitor_id
-    .edit_delete
-      %button.btn-default{:href => ""} 商品の編集
-      %p.text-center or
-      %form{:action => "", :method => "POST", :novalidate => "novalidate"}
-      %input{:name => "", :type => "hidden", :value => ""}/
-      -# %button.btn-default{:type => "submit"} 出品を再開する  必要時実装用
-      %button.btn-default{"data-modal" => "delete-item", "data-open" => "modal"}
-        この商品を削除する
   .comment
     .comment_list
       - if user_signed_in?
