@@ -26,10 +26,7 @@ before_action :set_products, only: [:show, :destroy]
   end
 
   def destroy
-    if @product.user_id == current_user.id
-      @product.destroy
-    end
-    if @product.destroy
+    if @product.user_id == current_user.id && @product.destroy
       redirect_to root_path
     else
       redirect_to product_path(@product.id)
