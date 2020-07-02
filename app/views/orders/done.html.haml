@@ -7,7 +7,7 @@
 
     %hr.order-border
       .order__info
-        = image_tag "image-placeholder-128px.png", alt: "Rails icon", id: "assets", class: "order__info__image", width: "300px"
+        = image_tag @image[0].image.url
 
         .order__info__box
           .order__info__box__name

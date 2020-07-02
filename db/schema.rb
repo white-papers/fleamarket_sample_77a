@@ -20,13 +20,12 @@ ActiveRecord::Schema.define(version: 2020_06_29_101637) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
-
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "card_id", null: false
-    t.string "customer_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "card_id"
+    t.string "customer_id"
     t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
@@ -69,7 +68,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_101637) do
     t.index ["deliveryaddress_id"], name: "index_orders_on_deliveryaddress_id"
     t.index ["exhibitor_id"], name: "index_orders_on_exhibitor_id"
     t.index ["products_id"], name: "index_orders_on_products_id"
-
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -95,27 +93,15 @@ ActiveRecord::Schema.define(version: 2020_06_29_101637) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
-  create_table "profieladdresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "postal_code"
-    t.string "prefectures"
-    t.string "city"
-    t.string "address"
-    t.string "building"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_profieladdresses_on_user_id"
-  end
-
   create_table "streetaddresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postal_code", null: false
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"
-    t.integer "prefecture_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_streetaddresses_on_user_id"
   end
 
@@ -148,6 +134,5 @@ ActiveRecord::Schema.define(version: 2020_06_29_101637) do
   add_foreign_key "products", "users"
   add_foreign_key "products", "users", column: "buyer_id"
   add_foreign_key "products", "users", column: "exhibitor_id"
-  add_foreign_key "profieladdresses", "users"
   add_foreign_key "streetaddresses", "users"
 end

@@ -5,7 +5,9 @@ class OrdersController < ApplicationController
       @user = current_user
       @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
       @product = Product.find(params[:id])
-      # @images = @product.images.image
+      @image = @product.images.all
+     
+    
       card = CreditCard.where(user_id: current_user.id).first  
       if card.blank?
         redirect_to product_path(@product.id), alert: "クレジットカードを登録してください"
@@ -37,7 +39,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  def pay    
+  def pay  
+    @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
     @product = Product.find(params[:id])
     @card = CreditCard.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
@@ -46,7 +49,11 @@ class OrdersController < ApplicationController
       customer: @card.customer_id, #顧客ID
       currency: 'jpy' #日本円
     )
-  
+    Order.create(
+      buyer_id: current_user.id, 
+      products_id: @product.id, 
+      deliveryaddress_id: @deliveryaddress.id
+      )
     redirect_to done_order_path(@product.id) #完了画面に移動
   end
 
@@ -54,8 +61,8 @@ class OrdersController < ApplicationController
     @product_buyer = Product.find(params[:id])
     @product_buyer.update(buyer_id: current_user.id)
     @product = Product.find(params[:id])
-    # @images = @product.images.all
-    Order.create(buyer_id: current_user.id)
+    @image = @product.images.all
+   
   end  
 
 end

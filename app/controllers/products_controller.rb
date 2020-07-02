@@ -13,7 +13,9 @@ before_action :set_parents, only: [:index, :new, :create, :show]
   end
 
   def show
+    
     @product = Product.find(params[:id])
+   
   end
 
   def create

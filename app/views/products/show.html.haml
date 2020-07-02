@@ -16,10 +16,6 @@
         ￥1500
       .show-item__price-box__tax
         (税込)送料込み
-    - if @product.buyer_id.present?
-      %h2.buy_btn
-        売り切れました
-    - else
       = link_to "購入画面にすすむ",order_path, class: 'buy_btn'   
     .show-item__item-text
       「…………ブウウ――――――ンンン――――――ンンンン………………。私がウスウスと眼を覚ました時、こうした蜜蜂の唸るような音は、まだ、その弾力の深い余韻を、私の耳の穴の中にハッキリと引き残していた」
