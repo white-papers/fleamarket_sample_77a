@@ -1,18 +1,18 @@
 class OrdersController < ApplicationController
-before_action :set_products
-before_action :set_deliveryaddresses, only: [:show, :done]
-require "payjp"
+  require "payjp"
   def show
     if user_signed_in?
       @user = current_user
+      @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
+      @product = Product.find(params[:id])
       @image = @product.images.all
-      @card = CreditCard.where(user_id: current_user.id).first
-      if @card.blank?
+      card = CreditCard.where(user_id: current_user.id).first  
+      if card.blank?
         redirect_to product_path(@product.id), alert: "クレジットカードを登録してください"
       else
         Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-        customer = Payjp::Customer.retrieve(@card.customer_id)
-        @customer_card = customer.cards.retrieve(@card.card_id)
+        customer = Payjp::Customer.retrieve(card.customer_id)
+        @customer_card = customer.cards.retrieve(card.card_id)
           ##カードのアイコン表示のための定義づけ
         @card_brand = @customer_card.brand
         case @card_brand
@@ -37,7 +37,8 @@ require "payjp"
     end
   end
 
-  def pay 
+  def pay  
+    @product = Product.find(params[:id])
     @card = CreditCard.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     Payjp::Charge.create(
@@ -50,8 +51,10 @@ require "payjp"
 
   def done
     @card = CreditCard.where(user_id: current_user.id).first
+    @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
     @product_buyer = Product.find(params[:id])
     @product_buyer.update(buyer_id: current_user.id)
+    @product = Product.find(params[:id])
     @image = @product.images.all
     order = Order.create(
       buyer_id: current_user.id, 
@@ -61,11 +64,8 @@ require "payjp"
       credit_card_id: @card.id
       )
   end 
- 
-  def set_products
-    @product = Product.find(params[:id])
-  end  
-  def set_deliveryaddresses
-    @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
-  end   
+
+  
+
+
 end

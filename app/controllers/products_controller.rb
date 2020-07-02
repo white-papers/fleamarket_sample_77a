@@ -32,11 +32,13 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
       redirect_to root_path
     else
       redirect_to product_path(@product.id)
+    end  
     product.destroy
+    
   end
 
   def edit
-  
+
     @product = Product.find(params[:id])
     @product.images.build
   end
@@ -64,7 +66,6 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
         end
       end
     end
-
   end
 
 
@@ -97,5 +98,4 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
   def set_products
     @product = Product.find(params[:id])
   end
-
 end
