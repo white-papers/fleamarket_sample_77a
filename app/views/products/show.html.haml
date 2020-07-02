@@ -63,8 +63,8 @@
             %td 1-2日で発送
     .show-item__good-box
       .show-item__good-box__favorite-btn 
-        %i.fa.fa-star
-          お気に入り １
+        %ul#favoriteBtn
+          = render partial: 'favorites/favorite', locals: { product: @product}
       .show-item__good-box__alert-btn
         %i.fa.fa-flag
           不適切な商品の通報
@@ -102,7 +102,7 @@
                       = link_to '削除する', comment_path(comment.id) ,method: :patch
     - if user_signed_in?              
       = form_with model:@comment ,class:"new_comment", local: true do |f|
-        = f.text_area :comment,id: "comment_body",wrap: "soft",class: "comment__form"
+        = f.text_area :comment,id: "comment_body",wrap: "soft",class: "comment__form",placeholder: "コメントを書く"
         = f.hidden_field :product_id, value: @product.id
 
         %p.noticeMsg.comment__caution
