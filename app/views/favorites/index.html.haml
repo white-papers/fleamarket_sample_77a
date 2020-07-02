@@ -1,6 +1,8 @@
 .container 
   .title
     %p いいね一覧
+    %span 
+      .fa.fa-star
   - if @favorites.present?
     %ul
       - @favorites.each do |favorite|

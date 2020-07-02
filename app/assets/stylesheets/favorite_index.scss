@@ -5,6 +5,14 @@
   padding-bottom: 5px;
   .title {
     padding: 30px 0;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    .fa {
+      color: #3CCACE;
+      display: inline-block;
+      margin-left: 10px;
+    }
   }
   ul {
     li {
