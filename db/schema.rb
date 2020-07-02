@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_29_101637) do
+ActiveRecord::Schema.define(version: 2020_07_01_064503) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -18,6 +18,17 @@ ActiveRecord::Schema.define(version: 2020_06_29_101637) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "delete_check", default: 0
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -39,10 +50,10 @@ ActiveRecord::Schema.define(version: 2020_06_29_101637) do
     t.string "address", null: false
     t.string "building"
     t.string "phone_number"
+    t.integer "prefecture_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_deliveryaddresses_on_user_id"
   end
 
@@ -62,7 +73,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_101637) do
     t.bigint "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "products_id"
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
     t.index ["deliveryaddress_id"], name: "index_orders_on_deliveryaddress_id"
@@ -123,6 +133,8 @@ ActiveRecord::Schema.define(version: 2020_06_29_101637) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
   add_foreign_key "credit_cards", "users"
   add_foreign_key "deliveryaddresses", "users"
   add_foreign_key "images", "products"

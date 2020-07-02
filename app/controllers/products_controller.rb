@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
 before_action :set_parents, only: [:index, :new, :create, :show]
+before_action :set_products, only: [:show, :destroy]
 
   def index
     @products = Product.includes(:images).order('created_at DESC').all.page(params[:page]).per(4)
@@ -12,10 +13,9 @@ before_action :set_parents, only: [:index, :new, :create, :show]
     @product.images.build
   end
 
-  def show
-    
-    @product = Product.find(params[:id])
-   
+  def show   
+    @comment = Comment.new
+    @commentALL = @product.comments
   end
 
   def create
@@ -24,6 +24,14 @@ before_action :set_parents, only: [:index, :new, :create, :show]
       redirect_to root_path
     else
       render :new
+    end
+  end
+
+  def destroy
+    if @product.user_id == current_user.id && @product.destroy
+      redirect_to root_path
+    else
+      redirect_to product_path(@product.id)
     end
   end
 
@@ -46,6 +54,9 @@ before_action :set_parents, only: [:index, :new, :create, :show]
     @parents = Category.where(ancestry: nil)
   end
 
+  def set_products
+    @product = Product.find(params[:id])
+  end
 
   private
   def product_params
