@@ -31,14 +31,11 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
   end
 
   def edit
-  
-    @product = Product.find(params[:id])
     @product.images.build
   end
 
   def update
     @product.update(product_params)
-    # @product.images.build
     # binding.pry
     if @product.update(product_params)
       redirect_to root_path, notice: '更新されました'
