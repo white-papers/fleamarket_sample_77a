@@ -31,9 +31,20 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
   end
 
   def edit
+  
+    @product = Product.find(params[:id])
+    @product.images.build
   end
 
   def update
+    @product.update(product_params)
+    # @product.images.build
+    # binding.pry
+    if @product.update(product_params)
+      redirect_to root_path, notice: '更新されました'
+    else
+      render :edit
+    end
   end
 
   def search
@@ -51,9 +62,6 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
 
   end
 
-  def set_parents
-    @parents = Category.where(ancestry: nil)
-  end
 
   private
   def product_params
@@ -71,6 +79,10 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
       :category_id,
       images_attributes: [:image] 
     ).merge(exhibitor: current_user).merge(user_id: current_user.id)
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 
   def set_products
