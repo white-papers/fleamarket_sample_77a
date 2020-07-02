@@ -3,7 +3,9 @@
     = render "side_bar"      
     .my-page__main
       .my-page__main__user-name
-        ももんが さんのマイページ
+        = current_user.nickname
+        %span
+          さんのマイページ
 
       .my-page__main__logout
         = link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"my-page__main__logout__next_btn"

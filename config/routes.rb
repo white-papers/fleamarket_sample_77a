@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:index, :show] do
-    collection do
+    member do
       get 'log_out', to: 'users#log_out'
     end
   end

@@ -10,6 +10,10 @@ before_action :set_parents, only: [:show, :log_out]
     @user = User.where(user_id: current_user.id)
   end
 
+  def log_out 
+    @user = User.where(user_id: current_user.id)
+  end
+
   def set_parents
     @parents = Category.where(ancestry: nil)
   end
