@@ -56,5 +56,37 @@ document.addEventListener("turbolinks:load", function() {
       $(this).css('opacity', '1');
     });
 
+    // コメントボタンにカーソルを乗せると色が変わる
+    $(".comment__btn").hover(function(){
+      $(this).css('background-color', '#0fdee6');
+    },
+    function(){
+      $(this).css('background-color', '#3CCACE');
+    });
+
+    // 購入ボタンにカーソルを乗せると色が変わる
+    $("#buy-btn").hover(function(){
+      $(this).css('background-color', '#0fdee6');
+    },
+    function(){
+      $(this).css('background-color', '#3CCACE');
+    });
+
+    // 編集ボタンにカーソルを乗せると色が変わる
+    $("#edit-btn").hover(function(){
+      $(this).css('background-color', '#0fdee6');
+    },
+    function(){
+      $(this).css('background-color', '#3CCACE');
+    });
+
+    // 削除ボタンにカーソルを乗せると色が変わる
+    $("#delete-btn").hover(function(){
+      $(this).css('background-color', '#0fdee6');
+    },
+    function(){
+      $(this).css('background-color', '#3CCACE');
+    });
+
   });
 })
