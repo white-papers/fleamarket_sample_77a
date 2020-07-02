@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
 
-  before_action :set_product, only: [:show, :index, :new, :create]
+before_action :set_parents, only: [:index, :new, :create, :show]
+before_action :set_products, only: [:show, :destroy]
+before_action :set_product, only: [:show, :index, :new, :create]
   
   def index
     @products = Product.includes(:user).order('created_at DESC').all.page(params[:page]).per(4)
@@ -35,6 +37,14 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    if @product.user_id == current_user.id && @product.destroy
+      redirect_to root_path
+    else
+      redirect_to product_path(@product.id)
+    end
+  end
+
   def search
     respond_to do |format|
       format.html
@@ -52,6 +62,10 @@ class ProductsController < ApplicationController
 
   def set_parents
     @parents = Category.where(ancestry: nil)
+  end
+
+  def set_products
+    @product = Product.find(params[:id])
   end
 
   private

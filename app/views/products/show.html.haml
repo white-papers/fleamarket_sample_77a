@@ -1,4 +1,4 @@
-.wrapper
+.wrapper-show
   .show-item
     .show-item__name
       = @product.name
@@ -11,9 +11,17 @@
       .show-item__price-box__price
         %td= converting_to_jpy(@product.amount_of_money)
       .show-item__price-box__tax
-
         = @product.shipping_fee_burden
     = link_to "購入画面にすすむ", new_order_path, class: 'buy_btn'   
+      - if @product.buyer_id.present?
+        .btn#selled-btn
+          売り切れました!
+      - if user_signed_in? && current_user.id == @product.user_id
+        - if @product.buyer_id.blank?
+          = link_to "編集", edit_product_path(@product), method: :get, class: "btn",id: "edit-btn"
+          = link_to "削除", product_path(@product), method: :delete, class: "btn delete-btn",id: "delete-btn"
+      - else
+        = link_to "購入画面にすすむ", new_order_path, class: 'buy_btn',id: "buy-btn" 
 
     .show-item__item-text
       = @product.product_details
@@ -56,8 +64,8 @@
 
     .show-item__good-box
       .show-item__good-box__favorite-btn 
-        %i.fa.fa-star
-          お気に入り １
+        %ul#favoriteBtn
+          = render partial: 'favorites/favorite', locals: { product: @product}
       .show-item__good-box__alert-btn
         %i.fa.fa-flag
           不適切な商品の通報
@@ -95,7 +103,7 @@
                       = link_to '削除する', comment_path(comment.id) ,method: :patch
     - if user_signed_in?              
       = form_with model:@comment ,class:"new_comment", local: true do |f|
-        = f.text_area :comment,id: "comment_body",wrap: "soft",class: "comment__form"
+        = f.text_area :comment,id: "comment_body",wrap: "soft",class: "comment__form",placeholder: "コメントを書く"
         = f.hidden_field :product_id, value: @product.id
 
         %p.noticeMsg.comment__caution
