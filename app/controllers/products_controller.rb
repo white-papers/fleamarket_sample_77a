@@ -57,7 +57,6 @@ before_action :set_product, only: [:show, :index, :new, :create]
         end
       end
     end
-
   end
 
   def set_parents
@@ -87,9 +86,6 @@ before_action :set_product, only: [:show, :index, :new, :create]
   end
 
   def set_product
-    @product = Product.find_by(id: params[:id])
     @user = User.find_by(id: params[:id])
   end
-
-
 end

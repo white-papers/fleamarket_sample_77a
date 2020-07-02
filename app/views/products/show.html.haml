@@ -22,7 +22,6 @@
           = link_to "削除", product_path(@product), method: :delete, class: "btn delete-btn",id: "delete-btn"
       - else
         = link_to "購入画面にすすむ", new_order_path, class: 'buy_btn',id: "buy-btn" 
-
     .show-item__item-text
       = @product.product_details
     .show-item__table
@@ -35,7 +34,6 @@
           %tr
             %th カテゴリー
             %td.category--td
-
               = link_to @product.category.parent.parent.name, category_path(@product.category.parent.parent.id)
               %br
               = link_to @product.category.parent.name, category_path(@product.category.parent.id)
@@ -114,7 +112,6 @@
         %button.commentBtn{name: "button", type: "submit", class: "comment__btn"}
           %i.fa.fa-comment
             コメントする
-
   .links
     %ul
       %li
