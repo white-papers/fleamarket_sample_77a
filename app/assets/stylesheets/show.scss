@@ -1,4 +1,5 @@
 .wrapper {
+  padding-top: 40px;
   width: 100%;
   background-color: #f8f8f8;
   .show-item {
@@ -37,11 +38,11 @@
       }
       &__tax {
         font-size: 14px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
       }
     }
     &__item-text {
-      margin: 10px 50PX;
+      margin: 30px 50PX;
       font-size: 18px;
       min-height: 80px;
     }
@@ -209,4 +210,27 @@
     background: #33a9ad;
     border: 1px solid #39c0c5;
   }
+}
+
+.btn {
+  text-decoration: none;
+  display: block;
+  width: 400px;
+  height: 50px;
+  margin: 0 auto;
+  background-color: #3CCACE;
+  border-radius: 25px;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  line-height: 50px;
+  margin-top: 5px;
+}
+
+.delete-btn {
+  margin-top: 15px;
+}
+
+#selled-btn {
+  margin-bottom: 15px;
 }
