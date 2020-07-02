@@ -12,7 +12,6 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
   end
 
   def show
-    @product = Product.find(params[:id])
     @comment = Comment.new
     @commentALL = @product.comments
   end
@@ -27,6 +26,10 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
   end
 
   def destroy
+    if @product.user_id == current_user.id && @product.destroy
+      redirect_to root_path
+    else
+      redirect_to product_path(@product.id)
     product.destroy
   end
 
@@ -59,6 +62,10 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
 
   end
 
+
+  def set_products
+    @product = Product.find(params[:id])
+  end
 
   private
   def product_params
