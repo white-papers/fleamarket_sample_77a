@@ -1,5 +1,4 @@
 .wrapper
-  =render 'home/header'
   .show-item
     .show-item__name
       カレーライス
@@ -17,7 +16,7 @@
         ￥1500
       .show-item__price-box__tax
         (税込)送料込み
-    = link_to "購入画面にすすむ", new_order_path, class: 'buy_btn'   
+    = link_to "購入画面にすすむ", new_order_path, class: 'buy_btn',id: "buy-btn" 
     .show-item__item-text
       「…………ブウウ――――――ンンン――――――ンンンン………………。私がウスウスと眼を覚ました時、こうした蜜蜂の唸るような音は、まだ、その弾力の深い余韻を、私の耳の穴の中にハッキリと引き残していた」
       親譲りの無鉄砲で小供の時から損ばかりしている。 小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。 なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。 弱虫やーい。と囃したからである。
@@ -30,11 +29,11 @@
           %tr
             %th カテゴリー
             %td.category--td
-              = link_to "レディース", '#'
+              = link_to @product.category.parent.parent.name, category_path(@product.category.parent.parent.id)
               %br
-              = link_to "トップス", '#'
+              = link_to @product.category.parent.name, category_path(@product.category.parent.id)
               %br
-              = link_to "Tシャツ/カットソー(半袖/袖なし)", '#'
+              = link_to @product.category.name, category_path(@product.category.id)
           %tr
             %th ブランド
             %td 
@@ -61,14 +60,53 @@
       .show-item__good-box__alert-btn
         %i.fa.fa-flag
           不適切な商品の通報
+  
   .comment
-    %textarea.comment__form
-    .comment__caution
-      相手のことを考え丁寧なコメントを心がけましょう。
-      %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
-    .comment__btn
-      %i.fa.fa-comment
-        コメントする
+    .comment_list
+      - if user_signed_in?
+        - @commentALL.each do |comment|
+          - if comment.user_id == current_user.id   
+            .comment_Me.comment_one_block{data:{index: comment.id}}                   
+              - if comment.delete_check == 1   # 削除済の場合
+                .comment_content
+                  = render 'products/template_comment/comment_delete_restore_btn',comment: comment 
+              - else   # 削除されていない場合
+                .comment_content
+                  = comment.comment
+                  .comment_create_at
+                    = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                  - if comment.product.exhibitor == current_user
+                    .comment_delete.me_pre_delete{data:{index: comment.id}}     
+                      = link_to '削除する', comment_path(comment.id) ,method: :patch
+              = render 'products/template_comment/comment_name',comment: comment                    
+          - else 
+            .comment_Other.comment_one_block{data:{index: comment.id}}    
+              = render 'products/template_comment/comment_name',comment: comment               
+              - if comment.delete_check == 1   # 削除済の場合
+                .comment_content_other
+                  = render 'products/template_comment/comment_delete_restore_btn',comment: comment               
+              - else    # 削除されていない場合
+                .comment_content_other
+                  = comment.comment
+                  .comment_create_at
+                    = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                  - if comment.product.exhibitor == current_user   # 出品者とログインユーザーが等しい場合
+                    .comment_delete.other_pre_delete{data:{index: comment.id}}     
+                      = link_to '削除する', comment_path(comment.id) ,method: :patch
+    - if user_signed_in?              
+      = form_with model:@comment ,class:"new_comment", local: true do |f|
+        = f.text_area :comment,id: "comment_body",wrap: "soft",class: "comment__form"
+        = f.hidden_field :product_id, value: @product.id
+
+        %p.noticeMsg.comment__caution
+          相手のことを考えて丁寧なコメントをこころがけましょう。
+          %br/
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        %br/
+        %button.commentBtn{name: "button", type: "submit", class: "comment__btn"}
+          %i.fa.fa-comment
+            コメントする
+
   .links
     %ul
       %li

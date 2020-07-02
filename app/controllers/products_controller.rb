@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
+before_action :set_parents, only: [:index, :new, :create, :show, :edit]
+before_action :set_products, only: [:show, :edit, :update, :destroy]
+
   def index
     @products = Product.includes(:images).order('created_at DESC').all.page(params[:page]).per(4)
-    @parents = Category.where(ancestry: nil)
   end
 
   def new
@@ -10,6 +12,9 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
+    @comment = Comment.new
+    @commentALL = @product.comments
   end
 
   def create
@@ -20,6 +25,43 @@ class ProductsController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    product.destroy
+  end
+
+  def edit
+  
+    @product = Product.find(params[:id])
+    @product.images.build
+  end
+
+  def update
+    @product.update(product_params)
+    # @product.images.build
+    # binding.pry
+    if @product.update(product_params)
+      redirect_to root_path, notice: '更新されました'
+    else
+      render :edit
+    end
+  end
+
+  def search
+    respond_to do |format|
+      format.html
+      format.json do
+        if params[:parent_id]
+          #子カテゴリーを探して変数@childrenに代入
+          @children = Category.find(params[:parent_id]).children
+        elsif params[:children_id]
+          @grandchildren = Category.find(params[:children_id]).children
+        end
+      end
+    end
+
+  end
+
 
   private
   def product_params
@@ -34,8 +76,17 @@ class ProductsController < ApplicationController
       :good_number,
       :product_details,
       :shipping_method,
+      :category_id,
       images_attributes: [:image] 
     ).merge(exhibitor: current_user).merge(user_id: current_user.id)
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
+
+  def set_products
+    @product = Product.find(params[:id])
   end
 
 end

@@ -1,0 +1,31 @@
+.background
+  .categories-top
+    %h3
+      カテゴリー一覧
+    %br
+    -# 親カテゴリボタン
+    - @parents.each_with_index do |parent, i|
+      = link_to "##{i+1}", class: "categories-top--parentlink" do
+        = parent.name
+
+  - @parents.each_with_index do |parent, i|
+    -# 親カテゴリbox
+    .categories-box
+      -# 親カテゴリのリンク
+      .categories-box__title{id: "#{i+1}"}
+        = link_to "#{parent.name}", category_path(parent), class: "categories-box__title--parentlink"
+      -# 子カテゴリ
+      .categories-box__child
+        - parent.children.each do |child|
+          -# 子カテゴリのリンク
+          = link_to "#{child.name}", category_path(child), class: "categories-box__child--childlink"
+          -# 孫カテゴリ
+          .categories-box__child__grandchild
+            - child.children.each do |grandchild|
+              -# 孫カテゴリのリンク
+              .categories-box__child__grandchild--grandchildlink
+                = link_to "#{grandchild.name}", category_path(grandchild), class: "categories-box__child__grandchild--grandchildlink"
+
+-# = link_to '#' '↑ページトップへ'
+= render 'home/main-bottom'
+= render 'home/footer'
