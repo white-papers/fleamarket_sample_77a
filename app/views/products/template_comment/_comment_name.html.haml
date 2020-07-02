@@ -1,0 +1,5 @@
+.comment_user_name
+  = comment.user.nickname
+  - if comment.user ==  comment.product.exhibitor  # コメントユーザーと出品者が同じ場合
+    .seller_display
+      出品者
