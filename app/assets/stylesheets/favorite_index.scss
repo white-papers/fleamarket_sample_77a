@@ -1,0 +1,36 @@
+.container {
+  background-color: rgb(245, 245, 245);
+  max-width: 780px;
+  margin: 0 auto 40px;
+  padding-bottom: 5px;
+  .title {
+    padding: 30px 0;
+  }
+  ul {
+    li {
+      a { 
+        text-decoration: none;
+        color: black;
+        .item-image {
+          margin-left: 90px;
+          img {
+            width: 600px;
+            display: block;
+          }
+        }
+        .item-body {
+          text-align: center;
+        &__item-name {
+          margin-top: 10px;
+          font-size: 22px;
+        }
+        &__item-price {
+          font-size: 20px;
+          margin-bottom: 40px;
+        }
+        }
+      }
+    }
+  }
+}
+
