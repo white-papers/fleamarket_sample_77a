@@ -1,8 +1,5 @@
 class Product < ApplicationRecord
   belongs_to :user
-  # belongs_to :exhibitor, class_name: 'User'
-  # ↓商品購入機能実装時に以下の行の記述のコメントアウトを外します。
-  # belongs_to :buyer, class_name: 'User'
   belongs_to :exhibitor, class_name: "User" , optional: true,foreign_key: "exhibitor_id"
   belongs_to :buyer, class_name: "User", optional: true,foreign_key: "buyer_id"
   belongs_to :category
