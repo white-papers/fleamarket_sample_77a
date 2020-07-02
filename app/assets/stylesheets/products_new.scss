@@ -117,3 +117,15 @@
     color: red;
     margin-left: 5px;
   }
+
+
+// 編集機能用
+
+.product__category-edit, .child_category-edit, .grandchild_category-edit {
+  border: 1px solid #eee;
+  width: 187px;
+  height: 26px;
+}
+.child_category-edit, .grandchild_category-edit {
+  margin-left: 51px;
+}

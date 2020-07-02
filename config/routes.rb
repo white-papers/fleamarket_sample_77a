@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  resources :products, only: [:new, :create, :show, :destroy]
+  resources :products, only: [:new, :create, :show, :edit, :update, :destroy]
 
   resources :categories, only: [:index, :show]
 
