@@ -1,18 +1,18 @@
 class OrdersController < ApplicationController
   require "payjp"
+  before_action :set_product
+  before_action :set_credit_card
+  before_action :set_deliveryaddress, only: [:show,:done]
   def show
     if user_signed_in?
-      @user = current_user
-      @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
-      @product = Product.find(params[:id])
+      current_user
       @image = @product.images.all
-      card = CreditCard.where(user_id: current_user.id).first  
-      if card.blank?
+      if @card.blank?
         redirect_to product_path(@product.id), alert: "クレジットカードを登録してください"
       else
         Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-        customer = Payjp::Customer.retrieve(card.customer_id)
-        @customer_card = customer.cards.retrieve(card.card_id)
+        customer = Payjp::Customer.retrieve(@card.customer_id)
+        @customer_card = customer.cards.retrieve(@card.card_id)
           ##カードのアイコン表示のための定義づけ
         @card_brand = @customer_card.brand
         case @card_brand
@@ -38,8 +38,6 @@ class OrdersController < ApplicationController
   end
 
   def pay  
-    @product = Product.find(params[:id])
-    @card = CreditCard.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     Payjp::Charge.create(
       amount: @product.amount_of_money,
@@ -50,11 +48,8 @@ class OrdersController < ApplicationController
   end
 
   def done
-    @card = CreditCard.where(user_id: current_user.id).first
-    @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
     @product_buyer = Product.find(params[:id])
     @product_buyer.update(buyer_id: current_user.id)
-    @product = Product.find(params[:id])
     @image = @product.images.all
     order = Order.create(
       buyer_id: current_user.id, 
@@ -65,7 +60,14 @@ class OrdersController < ApplicationController
       )
   end 
 
-  
-
+  def set_product
+    @product = Product.find(params[:id])
+  end  
+  def set_deliveryaddress
+    @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
+  end  
+  def set_credit_card
+    @card = CreditCard.find_by(user_id: current_user.id) 
+  end  
 
 end
