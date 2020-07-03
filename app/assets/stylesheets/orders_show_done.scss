@@ -20,6 +20,7 @@
       display: flex;
       padding-left: 20px;
       &__name {
+         font-size: 20px;
         &__price-box {
           display: flex; /* 値段とburdenを横並び */
           &__price {
