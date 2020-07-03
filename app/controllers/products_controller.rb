@@ -31,7 +31,6 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
   end
 
   def edit
-  
     @product = Product.find(params[:id])
     @product.images.build
   end

@@ -11,12 +11,12 @@
         %span.form-require ※必須 &nbsp; 5ファイルまで選択可能
       = f.fields_for :images do |i|
         = i.file_field :image, {class: "product__image",multiple: "multiple", onchange: "OnFileSelect(this)", accept: "image/*", type: "file", name: "product[images_attributes][][image]", required: ""}
-        %ul.product__image__placeholder
-          %ul#ID001
-          %ul#ID002
-          %ul#ID003
-          %ul#ID004
-          %ul#ID005
+        -# %ul.product__image__placeholder
+        -#   %ul#ID001
+        -#   %ul#ID002
+        -#   %ul#ID003
+        -#   %ul#ID004
+        -#   %ul#ID005
       %br
         価格
         %span.form-require  ※必須
