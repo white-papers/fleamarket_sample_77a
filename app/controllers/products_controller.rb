@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
 before_action :set_parents, only: [:index, :new, :create, :show, :edit]
 before_action :set_products, only: [:show, :destroy]
-before_action :set_product, only: [:show, :index, :new, :create, :edit, :update, :destroy]
+before_action :set_product, only: [:show, :edit, :update, :destroy]
   
   def index
     @products = Product.includes(:user).order('created_at DESC').all.page(params[:page]).per(4)
@@ -23,7 +23,6 @@ before_action :set_product, only: [:show, :index, :new, :create, :edit, :update,
 
   def show
     @images = @product.images
-    @product = Product.find(params[:id])
     @comment = Comment.new
     @commentALL = @product.comments
   end
@@ -100,7 +99,7 @@ before_action :set_product, only: [:show, :index, :new, :create, :edit, :update,
   end
 
   def set_product
-    @user = User.find_by(id: params[:id])
+    @product = Product.find(params[:id])
   end
 end
 
