@@ -51,6 +51,22 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
     end
   end
 
+  def edit
+    @product = Product.find(params[:id])
+    @product.images.build
+  end
+
+  def update
+    @product.update(product_params)
+    # @product.images.build
+    # binding.pry
+    if @product.update(product_params)
+      redirect_to root_path, notice: '更新されました'
+    else
+      render :edit
+    end
+  end
+
   def search
     respond_to do |format|
       format.html
