@@ -19,6 +19,7 @@
 - has_many :products
 - has_one :street_address
 - has_one :credit_card
+- has_many :favorites
 
 ## productsテーブル
 |Column|Type|Options|
@@ -35,6 +36,7 @@
 |shipping_method|string|null: false|
 |exhibitor|references|foreign_key: { to_table: :users }|
 |buyer|references|foreign_key: { to_table: :users }|
+|category|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :exhibitor, class_name: 'User'
 - belongs_to :buyer, class_name: 'User'
@@ -42,6 +44,8 @@
 - belongs_to :category
 - has_many :comments
 - has_many :image
+- has_many :favorites
+
 ## imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -50,7 +54,7 @@
 ### Association
 - belongs_to :product
 
-## categorysテーブル
+## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
@@ -81,9 +85,8 @@
 ## ordersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|payment_method|string|null: false|
+|credit_cards|references|null: false, foreign_key: true|
 |product|references|null: false, foreign_key: true|
-|delivery_method|references|null: false, foreign_key: true|
 |delivery_address|references|null: false, foreign_key: true|
 |exhibitor|references|null: false, foreign_key:{ to_table: :users}|
 |buyer|references|null: false, foreign_key:{ to_table: :users }|
@@ -122,3 +125,12 @@
 |user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
+
+## Favoritesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|references|null: false|
+|product|references|null: false|
+### Association
+- belongs_to :user
+- belongs_to :product
