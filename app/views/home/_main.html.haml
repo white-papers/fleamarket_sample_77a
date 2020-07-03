@@ -118,12 +118,12 @@
       ピックアップブランド
     .group
       .products
-        = link_to "#" do
+        = link_to new_product_path do
           アーカイバ
       .group__lists
-        = link_to "products/show" do
-          - @products.each do |product|
-            .list
+        - @products.each do |product|
+          .list
+            = link_to product_path(product.id) do
               - if product.buyer_id.present? 
                 .list--image__sold
                   .list--image__sold__inner
