@@ -44,20 +44,21 @@ class OrdersController < ApplicationController
       customer: @card.customer_id, #顧客ID
       currency: 'jpy' #日本円
     )
-    redirect_to done_order_path(@product.id, @card.id, @deliveryaddress.id, ) #完了画面に移動
+    redirect_to done_order_path(@product.id, @card.id, @deliveryaddress.id) #完了画面に移動
   end
 
   def done
     @product_buyer = Product.find(params[:id])
     @product_buyer.update(buyer_id: current_user.id)
     @image = @product.images.all
-    order = Order.create(
+    order = Order.create!(
       buyer_id: current_user.id, 
       exhibitor_id: @product.exhibitor_id,
       product_id: @product.id, 
       deliveryaddress_id: @deliveryaddress.id, 
       credit_card_id: @card.id
-      )
+      )  
+  
   end 
 
   def set_product
