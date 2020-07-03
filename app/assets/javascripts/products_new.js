@@ -21,8 +21,8 @@ $(document).on('turbolinks:load', function(){
 
     // 投稿編集時
     //=============================================================================
-    //items/:i/editページへリンクした際のアクション
-    if (window.location.href.match(/\/items\/\d+\/edit/)){
+    //products/:i/editページへリンクした際のアクション
+    if (window.location.href.match(/\/products\/\d+\/edit/)){
       //登録済み画像のプレビュー表示欄の要素を取得する
       var prevContent = $('.label-content').prev();
       labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
@@ -57,7 +57,7 @@ $(document).on('turbolinks:load', function(){
       //hidden-fieldのidの数値のみ取得
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       //labelボックスのidとforを更新
-      $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+      $('.label-box').attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_image`});
       //選択したfileのオブジェクトを取得
       var file = this.files[0];
       var reader = new FileReader();
@@ -84,8 +84,8 @@ $(document).on('turbolinks:load', function(){
 
         //=============================================================================
         //プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す
-        if ($(`#item_images_attributes_${id}__destroy`)){
-          $(`#item_images_attributes_${id}__destroy`).prop('checked',false);
+        if ($(`#product_images_attributes_${id}__destroy`)){
+          $(`#product_images_attributes_${id}__destroy`).prop('checked',false);
         } 
         //=============================================================================
 
@@ -93,7 +93,7 @@ $(document).on('turbolinks:load', function(){
         setLabel();
         //ラベルのidとforの値を変更
         if(count < 5){
-          $('.label-box').attr({id: `label-box--${count}`,for: `item_images_attributes_${count}_image`});
+          $('.label-box').attr({id: `label-box--${count}`,for: `product_images_attributes_${count}_image`});
         }
       }
     });
@@ -108,9 +108,9 @@ $(document).on('turbolinks:load', function(){
       //新規登録時と編集時の場合分け==========================================================
       //新規投稿時
       //削除用チェックボックスの有無で判定
-      if ($(`#item_images_attributes_${id}__destroy`).length == 0) {
+      if ($(`#product_images_attributes_${id}__destroy`).length == 0) {
         //フォームの中身を削除 
-        $(`#item_images_attributes_${id}_image`).val("");
+        $(`#product_images_attributes_${id}_image`).val("");
         var count = $('.preview-box').length;
         //5個めが消されたらラベルを表示
         if (count == 4) {
@@ -118,13 +118,13 @@ $(document).on('turbolinks:load', function(){
         }
         setLabel(count);
         if(id < 5){
-          $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+          $('.label-box').attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_image`});
 
         }
       } else {
 
         //投稿編集時
-        $(`#item_images_attributes_${id}__destroy`).prop('checked',true);
+        $(`#product_images_attributes_${id}__destroy`).prop('checked',true);
         //5個めが消されたらラベルを表示
         if (count == 4) {
           $('.label-content').show();
@@ -135,7 +135,7 @@ $(document).on('turbolinks:load', function(){
         //ラベルのidとforの値を変更
         //削除したプレビューのidによって、ラベルのidを変更する
         if(id < 5){
-          $('.label-box').attr({id: `label-box--${id}`,for: `item_images_attributes_${id}_image`});
+          $('.label-box').attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_image`});
         }
       }
       //=============================================================================

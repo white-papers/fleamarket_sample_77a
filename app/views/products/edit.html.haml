@@ -9,7 +9,7 @@
       %p
       %span.label_title.profile-form__label
       %section.main__block
-        -# = form_with model:@item, local:true do |f|
+        -# = form_with model:@product, local:true do |f|
         .sell__block__form
           .sell__block__form__upload
             .sell__block__form__upload__head
@@ -42,7 +42,7 @@
 
                   //5つのfile_fieldを準備するに当たって、足りない分を表示
                 - @product.images.length.upto(4) do |i|
-                  %input{name: "item[images_attributes][#{i}][image]", id: "item_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
+                  %input{name: "product[images_attributes][#{i}][image]", id: "product_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
 
 
 
