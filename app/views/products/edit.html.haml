@@ -31,6 +31,7 @@
             %ul
               %li
                 %span.form-require  ※必須
+                -# = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, class: "product__category", id: "category_form", required: ""
                 = f.collection_select :category_id, @parents, :id, :name ,{include_blank: "選択してください", selected: @product.category.parent.parent_id}, class: 'product__category-edit', id: 'parent_category_field-edit', name: "", required: ""
               %li
                 = f.collection_select :category_id, @product.category.parent.parent.children, :id, :name ,{include_blank: "選択してください", selected: @product.category.parent_id}, class: 'child_category-edit', id: 'child_category_field-edit', name: "", required: ""

@@ -78,6 +78,7 @@ $(function () {
 });
 
 
+
 // function OnFileSelect(inputElement){
 //   // ファイルリストを取得
 //   var fileList = inputElement.files;
@@ -109,6 +110,7 @@ $(function () {
 //     fileReader.readAsDataURL(file);
 //   }
 // }
+
 
 
 
@@ -261,8 +263,3 @@ $(function () {
 //     });
 //   });
 // });
-
-
-
-
-
