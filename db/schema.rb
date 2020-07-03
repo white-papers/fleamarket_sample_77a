@@ -112,18 +112,6 @@ ActiveRecord::Schema.define(version: 2020_07_03_073237) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
-  create_table "profieladdresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "postal_code"
-    t.string "prefectures"
-    t.string "city"
-    t.string "address"
-    t.string "building"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_profieladdresses_on_user_id"
-  end
-
   create_table "streetaddresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postal_code", null: false
     t.string "city", null: false
