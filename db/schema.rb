@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_082330) do
+ActiveRecord::Schema.define(version: 2020_07_03_073237) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 2020_07_02_082330) do
   end
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "card_id", null: false
-    t.string "customer_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "card_id"
+    t.string "customer_id"
     t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 2020_07_02_082330) do
     t.string "address", null: false
     t.string "building"
     t.string "phone_number"
-    t.integer "prefecture_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_deliveryaddresses_on_user_id"
   end
 
@@ -81,10 +81,12 @@ ActiveRecord::Schema.define(version: 2020_07_02_082330) do
     t.bigint "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "product_id"
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
     t.index ["deliveryaddress_id"], name: "index_orders_on_deliveryaddress_id"
     t.index ["exhibitor_id"], name: "index_orders_on_exhibitor_id"
+    t.index ["product_id"], name: "index_orders_on_product_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -115,10 +117,10 @@ ActiveRecord::Schema.define(version: 2020_07_02_082330) do
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"
-    t.integer "prefecture_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_streetaddresses_on_user_id"
   end
 
@@ -147,6 +149,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_082330) do
   add_foreign_key "images", "products"
   add_foreign_key "orders", "credit_cards"
   add_foreign_key "orders", "deliveryaddresses"
+  add_foreign_key "orders", "products"
   add_foreign_key "orders", "users", column: "buyer_id"
   add_foreign_key "orders", "users", column: "exhibitor_id"
   add_foreign_key "products", "categories"
