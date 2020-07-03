@@ -55,7 +55,7 @@
       &__content {
         background-color: white;
         border: #dedede solid 1px;
-        margin: 20px auto 75px;
+        margin: 20px auto;
         height: 450px;
         width: 750px;
         
@@ -70,20 +70,16 @@
 
         &__boxes {
           display: inline-block;
-          height: 100%;
       
           &__box {
             padding: 10px;
             width: 180px;
 
             &__image {
-              display: flex;
-
               img {
                 padding: 0 5px;
               }
             }
-
             &__name {
               text-align: center;
             }
