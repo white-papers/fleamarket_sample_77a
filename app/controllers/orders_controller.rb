@@ -51,13 +51,14 @@ class OrdersController < ApplicationController
     @product_buyer = Product.find(params[:id])
     @product_buyer.update(buyer_id: current_user.id)
     @image = @product.images.all
-    order = Order.create(
+    order = Order.create!(
       buyer_id: current_user.id, 
       exhibitor_id: @product.exhibitor_id,
       product_id: @product.id, 
       deliveryaddress_id: @deliveryaddress.id, 
       credit_card_id: @card.id
-      )
+      )  
+  
   end 
 
   def set_product
