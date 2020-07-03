@@ -7,32 +7,46 @@
       = f.text_field :name, {class: "product__name"}
 
       %p
-      -#   出品画像
-      -#   %span.form-require ※必須 &nbsp; 5ファイルまで選択可能
-      -# = f.fields_for :images do |i|
-      -#   = i.file_field :image, {class: "product__image",multiple: "multiple", onchange: "OnFileSelect(this)", accept: "image/*", type: "file", name: "product[images_attributes][][image]", required: ""}
-      -#   %ul.product__image__placeholder
-      -#     %ul#ID001
-      .content-bg-gray
-        .shadowed-rounded-rectangle
-          = form_with(model: @product, local: true, class: "product-new-form") do |f|
-            %section.mainbox-product-header
-              %h2.mainbox-header__text
-                商品の情報を入力
-              .product__block__form
-                %span.label_title.profile-form__label
-                  出品画像
-                  %span.require 必須
-                  %p.upload_limit 最大10枚までアップロードできます
-                .product-new__field__uploader
-                  = f.fields_for :images do |image|
-                    %ul#previews
-                      %li.input
-                        %label.upload-label
-                          .upload-label__text
-                            %p クリックしてファイルをアップロード
-                          .input-area
-                            = image.file_field :image, class: "hidden image_upload"
+      %span.label_title.profile-form__label
+      %section.main__block
+        .sell__block__form__upload__head
+          出品画像
+          -# %span.require 必須
+          %span.form-require  ※必須
+        %p 最大5枚までアップロードできます
+        .post__drop__box__container
+          .prev-content
+          .label-content
+            %label{for: "product_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+              %pre.label-box__text-visible クリックしてファイルをアップロード
+          .hidden-content
+            = f.fields_for :images do |i|
+              = i.file_field :image, class: "hidden-field"
+              %input{class:"hidden-field", type: "file", name: "product[images_attributes][1][image]", id: "item_images_attributes_1_image" }
+              %input{class:"hidden-field", type: "file", name: "product[images_attributes][2][image]", id: "item_images_attributes_2_image" }
+              %input{class:"hidden-field", type: "file", name: "product[images_attributes][3][image]", id: "item_images_attributes_3_image" }
+              %input{class:"hidden-field", type: "file", name: "product[images_attributes][4][image]", id: "item_images_attributes_4_image" }
+
+
+      -#   -# %span.require 必須
+      -#   %span.form-require ※必須 &nbsp; 
+      -#   %p.upload_limit 最大5枚までアップロードできます
+      -# .content-bg-gray
+      -#   .shadowed-rounded-rectangle
+      -#     -# = form_with(model: @product, local: true, class: "product-new-form") do |f|
+      -#     %section.mainbox-product-header
+      -#       %h2.mainbox-header__text
+      -#       -#   商品の情報を入力
+      -#       .product__block__form
+      -#         .product-new__field__uploader
+      -#           = f.fields_for :images do |image|
+      -#             %ul#previews
+      -#               %li.input
+      -#                 %label.upload-label
+      -#                   .upload-label__text
+      -#                     %p クリックしてファイルをアップロード
+      -#                   .input-area
+      -#                     = image.file_field :image, class: "hidden image_upload"
 
       %br
         価格

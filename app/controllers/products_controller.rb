@@ -35,7 +35,8 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
   end
 
   def edit
-    @product.images.build
+    # @product.images.build
+    # binding.pry
   end
 
   def update
@@ -82,7 +83,7 @@ before_action :set_products, only: [:show, :edit, :update, :destroy]
       :product_details,
       :shipping_method,
       :category_id,
-      images_attributes: [:image] 
+      images_attributes: [:image, :_destroy, :id] 
     ).merge(exhibitor: current_user).merge(user_id: current_user.id)
   end
 

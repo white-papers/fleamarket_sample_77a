@@ -7,12 +7,75 @@
       = f.text_field :name, {class: "product__name"}
 
       %p
-        出品画像
-        %span.form-require ※必須 &nbsp; 5ファイルまで選択可能
-      = f.fields_for :images do |i|
-        = i.file_field :image, {class: "product__image", onchange: "OnFileSelect(this)", accept: "image/*", type: "file", required: ""}
-        %ul.product__image__placeholder
-          %ul#ID001
+      %span.label_title.profile-form__label
+      %section.main__block
+        -# = form_with model:@item, local:true do |f|
+        .sell__block__form
+          .sell__block__form__upload
+            .sell__block__form__upload__head
+              出品画像
+              -# %span.require 必須
+              %span.form-require  ※必須
+            %p 最大5枚までアップロードできます
+            .post__drop__box__container
+              .prev-content
+                //JSで挿入したhtmlと同じ形 each文でのプレビュー表示
+                - @product.images.each do |image|
+                  .preview-box
+                    .upper-box
+                      = image_tag image.image.url, width: "112", height: "112", alt: "preview"
+                    .lower-box
+                      .update-box
+                        %label.edit-btn 編集
+                      .delete-box
+                        %span 削除
+              .label-content
+                //プレビューの数に合わせてforオプションを指定
+                = f.label :"images_attributes_#{@product.images.length}_image", class: "label-box", id: "label-box--#{@product.images.length}" do
+                  %pre.label-box__text-visible クリックしてファイルをアップロード
+              .hidden-content
+                = f.fields_for :images do |i|
+
+                  //プレビューが出ている分のfile_fieldとdelete用のチェックボックスを設置
+                  = i.file_field :image, class: "hidden-field"
+                  = i.check_box:_destroy, class: "hidden-checkbox"
+
+                  //5つのfile_fieldを準備するに当たって、足りない分を表示
+                - @product.images.length.upto(4) do |i|
+                  %input{name: "item[images_attributes][#{i}][image]", id: "item_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
+
+
+
+
+      -# 没コード
+      -# %span.require 必須
+      -#   %span.form-require ※必須 &nbsp; 
+      -#   %p.upload_limit 最大5枚までアップロードできます
+      -# .content-bg-gray
+      -#   .shadowed-rounded-rectangle
+      -#     %section.mainbox-product-header
+      -#       -# %h2.mainbox-header__text
+      -#       .product__block__form
+      -#         .product-new__field__uploader
+      -#           = f.fields_for :images do |image|
+      -#             - @product.images.each do |image|
+      -#               .preview-box
+      -#                 .upper-box
+      -#                   = image_tag image.image.url, width: "112", height: "112", alt: "preview"
+      -#                 .lower-box
+      -#                   .update-box
+      -#                     %label.edit-btn 編集
+      -#                   .delete-box
+      -#                     .delete-btn
+      -#                       %span 削除
+      -#             %ul#previews
+      -#               %li.input
+      -#                 %label.upload-label
+      -#                   .upload-label__text
+      -#                     %p クリックしてファイルをアップロード
+      -#                   .input-area
+      -#                     = image.file_field :image, class: "hidden image_upload"
+
 
       %br
         価格
