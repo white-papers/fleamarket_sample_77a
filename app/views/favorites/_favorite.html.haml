@@ -1,0 +1,10 @@
+- if Favorite.find_by(user_id: current_user.id, product_id: product.id)
+  = link_to(product_favorite_path(@product, product.id), method: :delete, remote: true) do
+    %li.optionalBtn.already
+      = icon('fa', 'star')
+      お気に入り済み！
+-else 
+  = link_to(product_favorites_path(@product), method: :post, remote: true) do
+    %li.optionalBtn.none
+      = icon('fa', 'star')
+      %span.want お気に入り！ 
