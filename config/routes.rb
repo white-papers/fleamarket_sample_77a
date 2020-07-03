@@ -25,8 +25,18 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  resources :products, only: [:new, :create, :show]
+  resources :products, only: [:new, :create, :show, :destroy]
 
   resources :categories, only: [:index, :show]
+
+  resources :comments, only:[:create,:update,:destroy] do
+    member do
+      get 'restore'
+    end
+  end
+
+  resources  :products do
+    resources :favorites , only: [:index, :create, :destroy]
+  end
 
 end
