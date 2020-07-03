@@ -2,7 +2,7 @@ class Deliveryaddress < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture, optional: true
   belongs_to :user, optional: true
-  belongs_to :order
+  belongs_to :order, optional: true
  
   validates :family_name, :given_name, presence: { message: 'は全角で入力してください。' }, format: { with: VALID_NAME_REGEX}
   validates :family_name_kana, :given_name_kana, presence:  { message: 'は全角カタカナで入力してください。' }, format: { with:VALID_KANA_REGEX}
