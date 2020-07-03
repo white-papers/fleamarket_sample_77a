@@ -7,22 +7,24 @@
 
     %hr.order-border
       .order__info
-        = image_tag "image-placeholder-128px.png", alt: "Rails icon", id: "assets", class: "order__info__image", width: "300px"
+        = image_tag @image[0].image.url
 
         .order__info__box
           .order__info__box__name
-            -# = link to (商品名)
-            iPhone8ケース
+            = @product.name
             .order__info__box__name__price-box
               .order__info__box__name__price-box__price
-                %strong ￥300(税込)
+                %strong
+                  ￥
+                  = @product.amount_of_money
               .order__info__box__name__price-box__burden
-                -# = link to (burden)
-                送料込み
+                = @product.shipping_fee_burden
       %hr.order-border
         .order__price-total-box
           %strong.order__price-total-box__left 支払い金額
-          %strong.order__price-total-box__right ￥300
+          %strong.order__price-total-box__right 
+            ￥
+            = @product.amount_of_money
       %hr.order-border
         .order__send
-          %button.order__send__btn Topページに戻る
+          = link_to "トップページに戻る", root_path, class: 'order__send__btn'

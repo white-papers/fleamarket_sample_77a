@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_082330) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "paymant_method", null: false
+    t.bigint "product_id"
     t.bigint "deliveryaddress_id"
     t.bigint "credit_card_id"
     t.bigint "exhibitor_id"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_082330) do
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
     t.index ["deliveryaddress_id"], name: "index_orders_on_deliveryaddress_id"
     t.index ["exhibitor_id"], name: "index_orders_on_exhibitor_id"
+    t.index ["product_id"], name: "index_orders_on_product_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -148,6 +149,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_082330) do
   add_foreign_key "images", "products"
   add_foreign_key "orders", "credit_cards"
   add_foreign_key "orders", "deliveryaddresses"
+  add_foreign_key "orders", "products"
   add_foreign_key "orders", "users", column: "buyer_id"
   add_foreign_key "orders", "users", column: "exhibitor_id"
   add_foreign_key "products", "categories"

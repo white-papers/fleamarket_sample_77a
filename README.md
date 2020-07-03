@@ -85,9 +85,8 @@
 ## ordersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|payment_method|string|null: false|
+|credit_cards|references|null: false, foreign_key: true|
 |product|references|null: false, foreign_key: true|
-|delivery_method|references|null: false, foreign_key: true|
 |delivery_address|references|null: false, foreign_key: true|
 |exhibitor|references|null: false, foreign_key:{ to_table: :users}|
 |buyer|references|null: false, foreign_key:{ to_table: :users }|
