@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'deliveryaddresses',to: 'users/registrations#new_deliveryaddresses'
     post 'deliveryaddresses',to: 'users/registrations#create_deliveryaddresses'
   end
+<<<<<<< Updated upstream
 
   root 'products#index'
 
@@ -44,4 +45,8 @@ Rails.application.routes.draw do
     resources :favorites , only: [:index, :create, :destroy]
   end
 
+=======
+  root 'products#index'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+>>>>>>> Stashed changes
 end
