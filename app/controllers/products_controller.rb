@@ -94,14 +94,12 @@ before_action :set_product, only: [:show, :index, :new, :create, :edit, :update,
       images_attributes: [:image] 
     ).merge(exhibitor: current_user).merge(user_id: current_user.id)
   end
-
-end
+  
   def set_parents
     @parents = Category.where(ancestry: nil)
   end
 
   def set_product
-    @product = Product.find(params[:id])
     @user = User.find_by(id: params[:id])
   end
 end
