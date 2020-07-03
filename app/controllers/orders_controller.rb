@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   require "payjp"
   before_action :set_product
   before_action :set_credit_card
-  before_action :set_deliveryaddress, only: [:show,:done]
+  before_action :set_deliveryaddress
   def show
     if user_signed_in?
       current_user
@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
       customer: @card.customer_id, #顧客ID
       currency: 'jpy' #日本円
     )
-    redirect_to done_order_path(@product.id) #完了画面に移動
+    redirect_to done_order_path(@product.id, @card.id, @deliveryaddress.id, ) #完了画面に移動
   end
 
   def done
