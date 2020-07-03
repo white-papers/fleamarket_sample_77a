@@ -1,3 +1,92 @@
+.content-bg-gray{
+  background-color: #EFEFEF;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  .shadowed-rounded-rectangle{
+    width: 700px;
+    box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.1);
+    margin: 100px auto 0;
+    background-color: #ffffff;
+    border-radius: 60px;
+    padding: 30px;
+    .product-new-form{
+      width: 434px;
+      margin: auto;
+      .product__block__form{
+        .product-new__field__uploader{
+          margin-bottom: 50px;
+          width: 100%;
+          #previews{
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            .image-preview__wapper{
+              width: 80px;
+              height: 80px;
+              .preview{
+                width: 80px;
+                height: 80px;
+              }
+            }
+            .image-preview_btn{
+              text-align: center;
+              padding: 8px;
+              border-top: 1px solid #cccccc;
+              cursor: pointer;
+              &:hover{
+                transition: 0.5s;
+                background-color: #cccccc;
+              }
+            }
+            .input{
+              display: flex;
+              flex-wrap: wrap;
+              width: 100%;
+              .upload-label{
+                width: 100%;
+                height: 121px;
+                background-color: rgb(245, 245, 245);
+                .upload-label__text{
+                  text-align: center;
+                  position: absolute;
+                  top: 50%;
+                  z-index: 0;
+                  width: 100%;
+                  transform: translate(0, -50%);
+                }
+                .input-area{
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.mainbox-product-header{
+  margin: 30px 0 8px;
+  width: 434px;
+  &__text{
+    margin-bottom: 20px;
+  }
+}
+.require{
+  display: inline;
+  width: 32px;
+  height: 15px;
+  padding: 2.5px 5.5px;
+  background-color: #68C7CC;
+  color: #ffffff;
+  border-radius: 7px;
+}
+
+
+
+
+
+
 .background {
   background: #f5f5f5;
   padding: 40px 40px 90px 40px;
@@ -16,30 +105,30 @@
       margin: 0 0 20px 10px;
       font-size: 20px;
     }
-    &__image {
-      &__selected {
-        z-index: 1;  /* 取得イメージをplaceholderより前面に表示 */
-      }
-    }
-    ul.product__image__placeholder {
-      display: flex;  /* image-placeholderを横並び */
-    }
-    #ID001, #ID002, #ID003, #ID004, #ID005 {
-    background-image:image-url("image-placeholder-128px.png");  /* image-placeholder形状を調整 */
-    width:128px;
-    height:128px;
-    margin: 10px 5px 5px 0px;
-    }
-    #ID001 {
-      display: flex;  /* 取得イメージを横並び */
-    }
-    img.product__image__get {
-      height: 128px;  /* 取得イメージ形状を調整 */
-      width: 128px;
-      object-fit: cover;
-      border-radius: 5px;
-      margin: 0px 5px 5px 0px;
-    }
+    // &__image {
+    //   &__selected {
+    //     z-index: 1;  /* 取得イメージをplaceholderより前面に表示 */
+    //   }
+    // }
+    // ul.product__image__placeholder {
+    //   display: flex;  /* image-placeholderを横並び */
+    // }
+    // #ID001, #ID002, #ID003, #ID004, #ID005 {
+    // background-image:image-url("image-placeholder-128px.png");  /* image-placeholder形状を調整 */
+    // width:128px;
+    // height:128px;
+    // margin: 10px 5px 5px 0px;
+    // }
+    // #ID001 {
+    //   display: flex;  /* 取得イメージを横並び */
+    // }
+    // img.product__image__get {
+    //   height: 128px;  /* 取得イメージ形状を調整 */
+    //   width: 128px;
+    //   object-fit: cover;
+    //   border-radius: 5px;
+    //   margin: 0px 5px 5px 0px;
+    // }
     &__price {
       border: 1px solid #eee;
       width: 30%;
@@ -129,3 +218,101 @@
 .child_category-edit, .grandchild_category-edit {
   margin-left: 51px;
 }
+
+
+
+
+// =======================================================
+// 没コード
+// =======================================================
+
+// https://qiita.com/gakinchoy7/items/ac1d8e64e33c3ddd377b
+
+
+// //image投稿欄のCSS
+// .post__drop__box__container{
+//   display: block;
+//   margin: 16px auto 0;
+//   display: flex;
+//   flex-wrap: wrap;
+
+//   //プレビュー表示欄のCSS
+//   .prev-content {
+//     display: flex;
+//     .preview-box {
+//       height: 162px;
+//       width: 112px;
+//       margin: 0 15px 10px 0;
+//       .upper-box {
+//         height: 112px;
+//         width: 100%;
+//         img{
+//           width: 112px;
+//           height: 112px;
+//         }
+//       }
+//       .lower-box {
+//         display: flex;
+//         text-align: center;
+//         .update-box {
+//           color: #00b0ff;
+//           width: 50%;
+//           height: 50px;
+//           line-height: 50px;
+//           border: 1px solid #eee;
+//           background: #f5f5f5;
+//           cursor: pointer;
+//         }
+//         .delete-box {
+//           color: #00b0ff;
+//           width: 50%;
+//           height: 50px;
+//           line-height: 50px;
+//           border: 1px solid #eee;
+//           background: #f5f5f5;
+//           cursor: pointer;
+//         }
+//       }
+//     }
+//   }
+
+//   //投稿クリックエリアのCSS
+//   .label-content{
+//     margin-bottom: 10px;
+//     width: 620px;
+//     .label-box {
+//       display: block;
+//       border: 1px dashed #ccc;
+//       position: relative;
+//       background: #f5f5f5;
+//       width: 100%;
+//       height: 162px;
+//       cursor: pointer;
+//       &__text-visible {
+//         position: absolute;
+//         top: 50%;
+//         left: 16px;
+//         right: 16px;
+//         text-align: center;
+//         font-size: 14px;
+//         line-height: 1.5;
+//         font-weight: bold;
+//         -webkit-transform: translate(0, -50%);
+//         transform: translate(0, -50%);
+//         pointer-events: none;
+//         white-space: pre-wrap;
+//         word-wrap: break-word;
+//       }
+//     }
+//   }
+
+//   //file_fieldのcss
+//   .hidden-content {
+//     .hidden-field {
+//       // display: none;
+//     }
+//     .hidden-checkbox {
+//       display: none;
+//     }
+//   }
+// }
