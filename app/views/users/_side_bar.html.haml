@@ -7,9 +7,11 @@
       %li= link_to 'プロフィール', ''
       %li= link_to 'お届け先住所変更', ''
       %li= link_to 'メール・パスワード', ''
-      %li= link_to '支払い方法', new_credit_card_path
-      %li= link_to 'カード情報', credit_card_path(current_user.id)
-      %li= link_to 'いいね・一覧', ''
+      - if @card.blank?
+        %li= link_to 'カードを登録', new_credit_card_path
+      - else
+        %li= link_to 'カード情報', credit_card_path(current_user.id)
+      %li= link_to 'いいね・一覧', "/products/#{current_user.id}/favorites"
   .my-page__side__content
     .my-page__side__content__title
       商品を出品する
@@ -27,4 +29,4 @@
     .my-page__side__content__title
       ログアウト
     %ul.my-page__side__content__menu
-      %li= link_to 'ログアウト',  log_out_users_path
+      %li= link_to 'ログアウト',  log_out_user_path(current_user.id)

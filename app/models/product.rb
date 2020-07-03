@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to :exhibitor, class_name: "User" , optional: true,foreign_key: "exhibitor_id"
   belongs_to :buyer, class_name: "User", optional: true,foreign_key: "buyer_id"
   belongs_to :category
+  has_one :order
   has_many :comments, dependent: :destroy
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true

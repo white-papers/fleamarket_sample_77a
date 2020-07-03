@@ -13,6 +13,7 @@
           クレジットカード情報入力
         .my-page__card__new__box
           = form_with url:credit_cards_path, method: :post, class: "details", id: "inputForm", local: true do |f|
+            #charge-form  
             .my-page__card__new__box__format
               .my-page__card__new__box__format__number
                 カード番号

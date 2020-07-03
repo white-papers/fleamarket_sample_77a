@@ -21,7 +21,7 @@
           = link_to "編集", edit_product_path(@product), method: :get, class: "btn",id: "edit-btn"
           = link_to "削除", product_path(@product), method: :delete, class: "btn delete-btn",id: "delete-btn"
       - else
-        = link_to "購入画面にすすむ", new_order_path, class: 'buy_btn',id: "buy-btn" 
+        = link_to "購入画面にすすむ", order_path(@product), class: 'buy_btn',id: "buy-btn" 
     .show-item__item-text
       = @product.product_details
     .show-item__table
