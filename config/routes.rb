@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get :search
     end
   end
+
   resources :products, only: [:new, :create, :show, :edit, :update, :destroy]
 
   resources :categories, only: [:index, :show]
@@ -33,6 +34,10 @@ Rails.application.routes.draw do
     member do
       get 'restore'
     end
+  end
+
+  resources  :products do
+    resources :favorites , only: [:index, :create, :destroy]
   end
 
 end

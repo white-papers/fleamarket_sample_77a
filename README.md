@@ -19,6 +19,7 @@
 - has_many :products
 - has_one :street_address
 - has_one :credit_card
+- has_many :favorites
 
 ## productsテーブル
 |Column|Type|Options|
@@ -43,6 +44,8 @@
 - belongs_to :category
 - has_many :comments
 - has_many :image
+- has_many :favorites
+
 ## imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -123,3 +126,12 @@
 |user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
+
+## Favoritesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|references|null: false|
+|product|references|null: false|
+### Association
+- belongs_to :user
+- belongs_to :product

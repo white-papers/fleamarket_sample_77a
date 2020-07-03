@@ -1,4 +1,5 @@
-.wrapper {
+.wrapper-show {
+  padding-top: 40px;
   width: 100%;
   background-color: #f8f8f8;
   .show-item {
@@ -37,11 +38,11 @@
       }
       &__tax {
         font-size: 14px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
       }
     }
     &__item-text {
-      margin: 10px 50PX;
+      margin: 30px 50PX;
       font-size: 18px;
       min-height: 80px;
     }
@@ -53,13 +54,13 @@
       }
       th{
         border:1px solid #dedede;
-        width: 155px;
+        width: 165px;
         padding: 15px;
         background-color: #eee;
       }
       td{
         border:1px solid #dedede;
-        width: 465px;
+        width: 485px;
         padding: 15px;
       }
       a {
@@ -74,16 +75,22 @@
       display: flex;
       justify-content: space-between;
       &__favorite-btn {
-        width: 140px;
+        width: 180px;
         height: 35px;
         border-radius: 30px;
-        border: 2px solid gold;
-        color: #3CCACE;
+        border: 2px solid gold;   
         font-size: 15px;
         background-color: white;
         text-align: center;
         line-height: 35px;
-        display: inline-block;
+        display: inline-block;     
+        a {
+          color: #3CCACE;
+          text-decoration: none;
+        } 
+        .want {
+          color: red;
+        }
       }
       &__alert-btn{
         width: 170px;
@@ -101,6 +108,41 @@
     background-color: white;
     margin: 10px auto 0;
     padding-bottom: 40px;
+    .comment_list {
+      padding: 15px 25px 0px 25px;
+      .comment_Me {
+        margin: 10px 0 25px 0;
+        padding: 10px 10px 30px 15px;
+        background-color: #e5f3f3;
+        border-radius: 5px;
+        position: relative;
+        a {
+          text-decoration: none;
+          color: red;
+        }
+        .comment_content {
+          .comment_create_at {
+            margin-top: 15px;
+            position: absolute;
+            bottom: 5px;
+            left: 15px;
+            color: gray;
+          }
+          .comment_delete {
+            padding-top: 15px;
+          }
+        }
+        .comment_user_name {
+          display: flex;
+          float: right;
+          margin-right: 5px;
+          .seller_display {
+            margin-left: 15px;
+            display: block;
+          }
+        }
+      }
+    }
     &__form {
       margin: 25px 25px 10px;
       width: 700px;
@@ -174,4 +216,28 @@
     background: #33a9ad;
     border: 1px solid #39c0c5;
   }
+}
+
+.btn {
+  text-decoration: none;
+  display: block;
+  width: 400px;
+  height: 50px;
+  margin: 0 auto;
+  background-color: #3CCACE;
+  border-radius: 25px;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  line-height: 50px;
+  margin-top: 5px;
+}
+
+.delete-btn {
+  margin-top: 15px;
+}
+
+#selled-btn {
+  margin-bottom: 15px;
+  background-color: red;
 }
