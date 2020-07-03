@@ -54,13 +54,13 @@
       }
       th{
         border:1px solid #dedede;
-        width: 155px;
+        width: 165px;
         padding: 15px;
         background-color: #eee;
       }
       td{
         border:1px solid #dedede;
-        width: 465px;
+        width: 485px;
         padding: 15px;
       }
       a {
@@ -75,16 +75,22 @@
       display: flex;
       justify-content: space-between;
       &__favorite-btn {
-        width: 140px;
+        width: 180px;
         height: 35px;
         border-radius: 30px;
-        border: 2px solid gold;
-        color: #3CCACE;
+        border: 2px solid gold;   
         font-size: 15px;
         background-color: white;
         text-align: center;
         line-height: 35px;
-        display: inline-block;
+        display: inline-block;     
+        a {
+          color: #3CCACE;
+          text-decoration: none;
+        } 
+        .want {
+          color: red;
+        }
       }
       &__alert-btn{
         width: 170px;
