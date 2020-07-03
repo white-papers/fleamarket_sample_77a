@@ -15,7 +15,7 @@
     %h2.reason__title
       FURIMAが選ばれる理由
     %ul.reason__lists
-      %li.list
+      %li.list.list-margin
         .list__image
           %span.number 1
           = image_tag('pict/pict-reason-01.jpg')
@@ -24,7 +24,7 @@
           ですぐに出品
         %p.list__lead
           スマホで入力するだけですぐに出品できる！
-      %li.list
+      %li.list.list-margin
         .list__image
           %span.number 2
           = image_tag('pict/pict-reason-02.jpg')
@@ -91,62 +91,28 @@
         = link_to new_product_path do
           新規投稿商品
       .group__lists
-        .list
-          = link_to "products/show" do
-            %figure.list--image
-              = image_tag("product/product-1.png")
-            .list--detail
-              %h3.name
-                ee
-              .foot
-                %ul
-                  %li 1000円
-                  %li
-                    %i.fa.fa-star
-                      0
-                %p（税込）
-        .list
-          = link_to "products/show" do
-            %figure.list--image
-              = image_tag("product/product-2.png")
-            .list--detail
-              %h3.name
-                product3
-              .foot
-                %ul
-                  %li 30000円
-                  %li
-                    %i.fa.fa-star
-                      0
-                %p（税込）
-        .list
-          = link_to "products/show" do
-            %figure.list--image
-              = image_tag("product/product-3.png")
-            .list--detail
-              %h3.name
-                product2
-              .foot
-                %ul
-                  %li 20000円
-                  %li
-                    %i.fa.fa-star
-                      0
-                %p（税込）
-        .list
-          = link_to "products/show" do
-            %figure.list--image
-              = image_tag("product/product-4.png")
-            .list--detail
-              %h3.name
-                product1
-              .foot
-                %ul
-                  %li 10000円
-                  %li
-                    %i.fa.fa-star
-                      1
-                %p（税込）
+        = link_to "products/show" do
+          - @products.each do |product|
+            .list
+              - if product.buyer_id.present? 
+                .list--image__sold
+                  .list--image__sold__inner
+                    SOLD
+              %figure.list--image
+                - product.images.each do |image|
+                  = image_tag image.image.url, class: "item-image"
+              .list--detail
+                %h3.name
+                  = product.name
+                .foot
+                  %ul
+                    %li 
+                      = product.amount_of_money
+                      円
+                    %li
+                      %i.fa.fa-star
+                        0
+                  %p（税込）
   .pickup
     %h2.title
       ピックアップブランド
@@ -155,59 +121,25 @@
         = link_to "#" do
           アーカイバ
       .group__lists
-        .list
-          = link_to "products/show" do
-            %figure.list--image
-              = image_tag("product/product-1.png")
-            .list--detail
-              %h3.name
-                ee
-              .foot
-                %ul
-                  %li 1000円
-                  %li
-                    %i.fa.fa-star
-                      0
-                %p（税込）
-        .list
-          = link_to "products/show" do
-            %figure.list--image
-              = image_tag("product/product-2.png")
-            .list--detail
-              %h3.name
-                product3
-              .foot
-                %ul
-                  %li 30000円
-                  %li
-                    %i.fa.fa-star
-                      0
-                %p（税込）
-        .list
-          = link_to "products/show" do
-            %figure.list--image
-              = image_tag("product/product-3.png")
-            .list--detail
-              %h3.name
-                product2
-              .foot
-                %ul
-                  %li 20000円
-                  %li
-                    %i.fa.fa-star
-                      0
-                %p（税込）
-        .list
-          = link_to "products/show" do
-            %figure.list--image
-              = image_tag("product/product-4.png")
-            .list--detail
-              %h3.name
-                product1
-              .foot
-                %ul
-                  %li 10000円
-                  %li
-                    %i.fa.fa-star
-                      1
-                %p（税込）
+        = link_to "products/show" do
+          - @products.each do |product|
+            .list
+              - if product.buyer_id.present? 
+                .list--image__sold
+                  .list--image__sold__inner
+                    SOLD
+              %figure.list--image
+                - product.images.each do |image|
+                  = image_tag image.image.url, class: "item-image"
+              .list--detail
+                %h3.name
+                  = product.name
+                .foot
+                  %ul
+                    %li 
+                      = product.amount_of_money
+                      円
+                    %li
+                      %i.fa.fa-star
+                        0
+                  %p（税込）

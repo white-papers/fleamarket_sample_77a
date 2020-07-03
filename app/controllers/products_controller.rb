@@ -1,12 +1,12 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.includes(:images).order('created_at DESC')
+    @products = Product.includes(:images).order('created_at DESC').all.page(params[:page]).per(4)
     @parents = Category.where(ancestry: nil)
   end
 
   def new
     @product = Product.new
-    @product.images.new
+    @product.images.build
   end
 
   def show

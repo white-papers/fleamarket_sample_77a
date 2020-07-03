@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(version: 2020_06_25_130718) do
   end
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
+    t.string "card_id", null: false
+    t.string "customer_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "card_id"
-    t.string "customer_id"
     t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
@@ -40,23 +40,36 @@ ActiveRecord::Schema.define(version: 2020_06_25_130718) do
     t.string "address", null: false
     t.string "building"
     t.string "phone_number"
-    t.integer "prefecture_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_deliveryaddresses_on_user_id"
   end
 
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "paymant_method", null: false
-    t.bigint "deliveryaddress_id"
-    t.bigint "credit_card_id"
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.text "image", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_images_on_product_id"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "paymant_method", null: false
+    t.bigint "deliveryaddress_id"
+    t.bigint "credit_card_id"
+    t.bigint "exhibitor_id"
+    t.bigint "buyer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "products_id"
+    t.index ["buyer_id"], name: "index_orders_on_buyer_id"
+    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
+    t.index ["deliveryaddress_id"], name: "index_orders_on_deliveryaddress_id"
+    t.index ["exhibitor_id"], name: "index_orders_on_exhibitor_id"
+    t.index ["products_id"], name: "index_orders_on_products_id"
+
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -75,13 +88,6 @@ ActiveRecord::Schema.define(version: 2020_06_25_130718) do
     t.bigint "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
-    t.bigint "products_id"
-    t.index ["buyer_id"], name: "index_orders_on_buyer_id"
-    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
-    t.index ["deliveryaddress_id"], name: "index_orders_on_deliveryaddress_id"
-    t.index ["exhibitor_id"], name: "index_orders_on_exhibitor_id"
-    t.index ["products_id"], name: "index_orders_on_products_id"
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
     t.index ["exhibitor_id"], name: "index_products_on_exhibitor_id"
     t.index ["user_id"], name: "index_products_on_user_id"
@@ -92,10 +98,10 @@ ActiveRecord::Schema.define(version: 2020_06_25_130718) do
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"
+    t.integer "prefecture_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_streetaddresses_on_user_id"
   end
 
@@ -119,11 +125,11 @@ ActiveRecord::Schema.define(version: 2020_06_25_130718) do
 
   add_foreign_key "credit_cards", "users"
   add_foreign_key "deliveryaddresses", "users"
+  add_foreign_key "images", "products"
   add_foreign_key "orders", "credit_cards"
   add_foreign_key "orders", "deliveryaddresses"
   add_foreign_key "orders", "users", column: "buyer_id"
   add_foreign_key "orders", "users", column: "exhibitor_id"
-  add_foreign_key "images", "products"
   add_foreign_key "products", "users"
   add_foreign_key "products", "users", column: "buyer_id"
   add_foreign_key "products", "users", column: "exhibitor_id"
