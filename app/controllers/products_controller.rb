@@ -51,11 +51,6 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
     end
   end
 
-  def edit
-    @product = Product.find(params[:id])
-    @product.images.build
-  end
-
   def update
     @product.update(product_params)
     # @product.images.build
@@ -82,9 +77,9 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
   end
 
 
-  def set_products
-    @product = Product.find(params[:id])
-  end
+  # def set_products
+  #   @product = Product.find(params[:id])
+  # end
 
   private
   def product_params
