@@ -6,8 +6,11 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @exhibitor_of_product = @comment.product.exhibitor
-    @comment.save
-    redirect_to product_path(@comment.product.id)
+    if @comment.save
+      redirect_to product_path(@comment.product.id)
+    else
+      redirect_to product_path(@comment.product.id), alert: "コメントに失敗しました。"
+    end
   end
 
   def update
