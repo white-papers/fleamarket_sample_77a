@@ -84,17 +84,16 @@
       padding-bottom: 40px;
       display: flex;
       justify-content: space-between;
-      // お気に入り実装予定 
-      // &__favorite-btn {
-      //   width: 180px;
-      //   height: 35px;
-      //   border-radius: 30px;
-      //   border: 2px solid gold;   
-      //   font-size: 15px;
-      //   background-color: white;
-      //   text-align: center;
-      //   line-height: 35px;
-      //   display: inline-block;     
+      &__favorite-btn {
+        width: 180px;
+        height: 35px;
+        border-radius: 30px;
+        border: 2px solid gold;   
+        font-size: 15px;
+        background-color: white;
+        text-align: center;
+        line-height: 35px;
+        display: inline-block;     
         a {
           color: #0fdee6;
           text-decoration: none;
@@ -102,7 +101,7 @@
         .want {
           color: #fa6b0c;
         }
-      // }
+      }
       &__alert-btn{
         width: 170px;
         height: 35px;
