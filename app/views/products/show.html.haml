@@ -121,6 +121,6 @@
         = link_to "次の商品",""
         %i.fas.fa-chevron-right
     .category-link
-      レディースをもっと見る
+      = link_to "#{@product.category.parent.parent.name}をもっと見る", category_path(@product.category.parent.parent.id), {class: "category-link"}
   =render 'home/main-bottom'
   =render 'home/footer'

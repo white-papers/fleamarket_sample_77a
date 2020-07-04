@@ -25,7 +25,9 @@
     color: #ffb340;
     text-decoration: none;
     font-size: 14px;
-    &:hover {}
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
