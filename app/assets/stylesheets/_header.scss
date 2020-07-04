@@ -143,4 +143,8 @@ header {
 }
 .breadcrumbs {
   padding-left: 20px;
+  a {
+  text-decoration: none;
+  font-size: 5px;
+  }
 }
