@@ -94,4 +94,8 @@ gem 'fog-aws'
 gem 'ancestry'
 
 gem 'kaminari'
+<<<<<<< Updated upstream
 gem 'gon'
+=======
+gem "gretel"
+>>>>>>> Stashed changes
