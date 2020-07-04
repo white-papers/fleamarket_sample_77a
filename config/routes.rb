@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :credit_cards, only: [:new, :create, :show, :destroy] 
 
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:index, :show, :edit, :update] do
     member do
       get 'log_out', to: 'users#log_out'
       get 'profile', to: 'users#profile'

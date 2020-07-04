@@ -1,0 +1,46 @@
+= render "home/header"
+.background
+  .my-page
+    = render "side_bar"
+    .my-page__main
+      .my-page__main__user-name
+        = current_user.nickname
+        %span
+          さんのプロフィール
+      %table.profile
+        %tr
+          %th.profile_th 
+            メールアドレス
+          %td.profile_td    
+            = current_user.email
+        %tr   
+          %th.profile_th 
+            氏名
+          %td.profile_td  
+            = current_user.family_name
+            = current_user.given_name
+        %tr
+          %th.profile_th 
+            生年月日
+          %td.profile_td    
+            = current_user.birthday
+      
+      = link_to 'プロフィールを編集する', edit_user_path(current_user) ,class: 'edit_btn'
+
+      %table.profile
+        %tr
+          %th.profile_th
+            郵便番号〒
+          %td.profile_td 
+            = @streetaddress.postal_code.insert(3, '-')
+        %tr
+          %th.profile_th
+            住所
+          %td.profile_td 
+            = @streetaddress.prefecture.name
+            = @streetaddress.city 
+            = @streetaddress.address
+            = @streetaddress.building
+
+      = link_to '住所を編集する','#',class: 'edit_btn' 
+           
