@@ -11,7 +11,7 @@ class StreetaddressesController < ApplicationController
       @streetaddress.update(streetaddress_params)
       redirect_to profile_user_path(current_user), alert: "住所を変更しました"
     else
-      redirect_to edit_user_path(current_user), alert: "住所変更に失敗しました"
+      redirect_to edit_user_streetaddress_path(current_user), alert: "正しい値を入力して下さい"
     end  
   end
   

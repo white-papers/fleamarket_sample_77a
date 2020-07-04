@@ -13,14 +13,14 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :edit, :update] do
     resources :streetaddresses, only: [:edit ,:update]
+    resources :deliveryaddresses, only: [:edit , :update]
     member do
       get 'log_out', to: 'users#log_out'
       get 'profile', to: 'users#profile'
+      get 'deliveryaddress',to: 'users#deliveryaddress'
     end
   end
 
-  
-  resources :deliveryaddresses, only: [:edit , :update]
  
   resources :orders, only: [:show] do
     member do

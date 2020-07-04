@@ -12,6 +12,10 @@ before_action :set_user
     @streetaddress = Streetaddress.find_by(user_id: current_user.id)
   end  
 
+  def deliveryaddress
+    @deliveryaddress = Deliveryaddress.find_by(user_id: current_user.id)
+  end  
+
   def log_out 
   end
 
