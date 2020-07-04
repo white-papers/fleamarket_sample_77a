@@ -36,25 +36,25 @@
                         = Favorite.where(product_id: product.id).count
                     %p（税込）
 
-        .my-page__main__content__boxes
-          .my-page__main__content__boxes__box
-            .my-page__main__content__boxes__box__image
-              = image_tag "https://previews.123rf.com/images/oksun70/oksun701704/oksun70170400045/75587237-ni%C3%B1o-feliz-dentro-de-la-caja-en-el-nuevo-hogar-despu%C3%A9s-de-mudarse.jpg", width: "180", height: "130"
-            .my-page__main__content__boxes__box__name
-              ドイツ産 安売り
-            .my-page__main__content__boxes__box__price
-              30,000円
+        -# .my-page__main__content__boxes
+        -#   .my-page__main__content__boxes__box
+        -#     .my-page__main__content__boxes__box__image
+        -#       = image_tag "https://previews.123rf.com/images/oksun70/oksun701704/oksun70170400045/75587237-ni%C3%B1o-feliz-dentro-de-la-caja-en-el-nuevo-hogar-despu%C3%A9s-de-mudarse.jpg", width: "180", height: "130"
+        -#     .my-page__main__content__boxes__box__name
+        -#       ドイツ産 安売り
+        -#     .my-page__main__content__boxes__box__price
+        -#       30,000円
 
       .my-page__main__content
         -if @product_buyer.blank?
           %h2.none_product
             購入した商品はありません。
-        .my-page__main__content__boxes
-          .my-page__main__content__boxes__box
-            .my-page__main__content__boxes__box__image
-              = image_tag "https://oggi.jp/wp-content/uploads/2018/12/ftop.jpg", width: "180", height: "130"
-            .my-page__main__content__boxes__box__name
-              とってもうまい棒
-            .my-page__main__content__boxes__box__price
-              20,000円
+        -# .my-page__main__content__boxes
+          -# .my-page__main__content__boxes__box
+            -# .my-page__main__content__boxes__box__image
+            -#   = image_tag "https://oggi.jp/wp-content/uploads/2018/12/ftop.jpg", width: "180", height: "130"
+            -# .my-page__main__content__boxes__box__name
+            -#   とってもうまい棒
+            -# .my-page__main__content__boxes__box__price
+            -#   20,000円
 
