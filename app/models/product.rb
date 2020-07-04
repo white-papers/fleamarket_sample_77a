@@ -15,4 +15,10 @@ class Product < ApplicationRecord
   validates :size, :status, :name, :estimated_delivery, :shipping_fee_burden, :prefectures, :amount_of_money, :product_details, :shipping_method, presence: { message:'入力してください。'}
   validates :category_id, presence: true
   validates :images, presence: { message:'画像を追加してください。'}
+
+  def self.search(search)
+    return Product.all unless search
+    Product.where(['name LIKE ?', "%#{search}%"])
+  end
+
 end

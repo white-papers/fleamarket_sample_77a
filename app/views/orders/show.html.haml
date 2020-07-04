@@ -1,5 +1,4 @@
--# http://localhost:3000/products/show 購入確認ページ
-
+- breadcrumb :orders
 .background
   .order
     .order__title 
@@ -15,8 +14,7 @@
           .order__info__box__name__price-box
             .order__info__box__name__price-box__price
               %strong 
-                ¥
-                = @product.amount_of_money
+                %td= converting_to_jpy(@product.amount_of_money)
             .order__info__box__name__price-box__burden
               = @product.shipping_fee_burden
 
@@ -24,22 +22,24 @@
     .order__price-total-box
       %strong.order__price-total-box__left 支払い金額
       %strong.order__price-total-box__right
-        ¥ 
-        = @product.amount_of_money
-    
+        %td= converting_to_jpy(@product.amount_of_money)
     %hr.order-border
     .order__delivery-addresses
       %strong 配送先
     .order__delivery-addresses__left  
       %p 
+        ・〒  
         = @deliveryaddress.postal_code
       %p
+        ・住所
+      %p.address 
         = @deliveryaddress.prefecture.name
         = @deliveryaddress.city
-      %p
         = @deliveryaddress.address
         = @deliveryaddress.building
       %p
+        ・氏名
+      %p.name  
         = @deliveryaddress.family_name
         = @deliveryaddress.given_name  
     %hr.order-border

@@ -94,3 +94,5 @@ gem 'fog-aws'
 gem 'ancestry'
 
 gem 'kaminari'
+gem 'gon'
+gem "gretel"

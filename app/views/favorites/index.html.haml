@@ -1,20 +1,34 @@
-.container 
-  .title
-    %p いいね一覧
-    %span 
-      .fa.fa-star
-  - if @favorites.present?
-    %ul
-      - @favorites.each do |favorite|
-        %li
-          = link_to product_path(favorite.product.id) do
-            .item-image
-              = image_tag (favorite.product.images[0].image.url)
-            .item-body
-              .item-body__item-name
-                = favorite.product.name
-              .item-body__item-price
-                = "￥#{favorite.product.amount_of_money}"
-  - else 
-    %h1
-      お気に入りに追加した商品はありません
+- breadcrumb :favorites
+.background-favo
+  .mypage
+    .my-page__content
+      .my-page__content__title
+        = current_user.nickname
+        %span
+        さんのいいね一覧
+      .my-page__content
+        .my-page__content__boxes
+          - if @favorites.present?
+            - @favorites.each do |favorite|
+              .list
+                = link_to product_path(favorite.product.id) do
+                  - if favorite.product.buyer_id.present? 
+                    .list--image__sold
+                      .list--image__sold__inner
+                        SOLD
+                  %figure.list--image
+                    = image_tag (favorite.product.images[0].image.url), class: "item-image",size:'150x100'
+                  .list--detail
+                    %h3.name
+                      = favorite.product.name
+                    .foot
+                      %ul
+                        %li 
+                          = favorite.product.amount_of_money
+                          円
+                        %li
+                          %i.fa.fa-star
+                            = Favorite.where(product_id: favorite.product.id).count
+          - else 
+            %h1
+              お気に入りに追加した商品はありません 

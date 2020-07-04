@@ -11,12 +11,16 @@ Rails.application.routes.draw do
 
   resources :credit_cards, only: [:new, :create, :show, :destroy] 
 
-
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:index, :show, :edit, :update] do
+    resources :streetaddresses, only: [:edit ,:update]
+    resources :deliveryaddresses, only: [:edit , :update]
     member do
       get 'log_out', to: 'users#log_out'
+      get 'profile', to: 'users#profile'
+      get 'deliveryaddress',to: 'users#deliveryaddress'
     end
   end
+
  
   resources :orders, only: [:show] do
     member do
@@ -25,13 +29,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :searches,only:[:index]
+
   resources :products do
+    resources :favorites , only: [:index, :create, :destroy]
     collection do
       get :search
     end
   end
-  resources :products, only: [:new, :create, :show, :edit, :update, :destroy]
-
+  
   resources :categories, only: [:index, :show]
 
   resources :comments, only:[:create,:update,:destroy] do
@@ -40,8 +46,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources  :products do
-    resources :favorites , only: [:index, :create, :destroy]
-  end
- 
+  
 end

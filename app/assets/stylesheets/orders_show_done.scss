@@ -3,12 +3,15 @@
   width: 80%;
   margin: 0 auto;
   padding:24px 40px 40px 40px;
+  color: rgb(75, 73, 73);
   &__title {
     font-size: 24px;
     text-align: center;
   }
   &__info {
     display: flex;
+    text-align: center;
+    justify-content: center;
     &__image {
       height: 128px;  /* 取得イメージ形状を調整 */
       width: 128px;
@@ -21,12 +24,17 @@
       padding-left: 20px;
       &__name {
          font-size: 20px;
+         font-weight: bold;
         &__price-box {
           display: flex; /* 値段とburdenを横並び */
+          font-weight: normal;
           &__price {
+            font-size: 40px;
           }
           &__burden {
-            padding-left: 10px;
+            padding-left: 20px;
+            margin-top: 20px;
+            font-size:15px;
           }
         }
       }
@@ -35,14 +43,22 @@
   &__price-total-box {
     display: flex;
     justify-content: space-between;
-    &__left {
-    }
     &__right {
       margin-right: 20px;
       font-size: 24px;
     }
   }
   &__payment-method {
+    .credit_card_info{
+      display: flex;
+      padding-top: 10px;
+      &__brand{
+        margin-left: 25px;
+      }
+      &__numbers{
+        margin-left: 25px;
+      }
+    }
     &__right {
       padding-right: 20px;
       float: right;
@@ -50,6 +66,12 @@
     }
   }
   &__delivery-addresses {
+    &__left {
+      margin-left: 20px;
+      .address,.name{
+        margin-left: 20px;
+      }
+    }
     &__right {
       padding-right: 20px;
       float: right;
@@ -79,6 +101,7 @@
   }
 }
 
+
 // 線の装飾
 hr.order-border {
   border-top: 1px #eee;
@@ -99,5 +122,38 @@ a.plane {
 
 // 購入完了ページの文字サイズ
 .order__done {
-  font-size: 20px;
+  display: block;
+  font-size: 30px;
+  text-align: center;
+}
+.far.fa-clock{
+  display: block;
+  text-align: center;
+}
+.done_btn{
+  display: block;
+    margin: 50px auto;
+    text-align: center;
+    text-decoration: none;
+    top: 102%;
+    right: 160px;
+    font-size: 18px;
+    line-height: 48px;
+    background: #3CCACE;
+    border: 1px solid #3CCACE;
+    color: #fff;
+    width: 60%;
+    font-size: 18px;
+    border-radius: 100px;
+    cursor: pointer;
+
+    .done_btn:hover {
+      background: #39C0C5;
+      border: 1px solid #33A9AD;
+    }
+    
+    .done_btn:active {
+      background: #33A9AD;
+      border: 1px solid #39C0C5;
+    }
 }
