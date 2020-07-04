@@ -1,4 +1,3 @@
-=render 'home/header'
 .wrapper-show
   .show-item
     .show-item__name
@@ -62,7 +61,7 @@
     .show-item__good-box
       .show-item__good-box__favorite-btn 
         %ul#favoriteBtn
-          -# = render partial: 'favorites/favorite', locals: { product: @product} 追加実装未実装
+          = render partial: 'favorites/favorite', locals: { product: @product} 
       .show-item__good-box__alert-btn
         %i.fa.fa-flag
           不適切な商品の通報
