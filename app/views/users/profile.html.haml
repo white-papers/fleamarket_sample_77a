@@ -42,5 +42,5 @@
             = @streetaddress.address
             = @streetaddress.building
 
-      = link_to '住所を編集する','#',class: 'edit_btn' 
+      = link_to '住所を編集する',edit_user_streetaddress_path(current_user),class: 'edit_btn' 
            

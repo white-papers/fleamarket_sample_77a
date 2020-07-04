@@ -12,11 +12,15 @@ Rails.application.routes.draw do
   resources :credit_cards, only: [:new, :create, :show, :destroy] 
 
   resources :users, only: [:index, :show, :edit, :update] do
+    resources :streetaddresses, only: [:edit ,:update]
     member do
       get 'log_out', to: 'users#log_out'
       get 'profile', to: 'users#profile'
     end
   end
+
+  
+  resources :deliveryaddresses, only: [:edit , :update]
  
   resources :orders, only: [:show] do
     member do
@@ -39,5 +43,6 @@ Rails.application.routes.draw do
       get 'restore'
     end
   end
- 
+
+  
 end
