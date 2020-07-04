@@ -1,0 +1,35 @@
+= render "home/header"
+.background
+  .my-page
+    = render "side_bar"
+    .my-page__main
+      .my-page__main__user-name
+        = current_user.nickname
+        %span
+          さんの届け先住所
+      %table.profile
+        %tr
+          %th.profile_th 
+            氏名
+          %td.profile_td    
+            = @deliveryaddress.family_name
+            = @deliveryaddress.given_name
+        %tr   
+          %th.profile_th 
+            郵便番号〒
+          %td.profile_td  
+            = @deliveryaddress.postal_code.insert(3, '-')
+        %tr
+          %th.profile_th 
+            住所
+          %td.profile_td    
+            = @deliveryaddress.prefecture.name 
+            = @deliveryaddress.city
+            = @deliveryaddress.address
+            = @deliveryaddress.building
+        %tr
+          %th.profile_th
+            電話番号
+          %td.profile_td
+            = @deliveryaddress.phone_number
+      = link_to '住所を変更する', edit_user_deliveryaddress_path(current_user),class: 'edit_btn'     
