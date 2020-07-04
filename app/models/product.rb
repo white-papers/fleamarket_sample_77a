@@ -14,4 +14,10 @@ class Product < ApplicationRecord
   validates :buyer_id, presence: true, allow_blank: true
   validates :size, :status, :name, :estimated_delivery, :shipping_fee_burden, :prefectures, :amount_of_money, :product_details, :shipping_method, presence: true
   validates :category_id, presence: true
+
+  def self.search(search)
+    return Product.all unless search
+    Product.where(['name LIKE ?', "%#{search}%"])
+  end
+
 end
