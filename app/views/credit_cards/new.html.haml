@@ -61,7 +61,7 @@
                 %br
               .my-page__card__new__box__format__security
                 セキュリティコード
-                = f.text_field  "payment_card_cvc", type: 'text', class: 'my-page__card__new__box__format__security__code', id: "payment_card_cvc", maxlength: "4", placeholder: 'カード背面4桁もしくは3桁の番号' 
+                = f.text_field  "payment_card_cvc", type: 'text', class: 'my-page__card__new__box__format__security__code', id: "payment_card_cvc", maxlength: "4", placeholder: 'カード背面4桁もしくは3桁の番号'
               .my-page__card__new__box__format__fom
                 = f.submit 'クレジットカード登録', class: "my-page__card__new__box__format__fom__btn", id: 'token_submit'
   
