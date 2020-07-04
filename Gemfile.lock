@@ -410,11 +410,8 @@ DEPENDENCIES
   factory_bot_rails
   fog-aws
   font-awesome-sass
-<<<<<<< Updated upstream
   gon
-=======
   gretel
->>>>>>> Stashed changes
   haml-rails
   jbuilder (~> 2.5)
   jquery-rails
