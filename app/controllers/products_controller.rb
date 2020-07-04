@@ -13,7 +13,7 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
     @product.images.build
   end
 
-  def show   
+  def show
     @comment = Comment.new
     @commentALL = @product.comments
   end
@@ -21,7 +21,7 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to root_path
+      redirect_to root_path, notice: '出品が完了しました'
     else
       flash[:alert] = '未入力項目があります'
       render :new, notice: 'もう一度入力してください'
@@ -39,14 +39,13 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def edit
     # @product.images.build
-    # binding.pry
   end
 
   def update
     @product.update(product_params)
     # binding.pry
     if @product.update(product_params)
-      redirect_to root_path, notice: '更新されました'
+      redirect_to product_path(@product.id), notice: '更新が完了しました'
     else
       render :edit, notice: 'もう一度入力してください'
     end

@@ -14,4 +14,5 @@ class Product < ApplicationRecord
   validates :buyer_id, presence: true, allow_blank: true
   validates :size, :status, :name, :estimated_delivery, :shipping_fee_burden, :prefectures, :amount_of_money, :product_details, :shipping_method, presence: true
   validates :category_id, presence: true
+  validates :images, presence: { message:'画像を追加してください。'}
 end
