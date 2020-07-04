@@ -41,3 +41,8 @@ crumb :mypage do |user|
   link "ログアウト", log_out_user_path
   parent :mypage 
  end
+
+ crumb :profile do
+  link "プロフィール", profile_user_path
+  parent :mypage
+ end
