@@ -1,0 +1,40 @@
+.search-background
+  .search-container
+    -# .search-left ←詳細検索実装時にコメントアウトを外します。
+    -#   -# = render 'searches/form-bar' ←詳細検索実装時にコメントアウトを外します。
+    .search-right
+      %section.items-box-container
+        -if @search.present?
+          %h2.search-result-head
+            = @search
+            %span.search-result-head-text
+              の検索結果
+          .search-result-number
+            ="1-#{@products.count}件表示"
+        -else
+          %h2.search-result-nil
+            新着商品
+        .items-box-content
+        - @products.each do |product|
+          .list
+            = link_to product_path(product.id) do
+              - if product.buyer_id.present? 
+                .list--image__sold
+                  .list--image__sold__inner
+                    SOLD
+              %figure.list--image
+                - product.images.each do |image|
+                  = image_tag image.image.url, class: "item-image"
+              .list--detail
+                %h3.name
+                  = product.name
+                .foot
+                  %ul
+                    %li 
+                      = product.amount_of_money
+                      円
+                    %li
+                      %i.fa.fa-star
+                      = Favorite.where(product_id: product.id).count
+                  %p（税込）
+         
