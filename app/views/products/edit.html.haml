@@ -9,12 +9,10 @@
       %p
       %span.label_title.profile-form__label
       %section.main__block
-        -# = form_with model:@product, local:true do |f|
         .sell__block__form
           .sell__block__form__upload
             .sell__block__form__upload__head
               出品画像
-              -# %span.require 必須
               %span.form-require  ※必須
             %p 最大5枚までアップロードできます
             .post__drop__box__container
@@ -44,9 +42,6 @@
                 - @product.images.length.upto(4) do |i|
                   %input{name: "product[images_attributes][#{i}][image]", id: "product_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
 
-
-
-
       -# 没コード
       -# %span.require 必須
       -#   %span.form-require ※必須 &nbsp; 
@@ -75,7 +70,6 @@
       -#                     %p クリックしてファイルをアップロード
       -#                   .input-area
       -#                     = image.file_field :image, class: "hidden image_upload"
-
 
       %br
         価格

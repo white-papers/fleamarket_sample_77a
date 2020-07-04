@@ -21,7 +21,7 @@
               %pre.label-box__text-visible クリックしてファイルをアップロード
           .hidden-content
             = f.fields_for :images do |i|
-              = i.file_field :image, class: "hidden-field"
+              = i.file_field :image, class: "hidden-field", required: ""
               %input{class:"hidden-field", type: "file", name: "product[images_attributes][1][image]", id: "product_images_attributes_1_image" }
               %input{class:"hidden-field", type: "file", name: "product[images_attributes][2][image]", id: "product_images_attributes_2_image" }
               %input{class:"hidden-field", type: "file", name: "product[images_attributes][3][image]", id: "product_images_attributes_3_image" }

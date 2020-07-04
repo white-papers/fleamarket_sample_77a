@@ -23,7 +23,8 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
     if @product.save
       redirect_to root_path
     else
-      render :new
+      flash[:alert] = '未入力項目があります'
+      render :new, notice: 'もう一度入力してください'
     end
   end
 
@@ -47,18 +48,7 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
     if @product.update(product_params)
       redirect_to root_path, notice: '更新されました'
     else
-      render :edit
-    end
-  end
-
-  def update
-    @product.update(product_params)
-    # @product.images.build
-    # binding.pry
-    if @product.update(product_params)
-      redirect_to root_path, notice: '更新されました'
-    else
-      render :edit
+      render :edit, notice: 'もう一度入力してください'
     end
   end
 
@@ -76,10 +66,6 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
     end
   end
 
-
-  # def set_products
-  #   @product = Product.find(params[:id])
-  # end
 
   private
   def product_params
