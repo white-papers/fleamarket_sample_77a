@@ -2,7 +2,8 @@ class FavoritesController < ApplicationController
   before_action :set_product, only: [:create, :destroy]
 
   def index
-    # favoriteテーブルからuser_idが現在のユーザーのidのものを探し出し、@favoritesに代入しています。
+    @product_buyer = Product.where(buyer_id: current_user.id)
+    @product_exhibitor = Product.where(exhibitor_id: current_user.id)
     @favorites = Favorite.where(user_id: current_user.id)
   end
 
