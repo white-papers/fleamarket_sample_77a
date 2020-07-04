@@ -1,5 +1,100 @@
 require 'rails_helper'
+require 'spec_helper'
+describe Product do
+  describe '#update' do
+    it "商品名がない場合は更新できないこと" do
+      product = build(:product, name: "")
+      product.valid?
+      expect(product.errors[:name]).to include("入力してください。")
+    end
+  end
 
-RSpec.describe Product, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#update' do
+    it "サイズがない場合は更新できないこと" do
+      product = build(:product, size: "")
+      product.valid?
+      expect(product.errors[:size]).to include("入力してください。")
+    end
+  end
+
+  describe '#update' do
+    it "商品の状態がない場合は更新できないこと" do
+      product = build(:product, status: "")
+      product.valid?
+      expect(product.errors[:status]).to include("入力してください。")
+    end
+  end
+
+  describe '#update' do
+    it "発送日の目安がない場合は更新できないこと" do
+      product = build(:product, estimated_delivery: "")
+      product.valid?
+      expect(product.errors[:estimated_delivery]).to include("入力してください。")
+    end
+  end
+
+  describe '#update' do
+    it "配送料の負担がない場合は更新できないこと" do
+      product = build(:product, shipping_fee_burden: "")
+      product.valid?
+      expect(product.errors[:shipping_fee_burden]).to include("入力してください。")
+    end
+  end
+
+  describe '#update' do
+    it "発送元の地域がない場合は更新できないこと" do
+      product = build(:product, prefectures: "")
+      product.valid?
+      expect(product.errors[:prefectures]).to include("入力してください。")
+    end
+  end
+
+  describe '#update' do
+    it "価格がない場合は更新できないこと" do
+      product = build(:product, amount_of_money: "")
+      product.valid?
+      expect(product.errors[:amount_of_money]).to include("入力してください。")
+    end
+  end
+
+  describe '#update' do
+    it "商品説明がない場合は更新できないこと" do
+      product = build(:product, product_details: "")
+      product.valid?
+      expect(product.errors[:product_details]).to include("入力してください。")
+    end
+  end
+
+  describe '#update' do
+    it "カテゴリーがない場合は更新できないこと" do
+      product = build(:product, category_id: "")
+      product.valid?
+      expect(product.errors[:category_id]).to include("を入力してください")
+    end
+  end
+
+  describe '#update' do
+    it "画像がない場合は更新できないこと" do
+      product = build(:image, image: "")
+      product.valid?
+      expect(product.errors[:image]).to include("を入力してください")
+    end
+  end
+
+  describe '#update' do
+    it "user_idがない場合は更新できないこと" do
+      product = build(:product, user_id: "")
+      product.valid?
+      expect(product.errors[:user_id]).to include()
+    end
+  end
+
+  describe '#update' do
+    it "exhibitor_idがない場合は更新できないこと" do
+      product = build(:product, exhibitor_id: "")
+      product.valid?
+      expect(product.errors[:exhibitor_id]).to include()
+    end
+  end
+
 end
