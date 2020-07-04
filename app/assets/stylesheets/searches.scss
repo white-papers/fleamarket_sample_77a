@@ -4,9 +4,15 @@
   padding-top: 40px;
   .search-container {
     padding: 10px 40px 10px 40px;
-    max-width: 980px;
+    max-width: 750px;
     margin: 0 auto;
     background-color: white;
     height: 80vh;
+    overflow: scroll;
+    .search-result-head {
+      padding-bottom: 5px;
+      border-bottom: 1px solid #dedede;
+      margin-bottom: 10px;
+    }
   }
 }
