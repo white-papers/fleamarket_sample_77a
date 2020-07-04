@@ -32,14 +32,18 @@
       %strong 配送先
     .order__delivery-addresses__left  
       %p 
+        ・〒  
         = @deliveryaddress.postal_code
       %p
+        ・住所
+      %p.address 
         = @deliveryaddress.prefecture.name
         = @deliveryaddress.city
-      %p
         = @deliveryaddress.address
         = @deliveryaddress.building
       %p
+        ・氏名
+      %p.name  
         = @deliveryaddress.family_name
         = @deliveryaddress.given_name  
     %hr.order-border

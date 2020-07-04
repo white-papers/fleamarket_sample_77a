@@ -7,37 +7,60 @@
         = current_user.nickname
         %span
           さんのマイページ 
-
+      
+      .my-page__main__content__title
+        出品した 商品
       .my-page__main__content
-        .my-page__main__content__title
-          出品中 商品
-        .my-page__main__content__boxes
-          .my-page__main__content__boxes__box
-            .my-page__main__content__boxes__box__image
-              = image_tag "https://previews.123rf.com/images/oksun70/oksun701709/oksun70170900052/85605117-%E6%96%B0%E3%81%97%E3%81%84%E5%AE%B6%E3%81%AB%E5%BC%95%E3%81%A3%E8%B6%8A%E3%81%97%E3%81%9F%E3%80%82%E7%AE%B1%E3%81%AE%E4%B8%AD%E3%81%AB%E5%AD%90%E4%BE%9B%E3%81%AE%E5%A5%B3%E3%81%AE%E5%AD%90%E3%81%8C%E5%BA%A7%E3%81%A3%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82.jpg", width: "180", height: "130"
-            .my-page__main__content__boxes__box__name
-              アメリカ産 新鮮 
-            .my-page__main__content__boxes__box__price
-              430,000円
+        .my-page__main__content__boxes  
+          - @product_exhibitor.each do |product|
+            .list
+              = link_to product_path(product.id) do
+                - if product.buyer_id.present? 
+                  .list--image__sold
+                    .list--image__sold__inner
+                      SOLD
+                %figure.list--image
+                  - product.images.each do |image|
+                    = image_tag image.image.url, class: "item-image",size:'150x100'
+                .list--detail
+                  %h3.name
+                    = product.name
+                  .foot
+                    %ul
+                      %li 
+                        = product.amount_of_money
+                        円
+                      %li
+                        %i.fa.fa-star
+                        = Favorite.where(product_id: product.id).count
+                    %p（税込）
 
-        .my-page__main__content__boxes
-          .my-page__main__content__boxes__box
-            .my-page__main__content__boxes__box__image
-              = image_tag "https://previews.123rf.com/images/oksun70/oksun701704/oksun70170400045/75587237-ni%C3%B1o-feliz-dentro-de-la-caja-en-el-nuevo-hogar-despu%C3%A9s-de-mudarse.jpg", width: "180", height: "130"
-            .my-page__main__content__boxes__box__name
-              ドイツ産 安売り
-            .my-page__main__content__boxes__box__price
-              30,000円
+          
 
+       
+      .my-page__main__content__title
+        購入した 商品
       .my-page__main__content
-        .my-page__main__content__title
-          取り引中 商品
         .my-page__main__content__boxes
-          .my-page__main__content__boxes__box
-            .my-page__main__content__boxes__box__image
-              = image_tag "https://oggi.jp/wp-content/uploads/2018/12/ftop.jpg", width: "180", height: "130"
-            .my-page__main__content__boxes__box__name
-              とってもうまい棒
-            .my-page__main__content__boxes__box__price
-              20,000円
-
+          - @product_buyer.each do |product|
+            .list
+              = link_to product_path(product.id) do
+                - if product.buyer_id.present? 
+                  .list--image__sold
+                    .list--image__sold__inner
+                      SOLD
+                %figure.list--image
+                  - product.images.each do |image|
+                    = image_tag image.image.url, class: "item-image",size:'150x100'
+                .list--detail
+                  %h3.name
+                    = product.name
+                  .foot
+                    %ul
+                      %li 
+                        = product.amount_of_money
+                        円
+                      %li
+                        %i.fa.fa-star                         
+                        = Favorite.where(product_id: product.id).count
+                    %p（税込）
