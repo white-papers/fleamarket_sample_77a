@@ -1,13 +1,25 @@
 crumb :root do
-  link "Home", root_path
+  link "トップページ", root_path
 end
 
 crumb :mypage do
-
   link "マイページ", user_path
- 
   parent :root
- 
+ end
+
+ crumb :productshow do
+  link "商品詳細", product_path
+  parent :root
+ end
+
+ crumb :orders do
+  link "商品購入", order_path
+  parent :productshow
+ end
+
+ crumb :categories do
+  link "カテゴリー", categories_path
+  parent :root
  end
 
 # crumb :projects do
