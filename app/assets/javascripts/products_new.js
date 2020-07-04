@@ -36,7 +36,7 @@ $(document).on('turbolinks:load', function(){
         $(box).attr('id', `delete_btn_${index}`);
       })
       var count = $('.preview-box').length;
-      //プレビューが5あるときは、投稿ボックスを消しておく
+      //プレビューが5個あったらラベルを隠す 
       if (count == 5) {
         $('.label-content').hide();
       }
@@ -80,8 +80,9 @@ $(document).on('turbolinks:load', function(){
         //プレビューが5個あったらラベルを隠す 
         if (count == 5) { 
           $('.label-content').hide();
-        }
+        } 
 
+        // 投稿編集時
         //=============================================================================
         //プレビュー削除したフィールドにdestroy用のチェックボックスがあった場合、チェックを外す
         //→既存画像を差し替えられるよう設定
@@ -106,15 +107,14 @@ $(document).on('turbolinks:load', function(){
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       $(`#preview-box__${id}`).remove();
 
-      //新規登録時と編集時の場合分け==========================================================
       //新規投稿時
-      //削除用チェックボックスの有無で判定
+        //削除用チェックボックスが無い場合、新規投稿時の処理を実行
       if ($(`#product_images_attributes_${id}__destroy`).length == 0) {
         //フォームの中身を削除 
         $(`#product_images_attributes_${id}_image`).val("");
         var count = $('.preview-box').length;
         //画像が4枚以下ならラベルを表示
-        if (count == 4) {
+        if (count <= 5) {
           $('.label-content').show();
         }
         setLabel(count);
@@ -122,11 +122,11 @@ $(document).on('turbolinks:load', function(){
           $('.label-box').attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_image`});
         }
       } else {
-
+      //=============================================================================
         //投稿編集時
         $(`#product_images_attributes_${id}__destroy`).prop('checked',true);
-        //5個めが消されたらラベルを表示
-        if (count == 4) {
+        //画像が4枚以下ならラベルを表示
+        if (count <= 5) {
           $('.label-content').show();
         }
         //ラベルのwidth操作

@@ -40,7 +40,6 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
   end
 
   def update
-    @product.update(product_params)
     if @product.update(product_params)
       redirect_to product_path(@product.id), notice: '更新が完了しました'
     else
@@ -88,4 +87,5 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
   def set_product
     @product = Product.find(params[:id])
   end
+
 end
