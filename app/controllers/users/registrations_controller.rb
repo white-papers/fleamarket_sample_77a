@@ -48,6 +48,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.save
     sign_in(:user, @user)
   end
+  
+  
+
+  
 
   # GET /resource/edit
   # def edit
@@ -82,6 +86,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def deliveryaddresses_params
     params.require(:deliveryaddress).permit(:family_name, :given_name, :family_name_kana, :given_name_kana, :postal_code, :prefecture_id, :city, :address, :building, :phone_number)
   end  
+
+  # def update_resource(resource, params)
+  #   resource.update_without_password(params)
+  # end
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])

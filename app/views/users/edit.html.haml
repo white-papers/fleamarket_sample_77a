@@ -1,0 +1,91 @@
+.singup_background
+  .singup_main
+    %h2.singup_title
+      会員情報入力
+    .singup_from  
+      = form_with model: @user, local: true do |f|
+
+        .field
+          = f.label :nickname, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.text_field :nickname, autofocus: true, class: 'singup_field', placeholder: ' 全角で入力してください'
+          .input-error
+            - if @user.errors.any?
+              - unless @user.valid?
+                = resource.errors.full_messages_for(:nickname)[0]
+          
+        .field
+          = f.label :email, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          = f.email_field :email, autocomplete: "email", class: 'singup_field', placeholder: ' PC 携帯 どちらでも可'
+          .input-error
+            - if @user.errors.any?
+              - unless @user.valid?
+                = resource.errors.full_messages_for(:email)[0]
+
+        .real_name
+          .real_name_field
+            .name_label
+              本名
+              %span.name_required
+                必須
+            = f.text_field :family_name, class: 'real_name_field', placeholder: ' 名字 例) 山田'
+
+          .given_field
+            .name_explanation
+              全角で記入してください
+            = f.text_field :given_name, class: 'given_name_field', placeholder: ' 名前 例) 太郎'
+
+        .input-error_name
+          - if @user.errors.any?
+            - unless @user.valid?
+              = resource.errors.full_messages_for(:family_name).first
+
+        .input-error_name
+          - if @user.errors.any?
+            - unless @user.valid?
+              = resource.errors.full_messages_for(:given_name).first
+
+        .real_name      
+          .real_name_field
+            .name_label
+              本名(カナ)
+              %span.name_required
+                必須  
+            = f.text_field :family_name_kana, class: 'real_name_field', placeholder: ' 名字(カナ)'
+
+          .given_field
+            .kana_explanation
+              全角カタカナで入力してください
+            = f.text_field :given_name_kana, class: 'given_name_field', placeholder: ' 名前(カナ)'
+
+        .input-error_name
+          - if @user.errors.any?
+            - unless @user.valid?
+              = resource.errors.full_messages_for(:family_name_kana).first 
+
+        .input-error_name
+          - if @user.errors.any?
+            - unless @user.valid?
+              = resource.errors.full_messages_for(:given_name_kana).first
+            
+        .field
+          = f.label :birthday, class: 'singup_label'
+          %span.required
+            必須
+          %br/
+          .birthday_select
+            = raw sprintf(f.date_select( :birthday, use_two_digit_numbers: true, prompt: "--", start_year: Time.now.year, end_year: 1900, date_separator: '%s'), '年 ', '月 ') + "日"
+
+          .input-error
+            - if @user.errors.any?
+              - unless @user.valid?
+                = resource.errors.full_messages_for(:birthday)[0]
+
+
+        .actions
+          = f.submit "変更する", class: 'next_btn'
