@@ -42,35 +42,6 @@
                 - @product.images.length.upto(4) do |i|
                   %input{name: "product[images_attributes][#{i}][image]", id: "product_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
 
-      -# 没コード
-      -# %span.require 必須
-      -#   %span.form-require ※必須 &nbsp; 
-      -#   %p.upload_limit 最大5枚までアップロードできます
-      -# .content-bg-gray
-      -#   .shadowed-rounded-rectangle
-      -#     %section.mainbox-product-header
-      -#       -# %h2.mainbox-header__text
-      -#       .product__block__form
-      -#         .product-new__field__uploader
-      -#           = f.fields_for :images do |image|
-      -#             - @product.images.each do |image|
-      -#               .preview-box
-      -#                 .upper-box
-      -#                   = image_tag image.image.url, width: "112", height: "112", alt: "preview"
-      -#                 .lower-box
-      -#                   .update-box
-      -#                     %label.edit-btn 編集
-      -#                   .delete-box
-      -#                     .delete-btn
-      -#                       %span 削除
-      -#             %ul#previews
-      -#               %li.input
-      -#                 %label.upload-label
-      -#                   .upload-label__text
-      -#                     %p クリックしてファイルをアップロード
-      -#                   .input-area
-      -#                     = image.file_field :image, class: "hidden image_upload"
-
       %br
         価格
         %span.form-require  ※必須
@@ -88,7 +59,6 @@
             %ul
               %li
                 %span.form-require  ※必須
-                -# = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, class: "product__category", id: "category_form", required: ""
                 = f.collection_select :category_id, @parents, :id, :name ,{include_blank: "選択してください", selected: @product.category.parent.parent_id}, class: 'product__category-edit', id: 'parent_category_field-edit', name: "", required: ""
               %li
                 = f.collection_select :category_id, @product.category.parent.parent.children, :id, :name ,{include_blank: "選択してください", selected: @product.category.parent_id}, class: 'child_category-edit', id: 'child_category_field-edit', name: "", required: ""

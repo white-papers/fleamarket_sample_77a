@@ -33,17 +33,14 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
       redirect_to root_path
     else
       redirect_to product_path(@product.id)
-      # product.destroy
     end
   end
 
   def edit
-    # @product.images.build
   end
 
   def update
     @product.update(product_params)
-    # binding.pry
     if @product.update(product_params)
       redirect_to product_path(@product.id), notice: '更新が完了しました'
     else
