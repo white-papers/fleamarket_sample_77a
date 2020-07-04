@@ -1,11 +1,13 @@
 class ProductsController < ApplicationController
-before_action :set_parents, only: [:index, :new, :create, :show, :edit]
-before_action :set_product, only: [:show, :edit, :update, :destroy]
 
+before_action :set_parents, only: [:index, :new, :create, :show, :edit]
+before_action :set_products, only: [:show, :destroy]
+before_action :set_product, only: [:show, :edit, :update, :destroy]
+  
   def index
-    @products = Product.includes(:images).order('created_at DESC').all.page(params[:page]).per(4)
+    @products = Product.includes(:user).order('created_at DESC').all.page(params[:page]).per(4)
     @parents = Category.where(ancestry: nil)
-   
+
   end
 
   def new
@@ -13,7 +15,14 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
     @product.images.build
   end
 
-  def show   
+  def edit
+  end
+
+  def destroy
+  end
+
+  def show
+    @images = @product.images
     @comment = Comment.new
     @commentALL = @product.comments
   end
@@ -84,7 +93,7 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
       images_attributes: [:image] 
     ).merge(exhibitor: current_user).merge(user_id: current_user.id)
   end
-
+  
   def set_parents
     @parents = Category.where(ancestry: nil)
   end
@@ -93,3 +102,4 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
     @product = Product.find(params[:id])
   end
 end
+

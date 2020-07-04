@@ -30,6 +30,13 @@ Rails.application.routes.draw do
       get :search
     end
   end
+  
+  resources :products, only: [:new, :create, :show, :destroy, :edit]
+
+  Rails.application.routes.draw do
+    root "products#show"
+    resources :products
+  end
   resources :products, only: [:new, :create, :show, :edit, :update, :destroy]
 
   resources :categories, only: [:index, :show]

@@ -17,9 +17,17 @@
       width: 600px;
       margin: 0 auto;
       padding-bottom: 5px;
-      &__main {
-        width: 100%;
+        .image_label {
+        }
+
+    #\0030 {
+        width: 500px;
+        margin-left: 50px;
       }
+    &__main {
+      width: 130px;
+      margin: 5px 8px;
+    }
     }
     &__image-list {
       display: flex;
@@ -45,6 +53,8 @@
       margin: 30px 50PX;
       font-size: 18px;
       min-height: 80px;
+      margin-top: 20px;
+      border:1px solid #dedede;
     }
     &__table {
       width: 650px;
@@ -74,16 +84,17 @@
       padding-bottom: 40px;
       display: flex;
       justify-content: space-between;
-      &__favorite-btn {
-        width: 180px;
-        height: 35px;
-        border-radius: 30px;
-        border: 2px solid gold;   
-        font-size: 15px;
-        background-color: white;
-        text-align: center;
-        line-height: 35px;
-        display: inline-block;     
+      // お気に入り実装予定 
+      // &__favorite-btn {
+      //   width: 180px;
+      //   height: 35px;
+      //   border-radius: 30px;
+      //   border: 2px solid gold;   
+      //   font-size: 15px;
+      //   background-color: white;
+      //   text-align: center;
+      //   line-height: 35px;
+      //   display: inline-block;     
         a {
           color: #3CCACE;
           text-decoration: none;
@@ -91,7 +102,7 @@
         .want {
           color: red;
         }
-      }
+      // }
       &__alert-btn{
         width: 170px;
         height: 35px;
@@ -103,6 +114,30 @@
       }
     }
   }
+  .edit_delete {
+    margin: 20px auto;
+    width: 750px;
+    background: #fff;
+    border:1px solid #dedede;
+    padding: 8px 16px 8px 16px;
+    text-align: center;
+    
+      .text-center {
+        text-align: center;
+      }
+
+    .btn-default {
+      width: 400px;
+      height: 50px;
+      margin: 10px 0;
+      background-color: #3CCACE;
+      border-radius: 25px;
+      color: white;
+      font-size: 18px;
+      border: none;
+    }
+  }
+
   .comment {
     width: 750px;
     background-color: white;

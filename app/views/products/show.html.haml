@@ -1,21 +1,18 @@
+=render 'home/header'
 .wrapper-show
   .show-item
     .show-item__name
       = @product.name
     .show-item__image
-      = image_tag "https://ouchigohan.s3.amazonaws.com/uploads/article/image/1998/sp_article_thumbnail_734c57b2-ab1f-4663-8df6-1c5b5099cefa.jpg", class: "show-item__image__main"
-    %ul.show-item__image-list
-      %li
-        = image_tag "https://oggi.jp/wp-content/uploads/2018/12/ftop.jpg", width: "150", height: "100", class: "show-item__image-list--img"
-      %li
-        = image_tag "https://lh3.googleusercontent.com/Ve0EEpchVfMTx0zKtEdjUW2M2ihf38my5FfHILVPj9pEtMx9Tm23A4Fcvj_taBjhCtCbvuKCs_g-Sf9UG5iQ7A=s1003", width: "150", height: "100", class: "show-item__image-list--img"
-      %li
-        = image_tag "https://epark.jp/medicalook/wp-content/uploads/2019/11/nats-e1573719690938-1024x682.jpg", width: "150", height: "100", class: "show-item__image-list--img"
+      = form_for @product do |f|
+        = f.label :image do
+          - @images.each.with_index do |image,i|
+            = image_tag image.image.url, alt: "preview", class: "show-item__image__main", id: "#{i}"
     .show-item__price-box
       .show-item__price-box__price
-        ￥1500
+        %td= converting_to_jpy(@product.amount_of_money)
       .show-item__price-box__tax
-        (税込)送料込み
+        = @product.shipping_fee_burden
       - if @product.buyer_id.present?
         .btn#selled-btn
           売り切れました!
@@ -25,14 +22,14 @@
         = link_to "編集", edit_product_path(@product), method: :get, class: "btn",id: "edit-btn"
         = link_to "削除", product_path(@product), method: :delete, class: "btn delete-btn",id: "delete-btn"
     .show-item__item-text
-      「…………ブウウ――――――ンンン――――――ンンンン………………。私がウスウスと眼を覚ました時、こうした蜜蜂の唸るような音は、まだ、その弾力の深い余韻を、私の耳の穴の中にハッキリと引き残していた」
-      親譲りの無鉄砲で小供の時から損ばかりしている。 小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。 なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。 弱虫やーい。と囃したからである。
+      = @product.product_details
     .show-item__table
       %table
         %tbody
           %tr
-            %th 出品者
-            %td hoge 
+            %th 投稿者
+            %td
+              = link_to(@product.exhibitor.nickname, "#")
           %tr
             %th カテゴリー
             %td.category--td
@@ -42,28 +39,30 @@
               %br
               = link_to @product.category.name, category_path(@product.category.id)
           %tr
-            %th ブランド
-            %td 
-          %tr
             %th 商品のサイズ
-            %td 
+            %td
+              = @product.size
           %tr
             %th 商品の状態
-            %td 新品/未使用
+            %td 
+              = @product.status
           %tr
             %th 配送料の負担
-            %td 送料込み（出品者負担）
+            %td 
+              = @product.shipping_fee_burden
           %tr
             %th 地域
             %td 
-              =link_to "青森県", '#'
+              =link_to(@product.prefectures, '#')
           %tr
             %th 発送日の目安
-            %td 1-2日で発送
+            %td
+              = @product.estimated_delivery
+
     .show-item__good-box
       .show-item__good-box__favorite-btn 
         %ul#favoriteBtn
-          = render partial: 'favorites/favorite', locals: { product: @product}
+          -# = render partial: 'favorites/favorite', locals: { product: @product} 追加実装未実装
       .show-item__good-box__alert-btn
         %i.fa.fa-flag
           不適切な商品の通報
