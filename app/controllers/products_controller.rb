@@ -18,9 +18,6 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
   def edit
   end
 
-  def destroy
-  end
-
   def show
     @images = @product.images
     @comment = Comment.new
@@ -41,7 +38,6 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
       redirect_to root_path
     else
       redirect_to product_path(@product.id)
-      # product.destroy
     end
   end
 
