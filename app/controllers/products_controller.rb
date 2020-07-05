@@ -43,7 +43,7 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def update
     if @product.update(product_params)
-      redirect_to product_path(@product.id), notice: '更新が完了しました'
+      redirect_to product_path(@product), notice: '更新が完了しました'
     else
       render :edit, notice: 'もう一度入力してください'
     end
