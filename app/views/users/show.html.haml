@@ -35,7 +35,7 @@
                         %i.fa.fa-star
                         = Favorite.where(product_id: product.id).count
                     %p（税込）
-
+        -# 今後使用するかもしれませんが、現状必要ないので確認が取れ次第削除します。
         -# .my-page__main__content__boxes
         -#   .my-page__main__content__boxes__box
         -#     .my-page__main__content__boxes__box__image
@@ -49,6 +49,7 @@
         -if @product_buyer.blank?
           %h2.none_product
             購入した商品はありません。
+        -# 今後使用するかもしれませんが、現状必要ないので確認が取れ次第削除します。            
         -# .my-page__main__content__boxes
           -# .my-page__main__content__boxes__box
             -# .my-page__main__content__boxes__box__image
