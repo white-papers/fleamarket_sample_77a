@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
 before_action :set_parents, only: [:index, :new, :create, :show, :edit]
-before_action :set_products, only: [:show, :destroy]
+# before_action :set_products, only: [:show, :destroy]
 before_action :set_product, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -15,11 +15,6 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
     @product.images.build
   end
 
-  def edit
-  end
-
-  def destroy
-  end
 
   def show
     @images = @product.images
@@ -72,9 +67,9 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
   end
 
 
-  def set_products
-    @product = Product.find(params[:id])
-  end
+  # def set_products
+  #   @product = Product.find(params[:id])
+  # end
 
   private
   def product_params
