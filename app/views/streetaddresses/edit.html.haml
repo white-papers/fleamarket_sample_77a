@@ -4,7 +4,6 @@
       住所登録
     .singup_from  
       =form_with model: @streetaddress, url: user_streetaddress_path(current_user), local: true do |f|
-
         .field
           = f.label :postal_code, class: 'singup_label'
           %span.required
