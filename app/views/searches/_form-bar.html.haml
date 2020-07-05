@@ -1,0 +1,23 @@
+.detail_search
+  = search_form_for(@q,url: detail_search_searches_path) do |f|
+    .detail_search__sort
+      = f.select( :sorts, { '並び替え': 'id desc', '価格の安い順': 'amount_of_money asc', '価格の高い順': 'amount_of_money desc', '出品の古い順': 'updated_at asc', '出品の新しい順': 'updated_at desc' } , { onchange: 'this.form.submit()'} )
+    .detail_search__form
+      .detail_search__form__title
+        詳細検索
+        %i.fa.fa-search
+      .detail_search__form__group
+        .detail_search__form__group--label
+          %p キーワードを入力
+        = f.search_field :name_cont, placeholder: "例）寿司"
+      .detail_search__form__group
+        .detail_search__form__group--label
+          %p 価格
+        .detail_search__form__group--forms
+          = f.search_field :amount_of_money_gteq, placeholder: "¥ Min"
+          %p 〜
+          = f.search_field :amount_of_money_lteq, placeholder: "¥ Max"
+      .detail_search__form__btn
+        .detail_search__form__btn--grey
+          = link_to "入力を消す", "/searches",type: "button"
+        = f.submit "検索する",id: 'search-btn'

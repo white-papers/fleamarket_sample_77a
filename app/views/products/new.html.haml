@@ -1,18 +1,18 @@
+- breadcrumb :product_new
 .background
   .product
     = form_with model: @product, locale: true, id: "new_product" do |f|
 
       商品
-      %span.form-require  ※必須
-      = f.text_field :name, {class: "product__name"}
+      %span.name_required 必須
+      = f.text_field :name, {class: "product__name", required: ""}
 
       %p
       %span.label_title.profile-form__label
       %section.main__block
         .sell__block__form__upload__head
           出品画像
-          -# %span.require 必須
-          %span.form-require  ※必須
+          %span.name_required 必須
         %p 最大5枚までアップロードできます
         .post__drop__box__container
           .prev-content
@@ -21,48 +21,27 @@
               %pre.label-box__text-visible クリックしてファイルをアップロード
           .hidden-content
             = f.fields_for :images do |i|
-              = i.file_field :image, class: "hidden-field"
-              %input{class:"hidden-field", type: "file", name: "product[images_attributes][1][image]", id: "product_images_attributes_1_image" }
-              %input{class:"hidden-field", type: "file", name: "product[images_attributes][2][image]", id: "product_images_attributes_2_image" }
-              %input{class:"hidden-field", type: "file", name: "product[images_attributes][3][image]", id: "product_images_attributes_3_image" }
-              %input{class:"hidden-field", type: "file", name: "product[images_attributes][4][image]", id: "product_images_attributes_4_image" }
-
-
-      -#   -# %span.require 必須
-      -#   %span.form-require ※必須 &nbsp; 
-      -#   %p.upload_limit 最大5枚までアップロードできます
-      -# .content-bg-gray
-      -#   .shadowed-rounded-rectangle
-      -#     -# = form_with(model: @product, local: true, class: "product-new-form") do |f|
-      -#     %section.mainbox-product-header
-      -#       %h2.mainbox-header__text
-      -#       -#   商品の情報を入力
-      -#       .product__block__form
-      -#         .product-new__field__uploader
-      -#           = f.fields_for :images do |image|
-      -#             %ul#previews
-      -#               %li.input
-      -#                 %label.upload-label
-      -#                   .upload-label__text
-      -#                     %p クリックしてファイルをアップロード
-      -#                   .input-area
-      -#                     = image.file_field :image, class: "hidden image_upload"
+              = i.file_field :image, class: "hidden-field", required: "", accept: "image/*"
+              %input{class:"hidden-field", type: "file", name: "product[images_attributes][1][image]", id: "product_images_attributes_1_image", accept: "image/*" }
+              %input{class:"hidden-field", type: "file", name: "product[images_attributes][2][image]", id: "product_images_attributes_2_image", accept: "image/*" }
+              %input{class:"hidden-field", type: "file", name: "product[images_attributes][3][image]", id: "product_images_attributes_3_image", accept: "image/*" }
+              %input{class:"hidden-field", type: "file", name: "product[images_attributes][4][image]", id: "product_images_attributes_4_image", accept: "image/*" }
 
       %br
         価格
-        %span.form-require  ※必須
-        = f.text_field :amount_of_money, {class: "product__price"}
+        %span.name_required 必須
+        = f.text_field :amount_of_money, {class: "product__price", required: ""}
         円
       %br
         商品説明
-        %span.form-require  ※必須
-        = f.text_area :product_details, {class: "product__detail"}
+        %span.name_required 必須
+        = f.text_area :product_details, {class: "product__detail", required: ""}
 
       %table.product__table
         %tr
           %th カテゴリー
           %td
-            %span.form-require  ※必須
+            %span.name_required 必須
             = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択してください", selected:"" }, id: "category_form", required: "", class: "product__category"
             #child_category_field 
             #grandchild_category_field 
@@ -70,12 +49,12 @@
         %tr
           %th 商品のサイズ
           %td
-            %span.form-require  ※必須
-            = f.text_field :size, {class: "product__size"}
+            %span.name_required 必須
+            = f.text_field :size, {class: "product__size", required: ""}
         %tr
           %th 商品の状態
           %td
-            %span.form-require  ※必須
+            %span.name_required 必須
             = f.select :status, :id, {}, class: "product__status" do
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "新品/未使用"} 新品/未使用
@@ -87,7 +66,7 @@
         %tr
           %th 配送料の負担
           %td
-            %span.form-require  ※必須
+            %span.name_required 必須
             = f.select :shipping_fee_burden, :id,{}, class: "product__fee" do
               %option{name: "shipping_fee_burden", type: "radio", value: "着払い(購入者負担)", required: ""}着払い(購入者負担)
               %p
@@ -96,7 +75,7 @@
         %tr
           %th 配送方法
           %td
-            %span.form-require  ※必須
+            %span.name_required 必須
             = f.select :shipping_method, :id,{}, class: "product__shipping-method" do
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "courier"} 宅急便
@@ -115,7 +94,7 @@
         %tr
           %th 発送元の地域
           %td
-            %span.form-require  ※必須
+            %span.name_required 必須
             = f.select :prefectures, :id, {}, class: "product__shipping-region" do
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "北海道"} 北海道
@@ -168,7 +147,7 @@
         %tr
           %th 発送日の目安
           %td
-            %span.form-require  ※必須
+            %span.name_required 必須
             = f.select :estimated_delivery, :id, {}, class: "product__shipping-date" do
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "1〜2日で発送"} 1〜2日で発送

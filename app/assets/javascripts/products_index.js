@@ -88,5 +88,21 @@ document.addEventListener("turbolinks:load", function() {
       $(this).css('background-color', '#3CCACE');
     });
 
+    // 出品・変更ボタンにカーソルを乗せると色が変わる
+    $(".product__btn").hover(function(){
+      $(this).css('background-color', '#0fdee6');
+    },
+    function(){
+      $(this).css('background-color', '#3CCACE');
+    });
+    
+    // 検索ボタンにカーソルを乗せると色が変わる
+    $("#search-btn").hover(function(){
+      $(this).css('background-color', '#0fdee6');
+    },
+    function(){
+      $(this).css('background-color', '#3CCACE');
+    });
+
   });
 })
