@@ -2,7 +2,7 @@ class SearchesController < ApplicationController
   before_action :set_ransack
 
   def index
-    @products = Product.search(params[:search]).limit(132)
+    @products = Product.search(params[:search]).limit(132).order('created_at DESC')
     @search = params[:search]
   end
 

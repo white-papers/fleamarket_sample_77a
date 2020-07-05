@@ -12,6 +12,7 @@
       - else
         %li= link_to 'カード情報', credit_card_path(current_user.id)
       %li= link_to 'いいね・一覧', "/products/#{current_user.id}/favorites"
+      %li= link_to '商品を検索する', searches_path
   .my-page__side__content
     .my-page__side__content__title
       商品を出品する
