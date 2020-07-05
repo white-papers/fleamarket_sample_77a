@@ -210,11 +210,17 @@
   .links {
     width: 750px;
     margin: 10px auto 0;
-    color: #3CCACE;
     ul {
       display: flex;
       justify-content: space-between;
       padding-bottom: 30px;
+      li {
+        a {
+          text-decoration: none;
+          color: #3CCACE;
+          line-height: 30px;
+        }
+      }
     }
     .fas {
       font-size: 10px;
@@ -226,6 +232,11 @@
       font-weight: bold;
       :hover {
         text-decoration: underline;
+      margin-bottom: 10px;
+      a {
+        text-decoration: none;
+        color: #3CCACE;
+        font-weight: bold;
       }
     }
   }

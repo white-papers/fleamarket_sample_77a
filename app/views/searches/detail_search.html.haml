@@ -1,19 +1,21 @@
 .search-background
   .search-left
-    = render 'searches/form-bar'
+    = render 'form-bar'
   .search-container
     .search-right
       %section.items-box-container
         -if @search.present?
           %h2.search-result-head
-            = @search
+            =@search
             %span.search-result-head-text
               の検索結果
           .search-result-number
             ="1-#{@products.count}件表示"
         -else
           %h2.search-result-nil
-            新着商品
+            検索結果
+          .search-result-number
+            ="1-#{@products.count}件表示"
         .items-box-content
         - @products.each do |product|
           .list
@@ -37,4 +39,3 @@
                       %i.fa.fa-star
                       = Favorite.where(product_id: product.id).count
                   %p（税込）
-         

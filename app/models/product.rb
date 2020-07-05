@@ -9,7 +9,6 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :images, allow_destroy: true
 
   has_many :favorites, dependent: :destroy
-  has_many :favorites, through: :favorites
 
   validates :buyer_id, presence: true, allow_blank: true
   validates :size, :status, :name, :estimated_delivery, :shipping_fee_burden, :prefectures, :amount_of_money, :product_details, :shipping_method, presence: { message:'入力してください。'}
