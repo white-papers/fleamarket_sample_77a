@@ -1,15 +1,17 @@
 class OrdersController < ApplicationController
   require "payjp"
   before_action :set_product
-  before_action :set_credit_card
-  before_action :set_deliveryaddress
+  before_action :set_credit_card, only: [:pay, :done]
+  before_action :set_deliveryaddress, only: [:pay, :done]
   def show
     if user_signed_in?
-      current_user
-      @image = @product.images.all
       if @card.blank?
         redirect_to product_path(@product.id), alert: "クレジットカードを登録してください"
       else
+        current_user
+        @image = @product.images.all
+        @card = CreditCard.find_by(user_id: current_user.id) 
+        @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
         Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
         customer = Payjp::Customer.retrieve(@card.customer_id)
         @customer_card = customer.cards.retrieve(@card.card_id)
