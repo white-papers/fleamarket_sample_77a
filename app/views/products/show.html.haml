@@ -16,12 +16,11 @@
       - if @product.buyer_id.present?
         .btn#selled-btn
           売り切れました!
-      - if user_signed_in? && current_user.id == @product.user_id
-        - if @product.buyer_id.blank?
-          = link_to "編集", edit_product_path(@product), method: :get, class: "btn",id: "edit-btn"
-          = link_to "削除", product_path(@product), method: :delete, class: "btn delete-btn",id: "delete-btn"
-      - else
-        = link_to "購入画面にすすむ", order_path(@product), class: 'buy_btn',id: "buy-btn" 
+      - elsif user_signed_in? && current_user.id != @product.user_id
+        = link_to "購入画面にすすむ", order_path(@product), class: 'buy_btn',id: "buy-btn"
+      - if user_signed_in? && current_user.id == @product.user_id && @product.buyer_id.blank?
+        = link_to "編集", edit_product_path(@product), method: :get, class: "btn",id: "edit-btn"
+        = link_to "削除", product_path(@product), method: :delete, class: "btn delete-btn",id: "delete-btn", data:{ confirm: '本当に削除しますか？' }
     .show-item__item-text
       = @product.product_details
     .show-item__table
@@ -61,9 +60,10 @@
               = @product.estimated_delivery
 
     .show-item__good-box
-      .show-item__good-box__favorite-btn 
-        %ul#favoriteBtn
-          = render partial: 'favorites/favorite', locals: { product: @product} 
+      - if user_signed_in? 
+        .show-item__good-box__favorite-btn      
+          %ul#favoriteBtn
+            = render partial: 'favorites/favorite', locals: { product: @product} 
       .show-item__good-box__alert-btn
         %i.fa.fa-flag
           不適切な商品の通報
