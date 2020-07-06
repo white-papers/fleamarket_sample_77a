@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 2020_07_03_073237) do
   end
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
+    t.string "card_id", null: false
+    t.string "customer_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "card_id"
-    t.string "customer_id"
     t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 2020_07_03_073237) do
     t.string "address", null: false
     t.string "building"
     t.string "phone_number"
+    t.integer "prefecture_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_deliveryaddresses_on_user_id"
   end
 
@@ -117,10 +117,10 @@ ActiveRecord::Schema.define(version: 2020_07_03_073237) do
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"
+    t.integer "prefecture_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_streetaddresses_on_user_id"
   end
 
