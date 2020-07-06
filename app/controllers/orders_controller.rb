@@ -5,12 +5,12 @@ class OrdersController < ApplicationController
   before_action :set_deliveryaddress, only: [:pay, :done]
   def show
     if user_signed_in?
+      @card = CreditCard.find_by(user_id: current_user.id) 
       if @card.blank?
         redirect_to product_path(@product.id), alert: "クレジットカードを登録してください"
       else
         current_user
         @image = @product.images.all
-        @card = CreditCard.find_by(user_id: current_user.id) 
         @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
         Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
         customer = Payjp::Customer.retrieve(@card.customer_id)
