@@ -17,7 +17,7 @@
                     SOLD
               %figure.list--image
                 - product.images.each do |image|
-                  = image_tag image.image.url, class: "item-image"
+                  = image_tag product.images[0].image.to_s, class: "item-image"
               .list--detail
                 %h3.name
                   = product.name
