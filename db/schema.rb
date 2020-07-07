@@ -98,12 +98,12 @@ ActiveRecord::Schema.define(version: 2020_07_07_040950) do
     t.integer "amount_of_money", null: false
     t.integer "good_number"
     t.text "product_details", null: false
-    t.bigint "category_id"
     t.bigint "user_id", null: false
     t.bigint "exhibitor_id"
     t.bigint "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
     t.decimal "size", precision: 10
     t.string "shipping_method"
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
