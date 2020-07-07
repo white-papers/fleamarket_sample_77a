@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_081732) do
+ActiveRecord::Schema.define(version: 2020_07_07_101521) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 2020_07_06_081732) do
   end
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "card_id", null: false
-    t.string "customer_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "card_id"
+    t.string "customer_id"
     t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 2020_07_06_081732) do
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.decimal "size", precision: 10, null: false
     t.string "status", null: false
     t.string "name", null: false
     t.string "estimated_delivery", null: false
@@ -99,13 +98,14 @@ ActiveRecord::Schema.define(version: 2020_07_06_081732) do
     t.integer "amount_of_money", null: false
     t.integer "good_number"
     t.text "product_details", null: false
-    t.string "shipping_method", null: false
     t.bigint "user_id", null: false
     t.bigint "exhibitor_id"
     t.bigint "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
+    t.decimal "size", precision: 10
+    t.string "shipping_method"
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["exhibitor_id"], name: "index_products_on_exhibitor_id"
@@ -129,10 +129,10 @@ ActiveRecord::Schema.define(version: 2020_07_06_081732) do
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"
-    t.integer "prefecture_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_streetaddresses_on_user_id"
   end
 
