@@ -11,6 +11,9 @@
       .my-page__main__content__title
         出品した 商品
       .my-page__main__content
+        -if @product_exhibitor.blank?
+          %h2.none_product
+            出品された商品はありません
         .my-page__main__content__boxes  
           - @product_exhibitor.each do |product|
             .list
@@ -41,6 +44,9 @@
       .my-page__main__content__title
         購入した 商品
       .my-page__main__content
+        -if @product_buyer.blank?
+          %h2.none_product
+            購入された商品はありません
         .my-page__main__content__boxes
           - @product_buyer.each do |product|
             .list

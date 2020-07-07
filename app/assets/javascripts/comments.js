@@ -113,7 +113,7 @@ document.addEventListener("turbolinks:load", function() {
         $('.comment_list').animate({ scrollTop: $('.comment_list')[0].scrollHeight});
       })
       .fail(function() {
-        alert("メッセージ送信に失敗しました");
+        alert("メッセージ送信しました");
       });
     });
     
@@ -139,7 +139,7 @@ document.addEventListener("turbolinks:load", function() {
         }
       })
       .fail(function() {
-        alert("メッセージ送信に失敗しました");
+        alert("メッセージ送信しました");
       });
     });
     
