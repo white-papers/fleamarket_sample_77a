@@ -10,7 +10,11 @@ before_action :set_user
 
   def profile
     @streetaddress = Streetaddress.find_by(user_id: current_user.id)
-  end  
+  end
+
+  def password
+    @password = Password.find_by(user_id: current_user.id)
+  end
 
   def deliveryaddress
     @deliveryaddress = Deliveryaddress.find_by(user_id: current_user.id)

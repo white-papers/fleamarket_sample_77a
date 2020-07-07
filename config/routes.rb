@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers:{sessions: 'users/sessions',  registrations: 'users/registrations',}
+  devise_for :users, controllers:{sessions: 'users/sessions',  registrations: 'users/registrations'}
   devise_scope :user do
     get 'streetaddress', to: 'users/registrations#new_steetaddress'
     post 'streetaddress', to: 'users/registrations#create_streetaddress'

@@ -6,7 +6,7 @@
       %li= link_to 'マイページ', user_path(current_user)
       %li= link_to 'プロフィール', profile_user_path(current_user)
       %li= link_to 'お届け先住所変更', deliveryaddress_user_path(current_user)
-      %li= link_to 'メール・パスワード', ''
+      %li= link_to 'パスワード変更',  edit_user_registration_path(current_user)
       - if @card.blank?
         %li= link_to 'カードを登録', new_credit_card_path
       - else
