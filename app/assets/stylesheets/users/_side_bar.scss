@@ -40,5 +40,12 @@
         }
       }
     }
+
+    .main {
+      width: calc(1000px - 200px);
+      &__title {
+
+      }
+    }
   }
 }
