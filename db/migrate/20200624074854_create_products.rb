@@ -11,6 +11,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer        :good_number
       t.text           :product_details,      null: false
       t.string         :shipping_method,      null: false
+      t.references     :category,             foreign_key: true
       t.references     :user,                 null:false,foreign_key: true
       t.references     :exhibitor,            foreign_key: { to_table: :users }  
       t.references     :buyer,                foreign_key: { to_table: :users }
