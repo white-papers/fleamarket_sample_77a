@@ -50,7 +50,7 @@
           %th 商品のサイズ
           %td
             %span.optional 任意
-            = f.text_field :size, {class: "product__size"}
+            = f.text_field :size, {class: "product__size", required: ""}
         %tr
           %th 商品の状態
           %td
@@ -77,7 +77,7 @@
           %td
             %span.optional 任意
             = f.select :shipping_method, :id,{}, class: "product__shipping-method" do
-              %option{disabled: "disabled"} 選択してください
+              %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "courier"} 宅急便
               %option{value: "courier_compact"} 宅急便コンパクト
               %option{value: "nekoposu"} ネコポス
