@@ -49,8 +49,8 @@
         %tr
           %th 商品のサイズ
           %td
-            %span.optional 任意
-            = f.text_field :size, {class: "product__size"}
+            %span.name_required 必須
+            = f.text_field :size, {class: "product__size", required: ""}
         %tr
           %th 商品の状態
           %td
@@ -75,7 +75,7 @@
         %tr
           %th 配送方法
           %td
-            %span.optional 任意
+            %span.name_required 必須
             = f.select :shipping_method, :id,{}, class: "product__shipping-method" do
               %option{disabled: "disabled"} 選択してください
               %option{value: "宅急便"} 宅急便
