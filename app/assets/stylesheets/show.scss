@@ -242,54 +242,54 @@
   }
 }
 
-.buy_btn{
-  text-align: center;
-  display: block;
-  text-decoration: none;
-  margin-left: 150px;
-  top: 102%;
-  right: 160px;
-  font-size: 18px;
-  line-height: 48px;
-  background: #3CCACE;
-  border: 2px solid white;
-  color: #fff;
-  width: 60%;
-  font-size: 18px;
-  border-radius: 100px;
-  cursor: pointer;
-  .buy_btn:hover{
-    background: #39c0c5;
-    border: 1px solid #33a9ad;
+  .buy_btn{
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    margin-left: 150px;
+    top: 102%;
+    right: 160px;
+    font-size: 18px;
+    line-height: 48px;
+    background: #3CCACE;
+    border: 2px solid white;
+    color: #fff;
+    width: 60%;
+    font-size: 18px;
+    border-radius: 100px;
+    cursor: pointer;
+    .buy_btn:hover{
+      background: #39c0c5;
+      border: 1px solid #33a9ad;
+    }
+    .buy_btn:active{
+      background: #33a9ad;
+      border: 1px solid #39c0c5;
+    }
   }
-  .buy_btn:active{
-    background: #33a9ad;
-    border: 1px solid #39c0c5;
+
+  .btn {
+    text-decoration: none;
+    display: block;
+    width: 400px;
+    height: 50px;
+    margin: 0 auto;
+    background-color: #3CCACE;
+    border-radius: 25px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    line-height: 50px;
+    margin-top: 5px;
   }
-}
 
-.btn {
-  text-decoration: none;
-  display: block;
-  width: 400px;
-  height: 50px;
-  margin: 0 auto;
-  background-color: #3CCACE;
-  border-radius: 25px;
-  color: white;
-  font-size: 18px;
-  text-align: center;
-  line-height: 50px;
-  margin-top: 5px;
-}
+  .delete-btn {
+    margin-top: 15px;
+  }
 
-.delete-btn {
-  margin-top: 15px;
-}
-
-#selled-btn {
-  margin-bottom: 15px;
-  background: red;
-}
+  #selled-btn {
+    margin-bottom: 15px;
+    background-color: red;
+  }
 
 }

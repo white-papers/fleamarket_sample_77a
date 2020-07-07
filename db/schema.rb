@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_082330) do
+ActiveRecord::Schema.define(version: 2020_07_06_081732) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -77,11 +77,11 @@ ActiveRecord::Schema.define(version: 2020_07_02_082330) do
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "product_id"
     t.bigint "deliveryaddress_id"
-    t.bigint "credit_card_id"
     t.bigint "exhibitor_id"
     t.bigint "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "credit_card_id"
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
     t.index ["deliveryaddress_id"], name: "index_orders_on_deliveryaddress_id"
@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_082330) do
   add_foreign_key "credit_cards", "users"
   add_foreign_key "deliveryaddresses", "users"
   add_foreign_key "images", "products"
-  add_foreign_key "orders", "credit_cards"
+  add_foreign_key "orders", "credit_cards", on_delete: :nullify
   add_foreign_key "orders", "deliveryaddresses"
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users", column: "buyer_id"
