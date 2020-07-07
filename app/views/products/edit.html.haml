@@ -42,7 +42,6 @@
                   //5つのfile_fieldを準備するに当たって、足りない分を表示
                 - @product.images.length.upto(4) do |i|
                   %input{name: "product[images_attributes][#{i}][image]", id: "product_images_attributes_#{i}_image", class:"hidden-field", type:"file", accept: "image/*"}
-
       %br
         価格
         %span.name_required 必須
@@ -71,13 +70,15 @@
         %tr
           %th 商品のサイズ
           %td
-            %span.name_required 必須
-            = f.text_field :size, {class: "product__size", required: ""}
+            %span.name_optional 任意
+            = f.text_field :size, {class: "product__size"}
         %tr
           %th 商品の状態
           %td
             %span.name_required 必須
             = f.select :status, :id, {}, class: "product__status" do
+              %option
+                = @product.status
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "新品/未使用"} 新品/未使用
               %option{value: "未使用に近い"} 未使用に近い
@@ -90,6 +91,8 @@
           %td
             %span.name_required 必須
             = f.select :shipping_fee_burden, :id,{}, class: "product__fee" do
+              %option
+                = @product.shipping_fee_burden
               %option{name: "shipping_fee_burden", type: "radio", value: "着払い(購入者負担)", required: ""}着払い(購入者負担)
               %p
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -97,27 +100,31 @@
         %tr
           %th 配送方法
           %td
-            %span.name_required 必須
+            %span.name_optional 任意
             = f.select :shipping_method, :id,{}, class: "product__shipping-method" do
-              %option{disabled: "disabled", required: ""} 選択してください
-              %option{value: "courier"} 宅急便
-              %option{value: "courier_compact"} 宅急便コンパクト
-              %option{value: "nekoposu"} ネコポス
-              %option{value: "yu-pack"} ゆうパック
-              %option{value: "yu-packet"} ゆうパケット
-              %option{value: "yu-mail"} ゆうメール
-              %option{value: "yu-packet_plus"} ゆうパケットプラス
-              %option{value: "letter_pack_light"} レターパックライト
-              %option{value: "letter_pack_plus"} レターパックプラス
-              %option{value: "click_post"} クリックポスト
-              %option{value: "smart_letter"} スマートレター
-              %option{value: "regular_mail"} 普通郵便
-              %option{value: "other"} その他
+              %option
+                = @product.shipping_method
+              %option{disabled: "disabled"} 選択してください
+              %option{value: "宅急便"} 宅急便
+              %option{value: "宅急便コンパクト"} 宅急便コンパクト
+              %option{value: "ネコポス"} ネコポス
+              %option{value: "ゆうパック"} ゆうパック
+              %option{value: "ゆうパケット"} ゆうパケット
+              %option{value: "ゆうメール"} ゆうメール
+              %option{value: "ゆうパケットプラス"} ゆうパケットプラス
+              %option{value: "レターパックライト"} レターパックライト
+              %option{value: "レターパックプラス"} レターパックプラス
+              %option{value: "クリックポスト"} クリックポスト
+              %option{value: "スマートレター"} スマートレター
+              %option{value: "普通郵便"} 普通郵便
+              %option{value: "その他"} その他
         %tr
           %th 発送元の地域
           %td
             %span.name_required 必須
             = f.select :prefectures, :id, {}, class: "product__shipping-region" do
+              %option
+                = @product.prefectures
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "北海道"} 北海道
               %option{value: "青森県"} 青森県
@@ -131,7 +138,7 @@
               %option{value: "群馬県"} 群馬県
               %option{value: "埼玉県"} 埼玉県
               %option{value: "千葉県"} 千葉県
-              %option{value: "東京都", selected: "selected"} 東京都
+              %option{value: "東京都"} 東京都
               %option{value: "神奈川県"} 神奈川県
               %option{value: "新潟県"} 新潟県
               %option{value: "富山県"} 富山県
@@ -171,6 +178,8 @@
           %td
             %span.name_required 必須
             = f.select :estimated_delivery, :id, {}, class: "product__shipping-date" do
+              %option
+                = @product.estimated_delivery
               %option{disabled: "disabled", required: ""} 選択してください
               %option{value: "1〜2日で発送"} 1〜2日で発送
               %option{value: "2〜3日で発送"} 2〜3日で発送
