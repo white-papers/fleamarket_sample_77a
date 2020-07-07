@@ -51,6 +51,10 @@
             %td 
               = @product.shipping_fee_burden
           %tr
+            %th 配送方法
+            %td 
+              = @product.shipping_method
+          %tr
             %th 地域
             %td 
               =link_to(@product.prefectures, '#')
