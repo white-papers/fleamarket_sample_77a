@@ -1,0 +1,51 @@
+.background {
+  background-color: #f5f5f5;
+  width: 100vw;
+
+  .my-page {
+    background-color: white;
+    width: 1000px;
+    margin: auto;
+    display: flex;
+
+    &__side {
+      width: 200px;
+      display: grid;
+      margin-left: 30px;
+
+      &__content {
+        text-align: center;
+        position: relative;  
+
+
+        &__title {
+          font-size: 18px;
+          padding: 15px 0px;
+        }
+
+        li {
+          height: 50px;
+          padding: 10px 0px;
+          border: #dedede solid 1px;
+          line-height: 30px;
+        }
+
+        &__menu {   
+          background-color: #eee;
+          a {
+            text-decoration: none;
+            color: black;
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+
+    .main {
+      width: calc(1000px - 200px);
+      &__title {
+
+      }
+    }
+  }
+}
