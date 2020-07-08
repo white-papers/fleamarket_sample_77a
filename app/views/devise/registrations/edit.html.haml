@@ -1,27 +1,26 @@
 .background
   .my-page
     = render "users/side_bar"
-    .main
-      .main__title
-      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-        = render "devise/shared/error_messages", resource: resource
-        .field
-          新しいパスワードを入力してください。
-          %br/
-          = f.password_field :password, autocomplete: "new-password"
-          - if @minimum_password_length
+    .my-page__main
+      .my-page__main__title
+        パスワード変更
+      .my-page__main__content
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          = render "devise/shared/error_messages", resource: resource
+          .my-page__main__content__field
+            新しいパスワードを入力してください。
             %br/
-        .field
-          = f.label :password_confirmation
-          %br/
-          = f.password_field :password_confirmation, autocomplete: "new-password"
-        .field
-          = f.label :current_password
-          %i
-          %br/
-          = f.password_field :current_password, autocomplete: "current-password"
-        .actions
-          = f.submit "Update"
-      %p
-        Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-      = link_to "戻る", :back
+            = f.password_field :password, autocomplete: "new-password"
+            - if @minimum_password_length
+              %br/
+          .my-page__main__content__field
+            = f.label :password_confirmation
+            %br/
+            = f.password_field :password_confirmation, autocomplete: "new-password"
+          .my-page__main__content__field
+            = f.label :current_password
+            %i
+            %br/
+            = f.password_field :current_password, autocomplete: "current-password"
+          .my-page__main__content__actions
+            = f.submit "変更する", class: "my-page__main__content__actions__btn"
