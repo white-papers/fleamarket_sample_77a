@@ -12,20 +12,20 @@
       - else
         %li= link_to 'カード情報', credit_card_path(current_user.id)
       %li= link_to 'いいね・一覧', "/products/#{current_user.id}/favorites"
-      %li= link_to '商品を検索する', searches_path
+      %li= link_to '商品を検索/購入する', searches_path
+  -# .my-page__side__content
+  -#   .my-page__side__content__title
+  -#     商品を購入する
+  -#   %ul.my-page__side__content__menu
+  -#     %li= link_to '商品を購入する', searches_path
+      -# %li= link_to '購入した商品', '' 追加実装予定
+      -# %li= link_to 'コメントした商品', '' 追加実装予定
   .my-page__side__content
     .my-page__side__content__title
       商品を出品する
     %ul.my-page__side__content__menu
       %li= link_to '商品を出品する',new_product_path
-      %li= link_to '出品した商品', ''
-  .my-page__side__content
-    .my-page__side__content__title
-      商品を購入する
-    %ul.my-page__side__content__menu
-      %li= link_to '商品を購入する', '/searches'
-      %li= link_to '購入した商品', ''
-      %li= link_to 'コメントした商品', ''
+      -# %li= link_to '出品した商品', '' 追加実装予定
   .my-page__side__content
     .my-page__side__content__title
       ログアウト
