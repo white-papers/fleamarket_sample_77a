@@ -28,7 +28,7 @@
                       円
                     %li
                       %i.fa.fa-star
-                        0
+                      = Favorite.where(product_id: product.id).count      
                   %p（税込）
 
 = render 'home/main-bottom'
