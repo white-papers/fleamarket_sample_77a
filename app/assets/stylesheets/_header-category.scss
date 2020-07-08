@@ -2,7 +2,7 @@
 .category {
   &__parent, &__child, &__grandchild {
     display: none;
-    z-index: 1;
+    z-index: 200;
     position: absolute;
     // カテゴリ名の装飾
     &--name {
