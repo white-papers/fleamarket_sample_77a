@@ -6,8 +6,8 @@ before_action :set_category, only: [:show]
   end
 
   def show
-    # .where(buyer_id: nil) を消すと購入済も表示
-    @products = @category.set_products.where(buyer_id: nil).order("created_at DESC").all.page(params[:page]).per(4)
+    # .orderの前に .where(buyer_id: nil) を追加すると購入済非表示
+    @products = @category.set_products.order("created_at DESC").all.page(params[:page]).per(4)
   end  
 
   private

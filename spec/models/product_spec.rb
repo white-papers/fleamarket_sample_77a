@@ -9,10 +9,10 @@ describe Product do
       expect(product.errors[:name]).to include("入力してください。")
     end
 
-    it "サイズがない場合は更新できないこと" do
+    it "サイズがなくても更新できること" do
       product = build(:product, size: "")
       product.valid?
-      expect(product.errors[:size]).to include("入力してください。")
+      expect(product.errors[:size]).to include()
     end
 
     it "商品の状態がない場合は更新できないこと" do
