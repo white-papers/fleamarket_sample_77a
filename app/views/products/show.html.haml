@@ -120,10 +120,12 @@
     %ul
       %li
         %i.fas.fa-chevron-left
-        = link_to "前の商品",product_path(@product.id - 1)
+        - if @product.previous.present?
+          = link_to "前の商品",product_path(@product.previous)
       %li
-        = link_to "次の商品",product_path(@product.id + 1)
         %i.fas.fa-chevron-right
+        - if @product.next.present?
+          = link_to "次の商品",product_path(@product.next)
     .category-link
       = link_to "#{@product.category.parent.parent.name}をもっと見る", category_path(@product.category.parent.parent.id), {class: "category-link"}
 
