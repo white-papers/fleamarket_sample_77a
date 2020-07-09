@@ -7,7 +7,10 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @exhibitor_of_product = @comment.product.exhibitor
     if @comment.save
-      redirect_to product_path(@comment.product.id)
+      respond_to do |format|
+        format.html { redirect_to product_path(@comment.product.id)}
+        format.json
+      end
     else
       redirect_to product_path(@comment.product.id), alert: "コメントに失敗しました。"
     end
@@ -15,17 +18,18 @@ class CommentsController < ApplicationController
 
   def update
     @comment.update(delete_check:1)
-    redirect_to product_path(@comment.product.id)
   end
 
   def restore
     @comment.update(delete_check:0)
-    redirect_to product_path(@comment.product.id)
+    respond_to do |format|
+      format.html { redirect_to product_path(@comment.product.id)}
+      format.json
+    end
   end
 
   def destroy
     @comment.destroy
-    redirect_to product_path(@comment.product.id)
   end
 
 private
