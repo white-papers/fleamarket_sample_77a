@@ -10,8 +10,12 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
   end
 
   def new
-    @product = Product.new
-    @product.images.build
+    if user_signed_in?
+      @product = Product.new
+      @product.images.build
+    else
+      redirect_to user_session_path, alert: "ログインしてください"
+    end
   end
 
   def show
@@ -38,7 +42,14 @@ before_action :set_product, only: [:show, :edit, :update, :destroy]
     end
   end
 
-  def edit
+  def edit   
+    if user_signed_in?
+      unless @product.exhibitor_id == current_user.id && @product.buyer_id.blank?
+        redirect_to root_path 
+      end
+    else
+      redirect_to user_session_path, alert: "ログインしてください"
+    end
   end
 
   def update
