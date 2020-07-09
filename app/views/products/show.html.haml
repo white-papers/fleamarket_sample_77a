@@ -75,7 +75,7 @@
     .comment_list
       - if user_signed_in?
         - @commentALL.each do |comment|
-          - if comment.user_id == current_user.id   
+          - if comment.product.user_id == current_user.id   
             .comment_Me.comment_one_block{data:{index: comment.id}}                   
               - if comment.delete_check == 1   # 削除済の場合
                 .comment_content
