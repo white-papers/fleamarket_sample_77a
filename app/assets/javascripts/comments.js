@@ -25,16 +25,14 @@ document.addEventListener("turbolinks:load", function() {
             `
         var HTML_sellerMark =
             `
-              <div class="seller_display">
-              出品者
-              </div>
+ 
             `
         var HTML_endDiv =
           `
             </div>
           </div> 
           `
-        if (comment_data.product_exhibitor.id == comment_data.user_id){
+        if (comment_data.user_id == comment_data.user_id){
             // 出品者とコメントしたユーザーが等しい場合
           var html = HTML_content_time + HTML_deleteBtn + HTML_nickname + HTML_sellerMark + HTML_endDiv
         }else{

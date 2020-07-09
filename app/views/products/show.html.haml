@@ -75,7 +75,7 @@
     .comment_list
       - if user_signed_in?
         - @commentALL.each do |comment|
-          - if comment.user_id == current_user.id 
+          - if comment.user_id == current_user.id
             .comment_Me.comment_one_block{data:{index: comment.id}}                   
               - if comment.delete_check == 1   # 削除済の場合
                 .comment_content
@@ -100,9 +100,9 @@
                   = comment.comment
                   .comment_create_at
                     = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
-                  - if comment.product.exhibitor == current_user   # 出品者とログインユーザーが等しい場合
-                    .comment_delete.other_pre_delete{data:{index: comment.id}}     
-                      = link_to '削除する', comment_path(comment.id) ,method: :patch
+                  -# - if comment.product.exhibitor == current_user   # 出品者とログインユーザーが等しい場合
+                  -#   .comment_delete.other_pre_delete{data:{index: comment.id}}     
+                  -#     = link_to '削除する', comment_path(comment.id) ,method: :patch
     - if user_signed_in?              
       = form_with model:@comment ,class:"new_comment", local: true do |f|
         = f.text_area :comment,id: "comment_body",wrap: "soft",class: "comment__form",placeholder: "コメントを書く"

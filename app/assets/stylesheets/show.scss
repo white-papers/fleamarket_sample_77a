@@ -147,6 +147,7 @@
     padding-bottom: 40px;
     .comment_list {
       padding: 15px 25px 0px 25px;
+      
       .comment_Me {
         margin: 10px 0 25px 0;
         padding: 10px 10px 30px 15px;
@@ -295,4 +296,35 @@
     background-color: red;
   }
 
+}
+
+.comment_Other {
+  margin: 10px 0 25px 0;
+  padding: 10px 10px 10px 15px;
+  background-color: #e5f3f3;
+  border-radius: 5px;
+  position: relative;
+  a {
+    text-decoration: none;
+    color: red;
+  }
+  .comment_create_at {
+    margin-top: 10px;
+    color: gray;
+  }
+  .comment_delete {
+    padding-top: 15px;
+  }
+  .comment_user_name {
+    display: flex;
+    float: right;
+    margin-right: 5px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    .seller_display {
+      margin-left: 15px;
+      display: block;
+    }
+  }
 }
