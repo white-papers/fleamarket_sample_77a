@@ -36,7 +36,7 @@ document.addEventListener("turbolinks:load", function() {
             </div>
           </div> 
           `
-        if (comment_data.item_seller.id == comment_data.user_id){
+        if (comment_data.product_exhibitor.id == comment_data.user_id){
             // 出品者とコメントしたユーザーが等しい場合
           var html = HTML_content_time + HTML_deleteBtn + HTML_nickname + HTML_sellerMark + HTML_endDiv
         }else{
@@ -113,7 +113,7 @@ document.addEventListener("turbolinks:load", function() {
         $('.comment_list').animate({ scrollTop: $('.comment_list')[0].scrollHeight});
       })
       .fail(function() {
-        alert("メッセージ送信しました");
+        alert("メッセージの送信に失敗しました");
       });
     });
     
@@ -130,7 +130,7 @@ document.addEventListener("turbolinks:load", function() {
         dataType: 'json',
       })
       .done(function(comment_data){
-        if (comment_data.item_seller.id == comment_data.user_id){   // 出品者とコメントユーザーが同じ場合
+        if (comment_data.product_exhibitor.id == comment_data.user_id){   // 出品者とコメントユーザーが同じ場合
           var html = new_comment(comment_data);
           $(`.comment_one_block[data-index=${index}]`).replaceWith(html)
         }else{    // 出品者とコメントユーザーが異なる場合
@@ -139,7 +139,7 @@ document.addEventListener("turbolinks:load", function() {
         }
       })
       .fail(function() {
-        alert("メッセージ送信しました");
+        alert("メッセージの送信に失敗しました");
       });
     });
     
