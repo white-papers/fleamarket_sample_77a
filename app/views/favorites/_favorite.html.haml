@@ -6,5 +6,5 @@
 -else 
   = link_to(product_favorites_path(@product), method: :post, remote: true) do
     %li.optionalBtn.none
-      = icon('fa', 'star')
-      %span.want イイよね！？
+      = icon('fa', 'star', class: "gray")
+      %span.want イイね！

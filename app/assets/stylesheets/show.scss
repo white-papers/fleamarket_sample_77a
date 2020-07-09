@@ -98,8 +98,11 @@
           color: #0fdee6;
           text-decoration: none;
         } 
+        .gray {
+          color: gray;
+        }
         .want {
-          color: #fa6b0c;
+          color: gray;
         }
       }
       &__alert-btn{
