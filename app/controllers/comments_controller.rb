@@ -18,6 +18,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment.update(delete_check:1)
+    redirect_to product_path(@comment.product.id)
   end
 
   def restore
@@ -30,6 +31,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    redirect_to product_path(@comment.product.id)
   end
 
 private
