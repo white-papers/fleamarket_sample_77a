@@ -33,7 +33,7 @@ crumb :mypage do |user|
  end
 
  crumb :product_new do
-  link "出品入力", new_product_path
+  link "商品を出品する", new_product_path
   parent :root
  end
 
@@ -43,11 +43,21 @@ crumb :mypage do |user|
  end
 
  crumb :profile do
-  link "プロフィール", profile_user_path
+  link "プロフィール編集", profile_user_path
   parent :mypage
  end
 
  crumb :password do
   link "パスワード編集", edit_user_registration_path
+  parent :mypage
+ end
+
+ crumb :deliveryaddress do
+  link "お届け先住所変更", deliveryaddress_user_path
+  parent :mypage
+ end
+
+ crumb :credit_cards do
+  link "カードを登録", new_credit_card_path
   parent :mypage
  end
