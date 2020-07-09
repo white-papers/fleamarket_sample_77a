@@ -46,3 +46,8 @@ crumb :mypage do |user|
   link "プロフィール", profile_user_path
   parent :mypage
  end
+
+ crumb :password do
+  link "パスワード編集", edit_user_registration_path
+  parent :mypage
+ end
