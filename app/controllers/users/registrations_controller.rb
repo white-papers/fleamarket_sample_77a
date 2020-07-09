@@ -5,21 +5,27 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
+  layout 'index'
   def new
     @user = User.new
-    render home: nil
   end
   
   def create
     @user = User.new(sign_up_params)
     unless @user.valid?
-      flash.now[:alert] = @user.errors.full_messages
-      render :new and return
+      if params[:sns_auth] == 'true'
+        pass = Devise.friendly_token
+        params[:user][:password] = pass
+        params[:user][:password_confirmation] = pass
+      else
+        flash.now[:alert] = @user.errors.full_messages
+        render :new and return
+      end
     end
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
     @streetaddress= @user.build_streetaddress
-    render :new_streetaddress
+    render :new_streetaddress   
   end
 
   def create_streetaddress

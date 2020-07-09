@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 before_action :set_parents
 before_action :set_credit_card, only: [:show]
-before_action :set_user
+before_action :set_user, except: [:sns]
   
   def show
     @product_buyer = Product.where(buyer_id: current_user.id)
@@ -19,6 +19,9 @@ before_action :set_user
   def deliveryaddress
     @deliveryaddress = Deliveryaddress.find_by(user_id: current_user.id)
   end  
+
+  def sns
+  end
 
   def log_out 
   end

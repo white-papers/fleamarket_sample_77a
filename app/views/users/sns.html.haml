@@ -1,0 +1,6 @@
+.registrations_background
+  .registrations
+    %h2.registrations__title
+      新規登録
+    = link_to 'メールアドレスで登録', new_user_registration_path, class: 'email_btn' 
+    = link_to 'Googleで登録', user_google_oauth2_omniauth_authorize_path, method: :post,class: 'google_btn' 

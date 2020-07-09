@@ -22,3 +22,4 @@
         .actions
           = f.submit "Log in", class: 'next_btn'
     
+    = link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, class: 'google_btn'

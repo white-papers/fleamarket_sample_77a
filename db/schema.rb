@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_101521) do
+ActiveRecord::Schema.define(version: 2020_07_09_083225) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -75,12 +75,12 @@ ActiveRecord::Schema.define(version: 2020_07_07_101521) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "product_id"
     t.bigint "deliveryaddress_id"
     t.bigint "exhibitor_id"
     t.bigint "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "product_id"
     t.bigint "credit_card_id"
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
@@ -112,16 +112,13 @@ ActiveRecord::Schema.define(version: 2020_07_07_101521) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
-  create_table "profieladdresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "postal_code"
-    t.string "prefectures"
-    t.string "city"
-    t.string "address"
-    t.string "building"
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_profieladdresses_on_user_id"
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "streetaddresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -168,6 +165,6 @@ ActiveRecord::Schema.define(version: 2020_07_07_101521) do
   add_foreign_key "products", "users"
   add_foreign_key "products", "users", column: "buyer_id"
   add_foreign_key "products", "users", column: "exhibitor_id"
-  add_foreign_key "profieladdresses", "users"
+  add_foreign_key "sns_credentials", "users"
   add_foreign_key "streetaddresses", "users"
 end
