@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_action :set_credit_card, only: [:pay, :done]
   before_action :set_deliveryaddress, only: [:pay, :done]
   def show
-    if user_signed_in?
+    if user_signed_in? && current_user.id != @product.user_id
       @card = CreditCard.find_by(user_id: current_user.id) 
       if @card.blank?
         redirect_to product_path(@product.id), alert: "クレジットカードを登録してください"
@@ -50,27 +50,39 @@ class OrdersController < ApplicationController
   end
 
   def done
-    @product_buyer = Product.find(params[:id])
-    @product_buyer.update(buyer_id: current_user.id)
-    @image = @product.images.all
-    order = Order.create!(
-      buyer_id: current_user.id, 
-      exhibitor_id: @product.exhibitor_id,
-      product_id: @product.id, 
-      deliveryaddress_id: @deliveryaddress.id, 
-      credit_card_id: @card.id
-      )  
-  
+    if current_user
+      @product_buyer = Product.find(params[:id])
+      @product_buyer.update(buyer_id: current_user.id)
+      @image = @product.images.all
+      order = Order.create!(
+        buyer_id: current_user.id, 
+        exhibitor_id: @product.exhibitor_id,
+        product_id: @product.id, 
+        deliveryaddress_id: @deliveryaddress.id, 
+        credit_card_id: @card.id
+        )
+    else
+      redirect_to root_path  
+    end      
   end 
+
+
 
   def set_product
     @product = Product.find(params[:id])
+    if @product.buyer_id.present?
+      redirect_to root_path
+    end  
   end  
+
   def set_deliveryaddress
     @deliveryaddress =  Deliveryaddress.where(user_id: current_user.id).first
-  end  
+  end 
+
   def set_credit_card
     @card = CreditCard.find_by(user_id: current_user.id) 
   end  
+
+
 
 end
