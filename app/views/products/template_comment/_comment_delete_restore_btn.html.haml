@@ -1,5 +1,5 @@
 - if comment.user.id == current_user.id
-  .comment_restore{data:{index: comment.id}} 
-    = link_to "復元する",restore_comment_path(comment.id)
+  -# .comment_restore{data:{index: comment.id}} 
+  -#   = link_to "復元する",restore_comment_path(comment.id)
   .comment_delete.complete_delete{data:{index: comment.id}}     
     = link_to '完全に削除する', comment_path(comment.id) ,method: :delete
