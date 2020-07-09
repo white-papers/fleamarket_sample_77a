@@ -1,8 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
   $(function(){
-    // ===================================
     // 新規コメント表示用・自分のコメント復元用 
-    // ===================================
       function new_comment(comment_data){
         var HTML_content_time = 
           `
@@ -27,16 +25,14 @@ document.addEventListener("turbolinks:load", function() {
             `
         var HTML_sellerMark =
             `
-              <div class="seller_display">
-              出品者
-              </div>
+ 
             `
         var HTML_endDiv =
           `
             </div>
           </div> 
           `
-        if (comment_data.item_seller.id == comment_data.user_id){
+        if (comment_data.user_id == comment_data.user_id){
             // 出品者とコメントしたユーザーが等しい場合
           var html = HTML_content_time + HTML_deleteBtn + HTML_nickname + HTML_sellerMark + HTML_endDiv
         }else{
@@ -46,9 +42,8 @@ document.addEventListener("turbolinks:load", function() {
     
         return html;
       };
-    // ===================================
+
     // 他人のコメント復元用 
-    // ===================================
       function restore_other_comment(comment_data){
         var html = 
         `
@@ -71,17 +66,11 @@ document.addEventListener("turbolinks:load", function() {
       return html;
       };
     
-    // ===================================
     // 仮削除表示用
-    // ===================================
-    
     function PLEdelete(index){
       var html = 
       `
       出品者によりこのコメントは削除されました。
-      <div class="comment_restore" data-index=${index}>
-        <a href="/comments/${index}/restore">復元する</a>
-      </div>
       <div class="comment_delete complete_delete" data-index=${index}>
         <a class="complete_delete" rel="nofollow" data-method="delete" href="/comments/${index}">完全に削除する</a>
       </div>
@@ -90,10 +79,7 @@ document.addEventListener("turbolinks:load", function() {
     return html;
     };
     
-    
-    // ===================================
     // コメント作成した場合
-    // ===================================
       $('.new_comment').on('submit', function(e){
         e.preventDefault()
         var formData = new FormData(this);
@@ -113,13 +99,11 @@ document.addEventListener("turbolinks:load", function() {
         $('.comment_list').animate({ scrollTop: $('.comment_list')[0].scrollHeight});
       })
       .fail(function() {
-        alert("メッセージ送信しました");
+        alert("メッセージの送信に失敗しました");
       });
     });
     
-    // ===================================
     // 復元した場合
-    // ===================================
     $(".comment_list").on('click',".comment_restore",function(e){
       e.preventDefault()
       var index = $(this).data("index")
@@ -130,7 +114,7 @@ document.addEventListener("turbolinks:load", function() {
         dataType: 'json',
       })
       .done(function(comment_data){
-        if (comment_data.item_seller.id == comment_data.user_id){   // 出品者とコメントユーザーが同じ場合
+        if (comment_data.product_exhibitor.id == comment_data.user_id){   // 出品者とコメントユーザーが同じ場合
           var html = new_comment(comment_data);
           $(`.comment_one_block[data-index=${index}]`).replaceWith(html)
         }else{    // 出品者とコメントユーザーが異なる場合
@@ -139,15 +123,12 @@ document.addEventListener("turbolinks:load", function() {
         }
       })
       .fail(function() {
-        alert("メッセージ送信しました");
+        alert("メッセージの送信に失敗しました");
       });
     });
     
     
-    // ===================================
     // 自分のコメントを仮削除した場合
-    // ===================================
-    
     $(".comment_list").on('click',".me_pre_delete",function(e){
       e.preventDefault()
       var index = $(this).data("index");
@@ -156,10 +137,7 @@ document.addEventListener("turbolinks:load", function() {
       content.append(PLEdelete(index));
     });
     
-    // ===================================
     // 他人のコメントを仮削除した場合
-    // ===================================
-    
     $(".comment_list").on('click',".other_pre_delete",function(e){
     e.preventDefault()
     var index = $(this).data("index");
@@ -168,9 +146,7 @@ document.addEventListener("turbolinks:load", function() {
     content.append(PLEdelete(index));
     });
     
-    // ===================================
     // 完全削除した場合
-    // ===================================
     $(".comment_list").on('click','.complete_delete',function(e){
       e.preventDefault()
       var index = $(this).data("index");
