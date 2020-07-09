@@ -1,8 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
   $(function(){
-    // ===================================
     // 新規コメント表示用・自分のコメント復元用 
-    // ===================================
       function new_comment(comment_data){
         var HTML_content_time = 
           `
@@ -46,9 +44,8 @@ document.addEventListener("turbolinks:load", function() {
     
         return html;
       };
-    // ===================================
+
     // 他人のコメント復元用 
-    // ===================================
       function restore_other_comment(comment_data){
         var html = 
         `
@@ -71,10 +68,7 @@ document.addEventListener("turbolinks:load", function() {
       return html;
       };
     
-    // ===================================
     // 仮削除表示用
-    // ===================================
-    
     function PLEdelete(index){
       var html = 
       `
@@ -90,10 +84,7 @@ document.addEventListener("turbolinks:load", function() {
     return html;
     };
     
-    
-    // ===================================
     // コメント作成した場合
-    // ===================================
       $('.new_comment').on('submit', function(e){
         e.preventDefault()
         var formData = new FormData(this);
@@ -117,9 +108,7 @@ document.addEventListener("turbolinks:load", function() {
       });
     });
     
-    // ===================================
     // 復元した場合
-    // ===================================
     $(".comment_list").on('click',".comment_restore",function(e){
       e.preventDefault()
       var index = $(this).data("index")
@@ -144,10 +133,7 @@ document.addEventListener("turbolinks:load", function() {
     });
     
     
-    // ===================================
     // 自分のコメントを仮削除した場合
-    // ===================================
-    
     $(".comment_list").on('click',".me_pre_delete",function(e){
       e.preventDefault()
       var index = $(this).data("index");
@@ -156,10 +142,7 @@ document.addEventListener("turbolinks:load", function() {
       content.append(PLEdelete(index));
     });
     
-    // ===================================
     // 他人のコメントを仮削除した場合
-    // ===================================
-    
     $(".comment_list").on('click',".other_pre_delete",function(e){
     e.preventDefault()
     var index = $(this).data("index");
@@ -168,9 +151,7 @@ document.addEventListener("turbolinks:load", function() {
     content.append(PLEdelete(index));
     });
     
-    // ===================================
     // 完全削除した場合
-    // ===================================
     $(".comment_list").on('click','.complete_delete',function(e){
       e.preventDefault()
       var index = $(this).data("index");
