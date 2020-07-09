@@ -34,7 +34,7 @@ crumb :mypage do |user|
 
  crumb :product_new do
   link "商品を出品する", new_product_path
-  parent :mypage
+  parent :root
  end
 
  crumb :log_out do
