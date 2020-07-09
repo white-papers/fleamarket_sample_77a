@@ -73,9 +73,6 @@ document.addEventListener("turbolinks:load", function() {
       var html = 
       `
       出品者によりこのコメントは削除されました。
-      <div class="comment_restore" data-index=${index}>
-        <a href="/comments/${index}/restore">復元する</a>
-      </div>
       <div class="comment_delete complete_delete" data-index=${index}>
         <a class="complete_delete" rel="nofollow" data-method="delete" href="/comments/${index}">完全に削除する</a>
       </div>
