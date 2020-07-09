@@ -42,7 +42,7 @@ private
   end
 
   def check_user
-    unless @comment.product.exhibitor == current_user
+    unless @comment.user_id == current_user.id
       flash[:alert] = "その操作はできません"
       redirect_to root_path
     end
