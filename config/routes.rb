@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers:{sessions: 'users/sessions',  registrations: 'users/registrations'}
+  devise_for :users, controllers:{
+    sessions: 'users/sessions',  
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
   devise_scope :user do
     get 'streetaddress', to: 'users/registrations#new_steetaddress'
     post 'streetaddress', to: 'users/registrations#create_streetaddress'
@@ -19,6 +23,9 @@ Rails.application.routes.draw do
       get 'profile', to: 'users#profile'
       get 'deliveryaddress',to: 'users#deliveryaddress'
     end
+    collection do
+      get 'sns', to: 'users#sns'
+    end  
   end
 
  

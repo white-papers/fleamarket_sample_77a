@@ -81,6 +81,8 @@ gem 'payjp'
 gem 'dotenv-rails'
 gem "jquery-rails"
 gem 'pry-rails'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
 
 group :production do
   gem 'unicorn'

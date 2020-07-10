@@ -1,0 +1,54 @@
+.registrations_background{
+  background-color:rgb(245, 245, 245);
+  height: calc(100vh - 110px);
+  padding-top: 100px;
+}
+.registrations{
+  margin: 10px auto;
+  padding: 20px;
+  width: 700px;
+  border: 1px solid rgb(187, 187, 187);
+  border-radius: 30px;
+  background-color: white;
+  &__title{
+    text-align: center;
+    color: rgb(99, 99, 99);
+    border-bottom: 1px solid rgb(218, 218, 218);
+    margin-bottom:20px;
+  }
+}
+.email_btn{
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  margin: 0px auto 50px;
+  top: 102%;
+  right: 160px;
+  font-size: 18px;
+  line-height: 48px;
+  background: #3CCACE;
+  border: 1px solid #3CCACE;
+  color: #fff;
+  width: 60%;
+  font-size: 18px;
+  border-radius: 100px;
+  cursor: pointer;
+  
+} 
+.google_btn{
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  margin: 50px auto 15px;
+  top: 102%;
+  right: 160px;
+  font-size: 18px;
+  line-height: 48px;
+  background: rgb(64, 88, 219);
+  border: 1px solid rgb(60, 99, 206);
+  color: #fff;
+  width: 60%;
+  font-size: 18px;
+  border-radius: 100px;
+  cursor: pointer;
+}
